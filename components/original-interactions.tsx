@@ -129,11 +129,11 @@ export function OriginalInteractions() {
     (() => {
       
        const categoryData=window.__COLLEXUS_CATEGORY_DATA__;
-       const views=document.getElementById('categoryViews'), title=document.getElementById('categoryTitle'), punchline=document.getElementById('categoryPunchline'), desc=document.getElementById('categoryDescription'), eyebrow=document.getElementById('categoryEyebrow'), icon=document.getElementById('categoryIcon'), cards=document.getElementById('categoryCards');
+       const views=document.getElementById('categoryViews'), title=document.getElementById('categoryTitle'), punchline=document.getElementById('categoryPunchline'), desc=document.getElementById('categoryDescription'), eyebrow=document.getElementById('categoryEyebrow'), cards=document.getElementById('categoryCards');
        let categoryCardIconRoots=[];
        function openCategory(name){
         const key=Object.keys(categoryData).find(k=>k.toLowerCase()===String(name).toLowerCase())||'Hackathons'; const d=categoryData[key];
-        eyebrow.textContent=key.toUpperCase(); title.textContent=key; punchline.textContent=d.punch; desc.textContent=d.desc; icon.dataset.iconName=d.icon;
+        eyebrow.textContent=key.toUpperCase(); title.textContent=key; punchline.textContent=d.punch; desc.textContent=d.desc;
         categoryCardIconRoots.forEach(root=>root.unmount());
         cards.innerHTML=d.cards.length ? d.cards.map((c,i)=>`<article class="category-card" style="animation-delay:${i*70}ms"><div class="category-card-media"><img src="${c[4]}" alt="${c[1]} event" loading="lazy"></div><div><div class="category-card-top"><span class="category-card-tag">${c[0]}</span><span class="lucide-icon category-card-icon lucide-mount" data-lucide="${d.icon}"></span></div><h3>${c[1]}</h3><p>${c[2]}</p></div><a class="category-card-action" href="${publicBasePath}/events/${c[6]}/">${c[3]} <span class="lucide-icon lucide-mount" data-lucide="arrow_forward"></span></a></article>`).join('') : `<div class="category-empty-state"><span class="lucide-icon lucide-mount category-empty-icon" data-lucide="${d.icon}"></span><h3>No outdoor events listed yet</h3><p>${d.desc}</p></div>`;
         categoryCardIconRoots=mountLucidePlaceholders(cards);
@@ -215,12 +215,12 @@ export function OriginalInteractions() {
        document.querySelectorAll('[data-login-type]').forEach(btn=>btn.addEventListener('click',()=>showLoginForm(btn.dataset.loginType)));
        document.querySelectorAll('[data-login-back]').forEach(btn=>btn.addEventListener('click',showLoginOptions));
        document.querySelectorAll('[data-event-register-back]').forEach(btn=>btn.addEventListener('click',showLoginOptions));
-       studentLoginForm?.addEventListener('submit',e=>{e.preventDefault();hint.textContent='Student login submitted. In the full backend, your college credentials will be verified here.';hint.classList.remove('hidden');});
-       facultyLoginForm?.addEventListener('submit',e=>{e.preventDefault();hint.textContent='Faculty login submitted. In the full backend, your college credentials will be verified here.';hint.classList.remove('hidden');});
+       const showAuthUnavailable=(e: Event)=>{e.preventDefault();if(hint){hint.textContent='Sign-in is unavailable in this static demo. Your credentials were not sent.';hint.classList.remove('hidden');}};
+       studentLoginForm?.addEventListener('submit',showAuthUnavailable);
+       facultyLoginForm?.addEventListener('submit',showAuthUnavailable);
        // Digital pass actions
        // Category page navigation starts at the top and keeps every section one-click away.
        document.querySelectorAll('[data-category-nav]').forEach(btn=>btn.addEventListener('click',()=>openCategory(btn.dataset.categoryNav)));
-       document.getElementById('categoryCalendarNav')?.addEventListener('click',()=>document.getElementById('calendarButton')?.click());
        document.getElementById('categoryPassesNav')?.addEventListener('click',()=>document.getElementById('digitalPasses')?.scrollIntoView({behavior:'smooth',block:'start'}));
        // Event registration form inside the login panel.
        const loginEventSelect=document.getElementById('loginEventSelect');

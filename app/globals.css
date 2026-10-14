@@ -3548,6 +3548,70 @@ html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfal
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel .bg-surface-container-low.rounded-lg{
   color:#29444f!important;background:linear-gradient(145deg,#deeeee,#e8f1f2)!important;border-color:#bdd5d8!important;
 }
+
+/* Keep secondary controls calm and native to the ink-and-teal surfaces. */
+body.warm-editorial-theme.vivid-nightfall-theme .category-views{
+  background:transparent!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .passes-heading-icon{
+  width:52px!important;height:52px!important;border-radius:15px!important;
+  color:#087e83!important;background:#dcecee!important;border:1px solid #bdd5d8!important;
+  box-shadow:none!important;font-size:25px!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .filter-panel-note{
+  padding:8px 10px!important;color:#536771!important;background:rgba(220,236,238,.5)!important;
+  border:0!important;border-left:2px solid #72b9bd!important;border-radius:3px 8px 8px 3px!important;
+  box-shadow:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .menu-version-pill{box-shadow:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme .event-list-more .lucide-icon{color:#087e83!important}
+body.warm-editorial-theme.vivid-nightfall-theme .login-options .option-icon{
+  width:34px!important;height:34px!important;color:#087e83!important;background:transparent!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .login-options .option-icon .lucide-icon{font-size:22px!important}
+body.warm-editorial-theme.vivid-nightfall-theme .login-options .login-option,
+body.warm-editorial-theme.vivid-nightfall-theme .login-options .login-option:hover{
+  box-shadow:none!important;transform:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .login-options .login-option:hover{
+  border-color:#78b9bc!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .login-auth-form input:focus{
+  border-color:#087e83!important;box-shadow:none!important;outline:2px solid rgba(8,126,131,.24)!important;
+  outline-offset:1px!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-backdrop{
+  background:rgba(12,34,43,.24)!important;backdrop-filter:blur(2px)!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-dialog{
+  box-shadow:0 14px 38px rgba(16,48,57,.14)!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-nav button,
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-nav button:hover{
+  box-shadow:none!important;transform:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day,
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.event-day,
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.registered{
+  box-shadow:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day:not(.muted):hover{
+  transform:none!important;box-shadow:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-legend i{
+  width:14px!important;height:14px!important;border-radius:4px!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .calendar-backdrop{
+  background:rgba(22,48,58,.2)!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .passes-heading-icon,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .login-options .option-icon{
+  color:#75d9d6!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .passes-heading-icon{
+  background:#16313c!important;border-color:#315664!important;
+}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel .bg-surface-container-low.rounded-lg>div:first-child :is(span){color:#087e83!important}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel .featured-detail-stat{
   color:#183541!important;background:linear-gradient(145deg,#f6fafa,#e9f1f2)!important;border-color:#c2d7d9!important;box-shadow:inset 2px 2px 5px rgba(62,99,106,.06),inset -2px -2px 5px rgba(255,255,255,.85)!important;

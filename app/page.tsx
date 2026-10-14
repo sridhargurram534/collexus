@@ -417,7 +417,6 @@ export default function HomePage() {
       <button type="button" data-category-nav="Branch Events"><Icon name="hub" />Branch Events</button>
       <button type="button" data-category-nav="Cultural Events"><Icon name="celebration" />Cultural Events</button>
       <button type="button" data-category-nav="Outdoors"><Icon name="park" />Outdoors</button>
-      <button type="button" id="categoryCalendarNav"><Icon name="calendar_month" />Calendar</button>
       <button type="button" id="categoryPassesNav"><Icon name="qr_code_2" />Get Passes</button>
     </nav>
     <div className="category-page-top">
@@ -426,7 +425,6 @@ export default function HomePage() {
     </div>
     <div className="category-heading">
       <div><p id="categoryEyebrow" className="category-eyebrow">EXPLORE</p><h2 id="categoryTitle">Hackathons</h2><p id="categoryPunchline" className="category-punchline">Build bold. Break limits. Ship what matters.</p><p id="categoryDescription">Find events that match your interests.</p></div>
-      <Icon name="terminal" className="category-icon" id="categoryIcon" />
     </div>
     <div id="categoryCards" className="category-cards"></div>
   </div>
@@ -449,9 +447,9 @@ export default function HomePage() {
       <h3 className="login-auth-title">Student Login</h3>
       <p className="login-auth-sub">Sign in to register for events, view your calendar and manage your pass.</p>
       <div className="login-auth-grid">
-        <label>College ID<input name="studentId" required placeholder="e.g. 23CSP001" /></label>
-        <label>College Email<input name="studentEmail" type="email" required placeholder="student@college.edu" /></label>
-        <label>Password<input name="studentPassword" type="password" required placeholder="Enter password" /></label>
+        <label>College ID<input name="studentId" autoComplete="username" required minLength={5} maxLength={20} placeholder="e.g. 23CSP001" /></label>
+        <label>Mail<input name="studentEmail" type="email" autoComplete="email" required maxLength={254} placeholder="student@college.edu" /></label>
+        <label>Password<input name="studentPassword" type="password" autoComplete="current-password" required minLength={8} maxLength={128} placeholder="Enter password" /></label>
       </div>
       <button className="login-auth-submit" type="submit">Login as Student</button>
       <button className="login-auth-back" type="button" data-login-back><Icon name="arrow_back" /> Choose another login</button>
@@ -460,9 +458,9 @@ export default function HomePage() {
       <h3 className="login-auth-title">Faculty Login</h3>
       <p className="login-auth-sub">Sign in to coordinate events and manage registrations.</p>
       <div className="login-auth-grid">
-        <label>Faculty ID<input name="facultyId" required placeholder="e.g. FAC001" /></label>
-        <label>Official Email<input name="facultyEmail" type="email" required placeholder="faculty@college.edu" /></label>
-        <label>Password<input name="facultyPassword" type="password" required placeholder="Enter password" /></label>
+        <label>Faculty ID<input name="facultyId" autoComplete="username" required minLength={4} maxLength={20} placeholder="e.g. FAC001" /></label>
+        <label>Mail<input name="facultyEmail" type="email" autoComplete="email" required maxLength={254} placeholder="faculty@college.edu" /></label>
+        <label>Password<input name="facultyPassword" type="password" autoComplete="current-password" required minLength={8} maxLength={128} placeholder="Enter password" /></label>
       </div>
       <button className="login-auth-submit" type="submit">Login as Faculty</button>
       <button className="login-auth-back" type="button" data-login-back><Icon name="arrow_back" /> Choose another login</button>
@@ -483,7 +481,7 @@ export default function HomePage() {
       <button className="login-auth-back" type="button" data-event-register-back><Icon name="arrow_back" /> Choose another option</button>
     </form>
     </div>
-    <div id="loginFormHint" className="login-form-hint hidden"></div>
+    <div id="loginFormHint" className="login-form-hint hidden" role="status" aria-live="polite"></div>
   </div>
 </div>
 
