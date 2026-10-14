@@ -3612,6 +3612,14 @@ html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfal
 html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .passes-heading-icon{
   background:#16313c!important;border-color:#315664!important;
 }
+.host-event-panel{margin-top:14px;padding:15px;border:1px solid #cbdadd;border-radius:14px;background:#f2f7f7;color:#29444f}
+.host-event-panel h3{margin:0 0 6px;font:700 16px/1.2 "Space Grotesk",sans-serif;color:#183541}
+.host-event-panel p{margin:0;font-size:12px;line-height:1.5;color:#536771}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .host-event-panel{
+  color:#e6eff3;background:#14242e;border-color:#344b57;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .host-event-panel h3{color:#f1f7fa}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .host-event-panel p{color:#bac7d1}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel .bg-surface-container-low.rounded-lg>div:first-child :is(span){color:#087e83!important}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel .featured-detail-stat{
   color:#183541!important;background:linear-gradient(145deg,#f6fafa,#e9f1f2)!important;border-color:#c2d7d9!important;box-shadow:inset 2px 2px 5px rgba(62,99,106,.06),inset -2px -2px 5px rgba(255,255,255,.85)!important;

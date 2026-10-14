@@ -50,8 +50,8 @@ export default function HomePage() {
         <button id="calendarButton" className="calendar-btn" type="button" aria-label="Open calendar"><Icon name="calendar_month" /><span className="hidden sm:inline">Calendar</span></button>
       </div>
       <div className="shrink-0 relative">
-        <button id="loginButton" type="button" className="login-btn inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider shadow-[0_6px_18px_rgba(38,12,26,.16)]">
-          <Icon name="login" className="text-[19px]" /><span>Login</span>
+        <button id="loginButton" type="button" aria-label="Login or sign up" className="login-btn inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider shadow-[0_6px_18px_rgba(38,12,26,.16)]">
+          <Icon name="login" className="text-[19px]" /><span>Login / Sign Up</span>
         </button>
       </div>
     </div>
@@ -107,10 +107,10 @@ export default function HomePage() {
 <span>Explore {events.length} Event Records</span>
 <Icon name="arrow_forward" className="text-[18px]" />
 </a>
-<a className="hero-cta hero-cta-high-contrast relative overflow-hidden inline-flex items-center justify-center gap-space-xs px-space-lg py-3 rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg uppercase tracking-wider hover:bg-surface-container-low border border-[#f4d3cb] shadow-sm transition-all group" href="#featured-events">
-<Icon name="groups" className="text-secondary text-[20px] group-hover:rotate-12 transition-transform" />
-<span>Browse event records</span>
-</a>
+<button id="hostEventButton" type="button" aria-haspopup="dialog" aria-controls="loginModal" className="hero-cta hero-cta-high-contrast relative overflow-hidden inline-flex items-center justify-center gap-space-xs px-space-lg py-3 rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg uppercase tracking-wider hover:bg-surface-container-low border border-[#f4d3cb] shadow-sm transition-all group">
+<Icon name="event_upcoming" className="text-secondary text-[20px]" />
+<span>Host Event</span>
+</button>
 </div>
 
 
@@ -437,12 +437,13 @@ export default function HomePage() {
     <button className="login-back-icon hidden" type="button" data-login-back aria-label="Back to login choices"><Icon name="arrow_back" aria-hidden="true" /></button>
     <button className="login-close" type="button" data-close-login aria-label="Close"><Icon name="close" /></button>
     <div className="login-dialog-logo"><span className="college-logo-wrap"><img src={`${publicBasePath}/collexus-logo.svg`} alt="Collexus logo" className="college-logo"/></span><span className="collexus-word">Collexus</span></div>
-    <p className="category-eyebrow">WELCOME BACK</p><h2 id="loginTitle">Choose your login</h2><p className="login-subtitle">Select how you want to continue.</p>
+    <p className="category-eyebrow">ACCOUNT ACCESS</p><h2 id="loginTitle">Login / Sign Up</h2><p className="login-subtitle">Choose an account type. Account creation is not connected in this static demo.</p>
     <div className="login-options">
       <button className="login-option" type="button" data-login-type="student"><span className="option-icon"><Icon name="school" /></span><span><strong>Student Login</strong><small>For students to register and manage events</small></span><Icon name="arrow_forward" /></button>
       <button className="login-option" type="button" data-login-type="faculty"><span className="option-icon"><Icon name="badge" /></span><span><strong>Faculty Login</strong><small>For faculty coordinators</small></span><Icon name="arrow_forward" /></button>
       <button className="login-option" type="button" data-login-type="event-register"><span className="option-icon"><Icon name="event_available" /></span><span><strong>Register Event</strong><small>Fill the form to register for a campus event</small></span><Icon name="arrow_forward" /></button>
     </div>
+    <div id="hostEventPanel" className="host-event-panel hidden" role="status" aria-live="polite"><h3>Host a campus event</h3><p>Organizer submissions are not connected in this static demo. No event details will be sent.</p><button className="login-auth-back" type="button" data-login-back><Icon name="arrow_back" /> Back to account options</button></div>
     <form id="studentLoginForm" className="login-auth-form">
       <h3 className="login-auth-title">Student Login</h3>
       <p className="login-auth-sub">Sign in to register for events, view your calendar and manage your pass.</p>
