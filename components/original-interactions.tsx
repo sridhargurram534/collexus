@@ -5,6 +5,8 @@
 import { useEffect, useRef } from "react";
 import { events } from "@/data/events";
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function OriginalInteractions() {
   const initialized = useRef(false);
   useEffect(() => {
@@ -16,6 +18,7 @@ export function OriginalInteractions() {
       "Workshops": { icon: "school", punch: "Learn by doing.", desc: "Published RCEE workshop records.", cards: [] },
       "Branch Events": { icon: "hub", punch: "Your branch. Your people.", desc: "Published RCEE project and branch event records.", cards: [] },
       "Cultural Events": { icon: "celebration", punch: "Make memories beyond the classroom.", desc: "Published RCEE cultural event records.", cards: [] },
+      "Outdoors": { icon: "park", punch: "Find fresh air between classes.", desc: "No published RCEE outdoor event records are in the current source set.", cards: [] },
     };
     const eventGroup = { Hackathon: "Hackathons", Workshop: "Workshops", "Project expo": "Branch Events", Cultural: "Cultural Events" };
     events.forEach((event) => {
@@ -120,7 +123,7 @@ export function OriginalInteractions() {
        function openCategory(name){
         const key=Object.keys(categoryData).find(k=>k.toLowerCase()===String(name).toLowerCase())||'Hackathons'; const d=categoryData[key];
         eyebrow.textContent=key.toUpperCase(); title.textContent=key; punchline.textContent=d.punch; desc.textContent=d.desc; icon.textContent=d.icon;
-        cards.innerHTML=d.cards.map((c,i)=>`<article class="category-card" style="animation-delay:${i*70}ms"><div class="category-card-media"><img src="${c[4]}" alt="${c[1]} event" loading="lazy"></div><div><div class="category-card-top"><span class="category-card-tag">${c[0]}</span><span class="material-symbols-outlined category-card-icon">${d.icon}</span></div><h3>${c[1]}</h3><p>${c[2]}</p></div><a class="category-card-action" href="/events/${c[6]}">${c[3]} <span>→</span></a></article>`).join('');
+        cards.innerHTML=d.cards.length ? d.cards.map((c,i)=>`<article class="category-card" style="animation-delay:${i*70}ms"><div class="category-card-media"><img src="${c[4]}" alt="${c[1]} event" loading="lazy"></div><div><div class="category-card-top"><span class="category-card-tag">${c[0]}</span><span class="material-symbols-outlined category-card-icon">${d.icon}</span></div><h3>${c[1]}</h3><p>${c[2]}</p></div><a class="category-card-action" href="${publicBasePath}/events/${c[6]}/">${c[3]} <span>→</span></a></article>`).join('') : `<div class="category-empty-state"><span class="material-symbols-outlined">${d.icon}</span><h3>No outdoor events listed yet</h3><p>${d.desc}</p></div>`;
         document.body.classList.add('category-mode'); views.classList.remove('hidden'); views.scrollIntoView({behavior:'smooth',block:'start'}); history.replaceState(null,'','#'+key.toLowerCase().replace(/\s+/g,'-')); 
        }
        function closeCategory(){document.body.classList.remove('category-mode');views.classList.add('hidden');history.replaceState(null,'','#home');window.scrollTo({top:0,behavior:'smooth'});}
@@ -168,7 +171,7 @@ export function OriginalInteractions() {
         for(let i=0;i<first;i++){const d=document.createElement('div');d.className='calendar-day muted';d.innerHTML=`<span class="day-num">${prevDays-first+i+1}</span>`;calGrid.appendChild(d)}
         for(let day=1;day<=days;day++){const iso=`${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;const matches=regs.filter(r=>r.date===iso);const publicEvents=[...new Map((publicByDate[iso]||[]).map(event=>[event.slug,event])).values()];const hasEvent=publicEvents.length>0;const d=document.createElement('div');d.className='calendar-day'+(hasEvent?' event-day':'')+(matches.length?' registered':'');
           const unregisteredEvents=publicEvents.filter(event=>!matches.some(r=>r.name===event.name));
-          const publicLabels=unregisteredEvents.slice(0,2).map(event=>`<a class="event-dot public-dot" href="/events/${event.slug}" title="Open ${event.name}">• ${event.name}</a>`).join('');
+          const publicLabels=unregisteredEvents.slice(0,2).map(event=>`<a class="event-dot public-dot" href="${publicBasePath}/events/${event.slug}/" title="Open ${event.name}">• ${event.name}</a>`).join('');
           const moreEvents=unregisteredEvents.length>2?`<span class="event-dot public-more">+${unregisteredEvents.length-2} more</span>`:'';
           const registeredLabels=matches.map(r=>`<span class="event-dot registered-dot">✓ ${r.name}</span>`).join('');
           d.innerHTML=`<span class="day-num">${day}</span>${registeredLabels}${publicLabels}${moreEvents}`;calGrid.appendChild(d)}
@@ -184,16 +187,16 @@ export function OriginalInteractions() {
        // Make category buttons/card controls open a dedicated category view.
        document.querySelectorAll('[data-search]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openCategory(b.dataset.search)}));
        // Enter in search opens the closest category.
-       const input=document.getElementById('globalSearch'); input?.addEventListener('keydown',e=>{if(e.key==='Enter'){const q=input.value.trim().toLowerCase(); if(!q)return; const matchingEvent=events.find(event=>event.title.toLowerCase().includes(q)); if(matchingEvent){window.location.assign(`/events/${matchingEvent.slug}`);return;} const match=Object.keys(categoryData).find(k=>k.toLowerCase().includes(q)||q.includes(k.toLowerCase())); if(match){document.getElementById('searchSuggestions')?.classList.add('hidden');openCategory(match)}}});
+       const input=document.getElementById('globalSearch'); input?.addEventListener('keydown',e=>{if(e.key==='Enter'){const q=input.value.trim().toLowerCase(); if(!q)return; const matchingEvent=events.find(event=>event.title.toLowerCase().includes(q)); if(matchingEvent){window.location.assign(`${publicBasePath}/events/${matchingEvent.slug}/`);return;} const match=Object.keys(categoryData).find(k=>k.toLowerCase().includes(q)||q.includes(k.toLowerCase())); if(match){document.getElementById('searchSuggestions')?.classList.add('hidden');openCategory(match)}}});
        // Login chooser.
        const modal=document.getElementById('loginModal'), loginBtn=document.getElementById('loginButton'), hint=document.getElementById('loginFormHint');
        function closeLogin(){modal.classList.add('hidden');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
        loginBtn?.addEventListener('click',()=>{modal.classList.remove('hidden');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';showLoginOptions();});
        document.querySelectorAll('[data-close-login]').forEach(x=>x.addEventListener('click',closeLogin));
        document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLogin()});
-       const loginOptions=document.querySelector('.login-options'); const studentLoginForm=document.getElementById('studentLoginForm'); const facultyLoginForm=document.getElementById('facultyLoginForm'); const eventRegistrationPanel=document.getElementById('eventRegistrationPanel');
-       function showLoginForm(type){ loginOptions?.classList.add('hidden'); studentLoginForm?.classList.toggle('active',type==='student'); facultyLoginForm?.classList.toggle('active',type==='faculty'); eventRegistrationPanel?.classList.toggle('hidden',type!=='event-register'); hint.classList.add('hidden'); }
-       function showLoginOptions(){ loginOptions?.classList.remove('hidden'); studentLoginForm?.classList.remove('active'); facultyLoginForm?.classList.remove('active'); eventRegistrationPanel?.classList.add('hidden'); hint.classList.add('hidden'); }
+       const loginOptions=document.querySelector('.login-options'); const loginBackIcon=document.querySelector('.login-back-icon'); const studentLoginForm=document.getElementById('studentLoginForm'); const facultyLoginForm=document.getElementById('facultyLoginForm'); const eventRegistrationPanel=document.getElementById('eventRegistrationPanel');
+       function showLoginForm(type){ loginOptions?.classList.add('hidden'); loginBackIcon?.classList.remove('hidden'); studentLoginForm?.classList.toggle('active',type==='student'); facultyLoginForm?.classList.toggle('active',type==='faculty'); eventRegistrationPanel?.classList.toggle('hidden',type!=='event-register'); hint?.classList.add('hidden'); }
+       function showLoginOptions(){ loginOptions?.classList.remove('hidden'); loginBackIcon?.classList.add('hidden'); studentLoginForm?.classList.remove('active'); facultyLoginForm?.classList.remove('active'); eventRegistrationPanel?.classList.add('hidden'); hint?.classList.add('hidden'); }
        document.querySelectorAll('[data-login-type]').forEach(btn=>btn.addEventListener('click',()=>showLoginForm(btn.dataset.loginType)));
        document.querySelectorAll('[data-login-back]').forEach(btn=>btn.addEventListener('click',showLoginOptions));
        document.querySelectorAll('[data-event-register-back]').forEach(btn=>btn.addEventListener('click',showLoginOptions));
@@ -286,31 +289,32 @@ export function OriginalInteractions() {
           });
         });
       
-        // Theme Atmosphere Switcher
-        const themeWarmBtn = document.getElementById('themeWarmBtn');
-        const themeDarkBtn = document.getElementById('themeDarkBtn');
-      
-        themeWarmBtn?.addEventListener('click', () => {
+        // Persistent day / dark display theme.
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeToggleLabel = document.getElementById('themeToggleLabel');
+        const setDisplayTheme = (theme, persist = true) => {
+          const isLight = theme === 'light';
+          document.documentElement.dataset.collexusTheme = isLight ? 'light' : 'dark';
           document.body.classList.remove('dark-green-theme');
-          themeWarmBtn.classList.add('active');
-          themeDarkBtn.classList.remove('active');
-          localStorage.setItem('collexus_theme', 'warm');
-        });
-      
-        themeDarkBtn?.addEventListener('click', () => {
-          document.body.classList.add('dark-green-theme');
-          themeDarkBtn.classList.add('active');
-          themeWarmBtn.classList.remove('active');
-          localStorage.setItem('collexus_theme', 'dark');
-        });
-      
-        // Load saved theme if any
-        try {
-          if (localStorage.getItem('collexus_theme') === 'dark') {
-            document.body.classList.add('dark-green-theme');
-            themeDarkBtn?.classList.add('active');
-            themeWarmBtn?.classList.remove('active');
+          themeToggleBtn?.setAttribute('aria-checked', String(isLight));
+          themeToggleBtn?.setAttribute('aria-label', `${isLight ? 'Day' : 'Dark'} theme is on`);
+          if (themeToggleLabel) themeToggleLabel.textContent = isLight ? 'Day' : 'Dark';
+          const themeIcon = themeToggleBtn?.querySelector('.theme-toggle-thumb .material-symbols-outlined');
+          if (themeIcon) themeIcon.textContent = isLight ? 'light_mode' : 'dark_mode';
+          if (persist) {
+            try { localStorage.setItem('collexus_theme', isLight ? 'light' : 'dark'); } catch (e) {}
           }
+        };
+
+        themeToggleBtn?.addEventListener('click', () => {
+          const isLight = document.documentElement.dataset.collexusTheme === 'light';
+          setDisplayTheme(isLight ? 'dark' : 'light');
+        });
+
+        // Restore the same selection on every route.
+        try {
+          const storedTheme = localStorage.getItem('collexus_theme');
+          setDisplayTheme(storedTheme === 'light' || storedTheme === 'day' ? 'light' : 'dark', false);
         } catch (e) {}
       
         // Integrated Event Filtering Engine

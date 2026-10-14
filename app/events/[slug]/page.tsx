@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, CalendarDays, CircleCheck, MapPin, Sparkles, Users, WalletCards } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CalendarDays, CircleCheck, MapPin, Sparkles, Users, WalletCards, TicketCheck } from "lucide-react";
 import { events, getEvent } from "@/data/events";
 
 type EventPageProps = { params: Promise<{ slug: string }> };
@@ -42,10 +42,10 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
           <div className="details-date"><CalendarDays size={17} aria-hidden="true" />{event.dateLabel}</div>
           <p>{event.description}</p>
           <div className="details-actions">
-            <a className="primary-button" href={event.source} target="_blank" rel="noreferrer">Official event page <ArrowUpRight size={16} aria-hidden="true" /></a>
+            <Link className="primary-button" href={`/events/${event.slug}/register`}><TicketCheck size={16} aria-hidden="true" /> Register <span className="demo-action-tag">DEMO</span></Link>
             {event.report && <a className="secondary-button" href={event.report} target="_blank" rel="noreferrer">Event report <ArrowUpRight size={15} aria-hidden="true" /></a>}
           </div>
-          <p className="archive-disclaimer">{event.dateStart ? "This dated event has concluded. Follow the official source for future dates and registration details." : "The official listing does not publish an exact event date. Check the RCEE source for schedule and registration updates."}</p>
+          <p className="archive-disclaimer">Registration preview only. This demo does not submit an entry or charge money. {event.dateStart ? "This dated event has concluded." : "The official listing does not publish an exact event date."}</p>
         </div>
       </section>
 

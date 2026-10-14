@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const questions = [
   {
@@ -39,9 +40,7 @@ export function FaqAccordion() {
               type="button"
             >
               <span>{question}</span>
-              <span aria-hidden="true" className="faq-plus">
-                +
-              </span>
+              <ChevronDown aria-hidden="true" className="faq-chevron" size={20} strokeWidth={2.25} />
             </button>
             <p aria-hidden={!isOpen} id={answerId}>
               {answer}

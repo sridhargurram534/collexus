@@ -21,6 +21,8 @@ export type CampusEvent = {
   highlights: string[];
 };
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const events: CampusEvent[] = [
   {
     slug: "prakalp-2026",
@@ -37,7 +39,7 @@ export const events: CampusEvent[] = [
       "PRAKALP 2026 was a two-day national project expo and offline 24-hour hackathon at Ramachandra College of Engineering in Eluru. RCEE described 100+ expo slots across 10 domains and 200+ hackathon teams across four themes: IoT Sprint, Cyber Security, AI Agents Hack and Embed Fusion. The college listed a ₹3,00,000 combined prize pool. The IoT Sprint report records a 10:00 AM April 1 start and 10:00 AM April 2 finish.",
     fee: "The PRAKALP page listed ₹1,000 for a single participant or duo, and ₹500 per person for teams of 3–5. Registration is closed.",
     format: "In person · 24-hour IoT Sprint plus project expo",
-    image: "/assets/event-posters/ai-cyber.jpg",
+    image: `${publicBasePath}/assets/event-posters/ai-cyber.jpg`,
     source: "https://www.rcee.ac.in/prakalp",
     report: "https://www.rcee.ac.in/news/nas-361672321",
     highlights: [
@@ -62,7 +64,7 @@ export const events: CampusEvent[] = [
       "A five-day practical workshop on IoT and embedded systems using NodeMCU ESP8266. The department report describes sensor interfacing, display integration, motor and PWM control, MQTT communication, Blynk cloud dashboards and a final project demonstration.",
     fee: "Not specified in the official report.",
     format: "Hands-on workshop · five days",
-    image: "/assets/event-posters/core.jpg",
+    image: `${publicBasePath}/assets/event-posters/core.jpg`,
     source: "https://www.rcee.ac.in/news/nas-947404574",
     highlights: [
       "Practical sessions used the NodeMCU ESP8266 board.",
@@ -85,7 +87,7 @@ export const events: CampusEvent[] = [
       "A two-day workshop exploring how Internet of Things and machine learning can work together in smart applications. The report highlights live demonstrations and hands-on work with development boards and sensors.",
     fee: "Not specified in the official report.",
     format: "In person · two-day hands-on workshop",
-    image: "/assets/event-posters/computing.jpg",
+    image: `${publicBasePath}/assets/event-posters/computing.jpg`,
     source: "https://www.rcee.ac.in/news/nas-681809310",
     highlights: [
       "Conducted February 12–13, 2026.",
@@ -108,7 +110,7 @@ export const events: CampusEvent[] = [
       "A three-day cricket workshop led by resource persons and professional trainers. RCEE’s report describes practical coaching in batting, bowling and fielding, with sessions focused on fitness, teamwork, leadership and sportsmanship.",
     fee: "Not specified in the official report.",
     format: "Three-day practical sports workshop",
-    image: "/assets/event-posters/clubs.jpg",
+    image: `${publicBasePath}/assets/event-posters/clubs.jpg`,
     source: "https://www.rcee.ac.in/news/nas-698235245",
     highlights: [
       "The official report dates the workshop May 4–6, 2026.",
@@ -132,7 +134,7 @@ export const events: CampusEvent[] = [
       "A three-day student workshop introducing Agentic AI, generative AI, large language models and transformer-based systems. RCEE’s report says participants explored agent memory, tools, decision-making, reasoning and workflow automation, then built and presented AI-powered applications.",
     fee: "Not specified in the official report.",
     format: "Three-day hands-on workshop",
-    image: "/assets/event-posters/computing.jpg",
+    image: `${publicBasePath}/assets/event-posters/computing.jpg`,
     source: "https://www.rcee.ac.in/news/nas-208156411",
     highlights: [
       "The report dates the workshop March 23–25, 2026.",
@@ -156,7 +158,7 @@ export const events: CampusEvent[] = [
       "The official AVISHKAR 2026 event site lists compulsory pre-hackathon workshops for internal participants. The IoT and Cyber Security tracks run March 18–20, ahead of the main project expo and 24-hour hackathon.",
     fee: "Included in the internal hackathon fee, according to the AVISHKAR event site.",
     format: "In person · pre-hackathon workshop tracks",
-    image: "/assets/event-posters/security.jpg",
+    image: `${publicBasePath}/assets/event-posters/security.jpg`,
     source: "https://avishkar.rcee.ac.in/",
     highlights: [
       "The AVISHKAR site lists IoT and Cyber Security workshops for March 18–20, 2026.",
@@ -179,7 +181,7 @@ export const events: CampusEvent[] = [
       "The AVISHKAR 2026 event site lists a Generative AI workshop track from March 21–23 as part of its pre-hackathon program for internal participants.",
     fee: "Included in the internal hackathon fee, according to the AVISHKAR event site.",
     format: "In person · pre-hackathon workshop track",
-    image: "/assets/event-posters/computing.jpg",
+    image: `${publicBasePath}/assets/event-posters/computing.jpg`,
     source: "https://avishkar.rcee.ac.in/",
     highlights: [
       "The official AVISHKAR site lists the Generative AI track for March 21–23, 2026.",
@@ -202,7 +204,7 @@ export const events: CampusEvent[] = [
       "A three-day student workshop on modern generative AI. RCEE’s report describes transformer architecture, large language models, prompt engineering, structured outputs, model optimization and hands-on application development.",
     fee: "Not specified in the official report.",
     format: "Three-day hands-on workshop",
-    image: "/assets/event-posters/computing.jpg",
+    image: `${publicBasePath}/assets/event-posters/computing.jpg`,
     source: "https://www.rcee.ac.in/news/nas-214646355",
     highlights: [
       "The RCEE report says the workshop ran March 23–25, 2026.",
@@ -225,7 +227,7 @@ export const events: CampusEvent[] = [
       "The fifth edition of RCEE’s annual cultural fest, described by the college as a celebration spanning art, music, literature, culture and technical excellence. The public report does not give the exact fest dates or schedule.",
     fee: "Not specified in the official report.",
     format: "On-campus cultural fest",
-    image: "/assets/event-posters/clubs.jpg",
+    image: `${publicBasePath}/assets/event-posters/clubs.jpg`,
     source: "https://www.rcee.ac.in/news/nas-628259225",
     highlights: [
       "The college described this as the fifth edition of its annual cultural fest.",
@@ -247,7 +249,7 @@ export const events: CampusEvent[] = [
       "An engineering project expo showcasing student work in artificial intelligence, IoT, robotics, embedded systems and software development. The report describes project demonstrations, evaluation and feedback from faculty, industry experts and visitors.",
     fee: "Not specified in the official report.",
     format: "In-person project expo",
-    image: "/assets/event-posters/frontend.jpg",
+    image: `${publicBasePath}/assets/event-posters/frontend.jpg`,
     source: "https://www.rcee.ac.in/news/nas-665694445",
     highlights: [
       "Student projects included AI, IoT, robotics, embedded systems and software.",
@@ -269,7 +271,7 @@ export const events: CampusEvent[] = [
       "An ECE industry immersion workshop focused on surface-mount technology and printed circuit board assembly. The department’s official event listing identifies it as a hands-on workshop, but the listing summary does not provide session dates or a schedule.",
     fee: "Not specified in the official listing.",
     format: "Hands-on industry immersion workshop",
-    image: "/assets/event-posters/security.jpg",
+    image: `${publicBasePath}/assets/event-posters/security.jpg`,
     source: "https://ece.rcee.ac.in/events",
     highlights: [
       "The ECE department lists this as an industry immersion workshop.",

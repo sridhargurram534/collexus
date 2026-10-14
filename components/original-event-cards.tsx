@@ -19,7 +19,7 @@ function pricingFilter(fee: string) {
 export function OriginalEventCards() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md" id="eventsGrid">
-      {events.map((event) => {
+      {events.map((event, index) => {
         const pricing = pricingFilter(event.fee);
         const audience = event.audience === "RCEE students" ? "rcee" : event.audience === "External participants" ? "outside" : "rcee outside";
         const category = categories[event.category];
@@ -45,10 +45,13 @@ export function OriginalEventCards() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="event-tile-scrim" />
-                <div className="event-tile-title-wrap">
+                <div className="event-tile-image-meta" aria-hidden="true">
                   <span className="event-tile-category">{event.category}</span>
-                  <h3 className="event-tile-title">{event.title}</h3>
+                  <span className="event-tile-index">RCEE · {String(index + 1).padStart(2, "0")}</span>
                 </div>
+              </div>
+              <div className="event-tile-content">
+                <h3 className="event-tile-title">{event.title}</h3>
               </div>
               <div className="event-tile-footer">
                 <p className="event-card-date flex items-center gap-2">

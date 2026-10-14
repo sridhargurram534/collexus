@@ -4,6 +4,8 @@ import { OriginalEventCards } from "@/components/original-event-cards";
 import { OriginalTimetable } from "@/components/original-timetable";
 import { events } from "@/data/events";
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function HomePage() {
   return (
     <>
@@ -21,11 +23,11 @@ export default function HomePage() {
         <span id="activeFilterBadge" className="filter-count-badge hidden">0</span>
       </button>
 
-      <a className="collexus-brand flex items-center gap-2 shrink-0" data-path="discover" href="#" aria-label="Collexus home">
+      <a className="collexus-brand flex items-center gap-0 shrink-0" data-path="discover" href="#" aria-label="Collexus home">
         <span className="college-logo-wrap" title="Ramachandra College of Engineering">
-          <img src="/collexus-logo.svg" alt="Collexus logo" className="college-logo"/>
+          <img src={`${publicBasePath}/collexus-logo.svg`} alt="Collexus logo" className="college-logo"/>
         </span>
-        <span className="collexus-word hidden md:inline-block">Collexus</span>
+        <span className="collexus-word hidden md:inline-block">llexus</span>
       </a>
     </div>
 
@@ -41,6 +43,7 @@ export default function HomePage() {
         <button type="button" data-search="Workshops"><span className="material-symbols-outlined">school</span><span>Workshops</span><small>Learn & upskill</small></button>
         <button type="button" data-search="Branch Events"><span className="material-symbols-outlined">hub</span><span>Branch Events</span><small>Department activities</small></button>
         <button type="button" data-search="Cultural Events"><span className="material-symbols-outlined">celebration</span><span>Cultural Events</span><small>Campus life</small></button>
+        <button type="button" data-search="Outdoors"><span className="material-symbols-outlined">park</span><span>Outdoors</span><small>Outdoor campus activities</small></button>
       </div>
     </div>
 
@@ -56,7 +59,7 @@ export default function HomePage() {
       </div>
     </div>
   </div>
-</header><div className="quick-category-rail quick-category-top" id="quickCategories" aria-label="Explore event categories"><button data-search="Hackathons"><span className="material-symbols-outlined">terminal</span>Hackathons</button><button data-search="Internships"><span className="material-symbols-outlined">work</span>Internships</button><button data-search="Workshops"><span className="material-symbols-outlined">school</span>Workshops</button><button data-search="Branch Events"><span className="material-symbols-outlined">account_tree</span>Branch Events</button><button data-search="Cultural Events"><span className="material-symbols-outlined">celebration</span>Cultural Events</button></div><main className="w-full pt-[128px] bg-surface min-h-[calc(100vh-280px)]"><div className="flex flex-col w-full">
+</header><div className="quick-category-rail quick-category-top" id="quickCategories" aria-label="Explore event categories"><button data-search="Hackathons"><span className="material-symbols-outlined">terminal</span>Hackathons</button><button data-search="Internships"><span className="material-symbols-outlined">work</span>Internships</button><button data-search="Workshops"><span className="material-symbols-outlined">school</span>Workshops</button><button data-search="Branch Events"><span className="material-symbols-outlined">account_tree</span>Branch Events</button><button data-search="Cultural Events"><span className="material-symbols-outlined">celebration</span>Cultural Events</button><button data-search="Outdoors"><span className="material-symbols-outlined">park</span>Outdoors</button></div><main className="w-full pt-[128px] bg-surface min-h-[calc(100vh-280px)]"><div className="flex flex-col w-full">
 
 <div className="announcement-bar w-full bg-[#260C1A] text-on-primary py-2.5 px-margin-desktop overflow-hidden shadow-sm relative z-20 border-b border-[#432E36]">
 <div className="flex items-center justify-between max-w-[1920px] mx-auto gap-space-md">
@@ -135,7 +138,7 @@ export default function HomePage() {
 </div>
 
 <div className="lg:col-span-6 relative mt-space-lg lg:mt-0">
-<div className="relative rounded-xl bg-surface-container-lowest backdrop-blur-md shadow-xl border border-[#f4d3cb] overflow-hidden p-space-md">
+<div className="featured-event-panel relative rounded-xl bg-surface-container-lowest backdrop-blur-md shadow-xl border border-[#f4d3cb] overflow-hidden p-space-md">
 
 <div className="flex items-center justify-between pb-space-sm mb-space-sm border-b border-[#f4d3cb]/50">
 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider">
@@ -169,11 +172,11 @@ export default function HomePage() {
 <span className="font-label-sm text-label-sm text-primary font-bold">Date not listed by RCEE</span>
 </div>
 <div className="grid grid-cols-2 gap-2 text-center">
-<div className="bg-surface-container-lowest py-3 rounded shadow-sm border border-[#f4d3cb]/60">
+<div className="featured-detail-stat py-3 rounded shadow-sm border">
 <span className="font-headline-sm text-headline-sm font-bold text-primary block">5th</span>
 <span className="font-label-sm text-label-sm text-secondary uppercase">Edition</span>
 </div>
-<div className="bg-surface-container-lowest py-3 rounded shadow-sm border border-[#f4d3cb]/60">
+<div className="featured-detail-stat py-3 rounded shadow-sm border">
 <span className="font-headline-sm text-headline-sm font-bold text-primary block">RCEE</span>
 <span className="font-label-sm text-label-sm text-secondary uppercase">Organizer</span>
 </div>
@@ -190,7 +193,7 @@ export default function HomePage() {
 <span className="material-symbols-outlined text-[16px] text-emerald-700">verified</span>
 <span>Source-linked information</span>
 </div>
-<a className="px-space-md py-2 rounded bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-mocha active:scale-[0.98] transition-all font-bold shadow-sm" href="/events/kreya-26-cultural-fest">View details</a>
+<a className="featured-event-action" href={`${publicBasePath}/events/kreya-26-cultural-fest/`}>View details<span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
 </div>
 </div>
 </div>
@@ -198,10 +201,10 @@ export default function HomePage() {
 </div>
 </section>
 
-<section className="w-full px-gutter-desktop-wide max-w-[1920px] mx-auto py-space-lg">
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<section className="event-stats-section w-full px-gutter-desktop-wide max-w-[1920px] mx-auto py-space-lg">
+<div className="event-stats-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
 
-<div className="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-[#f4d3cb] flex flex-col justify-between group hover:shadow-md hover:border-dusty-rose transition-all">
+<div className="event-stat-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-[#f4d3cb] flex flex-col justify-between group transition-all">
 <div className="flex items-center justify-between mb-space-sm">
 <span className="p-2 rounded-lg bg-surface-container text-primary">
 <span className="material-symbols-outlined text-[24px]">school</span>
@@ -215,7 +218,7 @@ export default function HomePage() {
 </div>
 </div>
 
-<div className="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-[#f4d3cb] flex flex-col justify-between group hover:shadow-md hover:border-dusty-rose transition-all">
+<div className="event-stat-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-[#f4d3cb] flex flex-col justify-between group transition-all">
 <div className="flex items-center justify-between mb-space-sm">
 <span className="p-2 rounded-lg bg-surface-container text-primary">
 <span className="material-symbols-outlined text-[24px]">calendar_month</span>
@@ -229,7 +232,7 @@ export default function HomePage() {
 </div>
 </div>
 
-<div className="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-[#f4d3cb] flex flex-col justify-between group hover:shadow-md hover:border-dusty-rose transition-all">
+<div className="event-stat-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-[#f4d3cb] flex flex-col justify-between group transition-all">
 <div className="flex items-center justify-between mb-space-sm">
 <span className="p-2 rounded-lg bg-surface-container text-primary">
 <span className="material-symbols-outlined text-[24px]">payments</span>
@@ -243,7 +246,7 @@ export default function HomePage() {
 </div>
 </div>
 
-<div className="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-[#f4d3cb] flex flex-col justify-between group hover:shadow-md hover:border-dusty-rose transition-all">
+<div className="event-stat-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-[#f4d3cb] flex flex-col justify-between group transition-all">
 <div className="flex items-center justify-between mb-space-sm">
 <span className="p-2 rounded-lg bg-surface-container text-primary">
 <span className="material-symbols-outlined text-[24px]">qr_code_scanner</span>
@@ -270,11 +273,11 @@ export default function HomePage() {
     <div className="coverflow" id="eventCoverflow" aria-label="Featured event carousel">
       {events.slice(0, 4).map((event, index) => (
         <article className={`cover-card${index === 0 ? " is-active" : ""}`} key={event.slug}>
-          <div className="cover-icon">{["⚡", "✦", "◈", "⌘"][index]}</div>
+          <div className="cover-icon"><span className="material-symbols-outlined" aria-hidden="true">{["bolt", "school", "sensors", "sports_cricket"][index]}</span></div>
           <span>{event.category.toUpperCase()} · RCEE</span>
           <h3>{event.title}</h3>
           <p>{event.dateLabel} · {event.format}</p>
-          <a className="premium-btn small" href={`/events/${event.slug}`}>View details <span>↗</span></a>
+          <a className="premium-btn small" href={`${publicBasePath}/events/${event.slug}/`}>View details <span>↗</span></a>
         </article>
       ))}
     </div>
@@ -320,7 +323,7 @@ export default function HomePage() {
 
 </section>
 
-<section className="w-full px-gutter-desktop-wide max-w-[1920px] mx-auto py-space-xl bg-surface-container-low border border-[#f4d3cb] my-space-lg rounded-3xl">
+<section className="campus-identity-section w-full px-gutter-desktop-wide max-w-[1920px] mx-auto py-space-xl bg-surface-container-low border border-[#f4d3cb] my-space-lg rounded-3xl">
 <div className="text-center max-w-3xl mx-auto mb-space-xl">
 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blush/80 text-primary font-label-sm text-label-sm uppercase tracking-wider mb-space-xs font-bold border border-dusty-rose/40">
 <span className="material-symbols-outlined text-[16px]">badge</span>
@@ -416,6 +419,7 @@ export default function HomePage() {
       <button type="button" data-category-nav="Workshops"><span className="material-symbols-outlined">school</span>Workshops</button>
       <button type="button" data-category-nav="Branch Events"><span className="material-symbols-outlined">hub</span>Branch Events</button>
       <button type="button" data-category-nav="Cultural Events"><span className="material-symbols-outlined">celebration</span>Cultural Events</button>
+      <button type="button" data-category-nav="Outdoors"><span className="material-symbols-outlined">park</span>Outdoors</button>
       <button type="button" id="categoryCalendarNav"><span className="material-symbols-outlined">calendar_month</span>Calendar</button>
       <button type="button" id="categoryPassesNav"><span className="material-symbols-outlined">qr_code_2</span>Get Passes</button>
     </nav>
@@ -435,8 +439,9 @@ export default function HomePage() {
 <div id="loginModal" className="login-modal hidden" aria-hidden={true}>
   <div className="login-backdrop" data-close-login></div>
   <div className="login-dialog" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <button className="login-back-icon hidden" type="button" data-login-back aria-label="Back to login choices"><span className="material-symbols-outlined" aria-hidden="true">arrow_back</span></button>
     <button className="login-close" type="button" data-close-login aria-label="Close"><span className="material-symbols-outlined">close</span></button>
-    <div className="login-dialog-logo"><span className="college-logo-wrap"><img src="/collexus-logo.svg" alt="Collexus logo" className="college-logo"/></span><span className="collexus-word">Collexus</span></div>
+    <div className="login-dialog-logo"><span className="college-logo-wrap"><img src={`${publicBasePath}/collexus-logo.svg`} alt="Collexus logo" className="college-logo"/></span><span className="collexus-word">Collexus</span></div>
     <p className="category-eyebrow">WELCOME BACK</p><h2 id="loginTitle">Choose your login</h2><p className="login-subtitle">Select how you want to continue.</p>
     <div className="login-options">
       <button className="login-option" type="button" data-login-type="student"><span className="option-icon"><span className="material-symbols-outlined">school</span></span><span><strong>Student Login</strong><small>For students to register and manage events</small></span><span className="material-symbols-outlined">arrow_forward</span></button>
@@ -495,11 +500,11 @@ export default function HomePage() {
     <div className="menu-drawer-header">
       <div className="menu-header-brand">
         <span className="college-logo-wrap" style={{ width: "32px", height: "32px" }}>
-          <img src="/collexus-logo.svg" alt="Collexus logo" className="college-logo"/>
+          <img src={`${publicBasePath}/collexus-logo.svg`} alt="Collexus logo" className="college-logo"/>
         </span>
         <div>
           <div className="flex items-center gap-1.5">
-            <strong className="collexus-word" style={{ fontSize: "16px", lineHeight: "1" }}>Collexus</strong>
+          <strong className="collexus-word" style={{ fontSize: "16px", lineHeight: "1" }}>llexus</strong>
             <span className="live-status-pill">EVENTS</span>
           </div>
           <small className="menu-brand-subtitle">RAMACHANDRA COLLEGE OF ENGINEERING</small>
@@ -544,6 +549,7 @@ export default function HomePage() {
             <button className="menu-filter-chip" type="button" data-filter-val="workshops"><span className="material-symbols-outlined">school</span>Workshops</button>
             <button className="menu-filter-chip" type="button" data-filter-val="branch"><span className="material-symbols-outlined">account_tree</span>Project expos</button>
             <button className="menu-filter-chip" type="button" data-filter-val="cultural"><span className="material-symbols-outlined">celebration</span>Cultural</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="outdoors"><span className="material-symbols-outlined">park</span>Outdoors</button>
           </div>
         </section>
 
@@ -570,15 +576,11 @@ export default function HomePage() {
     
     <div className="menu-drawer-footer">
       <div className="theme-switch-row">
-        <span className="text-[9.5px] font-bold uppercase tracking-wider text-secondary">Campus Atmosphere:</span>
-        <div className="flex items-center gap-1">
-          <button id="themeWarmBtn" className="theme-switch-btn active" type="button">
-            <span>✦ Vivid Nightfall</span>
-          </button>
-          <button id="themeDarkBtn" className="theme-switch-btn" type="button">
-            <span>🌲 Cyber Dark</span>
-          </button>
-        </div>
+        <span className="theme-switch-label">Display theme</span>
+        <button id="themeToggleBtn" className="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Day theme is off">
+          <span className="theme-toggle-track" aria-hidden="true"><span className="theme-toggle-thumb"><span className="material-symbols-outlined">dark_mode</span></span></span>
+          <span id="themeToggleLabel">Dark</span>
+        </button>
       </div>
       <div className="flex items-center justify-between text-[11px] text-stone-500 font-medium">
         <span>Ramachandra College of Engg.</span>
@@ -598,20 +600,7 @@ export default function HomePage() {
     <div className="calendar-legend"><span><i></i> Published event date</span><span><i className="reg"></i> Local demo entry</span></div>
     <div className="calendar-weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
     <div id="calendarGrid" className="calendar-grid"></div>
-    <div id="calendarEmpty" className="calendar-empty">No RCEE event dates fall in this month. Browse all published event records below.</div>
-    <section className="calendar-records" aria-label="Published RCEE event records">
-      <h3>Published RCEE event records</h3>
-      <ul>
-        {events.map((event) => (
-          <li key={event.slug}>
-            <a href={`/events/${event.slug}`}>
-              <span><strong>{event.title}</strong><small>{event.category} · {event.dateLabel}</small></span>
-              <span className="calendar-record-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <div id="calendarEmpty" className="calendar-empty">No published event dates this month. Try another month or browse the event feed.</div>
   </div>
 </div>
 

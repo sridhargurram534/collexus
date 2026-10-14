@@ -6,7 +6,7 @@ export function OriginalTimetable() {
   const datedEvents = events.filter((event) => event.dateStart);
 
   return (
-    <section className="w-full px-gutter-desktop-wide max-w-[1920px] mx-auto py-space-xl" aria-labelledby="published-dates-heading">
+    <section className="event-dates-section w-full px-gutter-desktop-wide max-w-[1920px] mx-auto py-space-xl" aria-labelledby="published-dates-heading">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-lg">
         <div>
           <div className="flex items-center gap-2 mb-space-xs">
@@ -20,7 +20,7 @@ export function OriginalTimetable() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md">
         {datedEvents.map((event) => (
-          <article className="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-lowest border border-[#f4d3cb] shadow-sm" key={event.slug}>
+          <article className="event-date-card flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-lowest border border-[#f4d3cb] shadow-sm" key={event.slug}>
             <span className="grid place-items-center shrink-0 w-12 h-12 rounded-lg bg-secondary-container text-primary">
               <CalendarDays size={20} aria-hidden="true" />
             </span>
