@@ -3267,6 +3267,25 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
   color:#31505b!important;background:#f0f6f6!important;border-color:#cbdadd!important;
 }
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-section-nav button :is(span,svg){color:#087e83!important}
+
+/* Carry the event detail template surface edge to edge, behind its existing cards. */
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page{
+  position:relative;isolation:isolate;background:transparent!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page::before{
+  position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);
+  content:"";pointer-events:none;
+  background:
+    radial-gradient(ellipse 38rem 30rem at 12% 12%,rgba(133,245,229,.2),transparent 72%),
+    radial-gradient(ellipse 44rem 36rem at 88% 38%,rgba(128,195,242,.18),transparent 72%),
+    linear-gradient(180deg,#e8f1f2 0%,#eef4f5 48%,#e8f0f1 100%);
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main.details-page::before{
+  background:
+    radial-gradient(ellipse 40rem 32rem at 12% 12%,rgba(52,253,239,.1),transparent 72%),
+    radial-gradient(ellipse 46rem 38rem at 88% 38%,rgba(42,134,184,.16),transparent 72%),
+    linear-gradient(180deg,#081822 0%,#07131c 52%,#091721 100%);
+}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-heading{
   color:#29444f!important;background:#e7eff0!important;border:1px solid #d0dfe1!important;box-shadow:none!important;
 }
