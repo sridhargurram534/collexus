@@ -3,9 +3,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { createRoot } from "react-dom/client";
+import { LucideGlyph } from "@/components/icon";
 import { events } from "@/data/events";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function mountLucidePlaceholders(container) {
+  return [...container.querySelectorAll(".lucide-mount[data-lucide]")].map((node) => {
+    const root = createRoot(node);
+    root.render(<LucideGlyph name={node.dataset.lucide} />);
+    return root;
+  });
+}
 
 export function OriginalInteractions() {
   const initialized = useRef(false);
@@ -120,10 +130,13 @@ export function OriginalInteractions() {
       
        const categoryData=window.__COLLEXUS_CATEGORY_DATA__;
        const views=document.getElementById('categoryViews'), title=document.getElementById('categoryTitle'), punchline=document.getElementById('categoryPunchline'), desc=document.getElementById('categoryDescription'), eyebrow=document.getElementById('categoryEyebrow'), icon=document.getElementById('categoryIcon'), cards=document.getElementById('categoryCards');
+       let categoryCardIconRoots=[];
        function openCategory(name){
         const key=Object.keys(categoryData).find(k=>k.toLowerCase()===String(name).toLowerCase())||'Hackathons'; const d=categoryData[key];
-        eyebrow.textContent=key.toUpperCase(); title.textContent=key; punchline.textContent=d.punch; desc.textContent=d.desc; icon.textContent=d.icon;
-        cards.innerHTML=d.cards.length ? d.cards.map((c,i)=>`<article class="category-card" style="animation-delay:${i*70}ms"><div class="category-card-media"><img src="${c[4]}" alt="${c[1]} event" loading="lazy"></div><div><div class="category-card-top"><span class="category-card-tag">${c[0]}</span><span class="material-symbols-outlined category-card-icon">${d.icon}</span></div><h3>${c[1]}</h3><p>${c[2]}</p></div><a class="category-card-action" href="${publicBasePath}/events/${c[6]}/">${c[3]} <span>→</span></a></article>`).join('') : `<div class="category-empty-state"><span class="material-symbols-outlined">${d.icon}</span><h3>No outdoor events listed yet</h3><p>${d.desc}</p></div>`;
+        eyebrow.textContent=key.toUpperCase(); title.textContent=key; punchline.textContent=d.punch; desc.textContent=d.desc; icon.dataset.iconName=d.icon;
+        categoryCardIconRoots.forEach(root=>root.unmount());
+        cards.innerHTML=d.cards.length ? d.cards.map((c,i)=>`<article class="category-card" style="animation-delay:${i*70}ms"><div class="category-card-media"><img src="${c[4]}" alt="${c[1]} event" loading="lazy"></div><div><div class="category-card-top"><span class="category-card-tag">${c[0]}</span><span class="lucide-icon category-card-icon lucide-mount" data-lucide="${d.icon}"></span></div><h3>${c[1]}</h3><p>${c[2]}</p></div><a class="category-card-action" href="${publicBasePath}/events/${c[6]}/">${c[3]} <span class="lucide-icon lucide-mount" data-lucide="arrow_forward"></span></a></article>`).join('') : `<div class="category-empty-state"><span class="lucide-icon lucide-mount category-empty-icon" data-lucide="${d.icon}"></span><h3>No outdoor events listed yet</h3><p>${d.desc}</p></div>`;
+        categoryCardIconRoots=mountLucidePlaceholders(cards);
         document.body.classList.add('category-mode'); views.classList.remove('hidden'); views.scrollIntoView({behavior:'smooth',block:'start'}); history.replaceState(null,'','#'+key.toLowerCase().replace(/\s+/g,'-')); 
        }
        function closeCategory(){document.body.classList.remove('category-mode');views.classList.add('hidden');history.replaceState(null,'','#home');window.scrollTo({top:0,behavior:'smooth'});}
@@ -155,7 +168,8 @@ export function OriginalInteractions() {
        const calModal=document.getElementById('calendarModal'), calGrid=document.getElementById('calendarGrid'), calLabel=document.getElementById('calendarMonthLabel');
        function calendarAnchor(){const today=new Date(),todayIso=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}`,todayKey=`${todayIso}-${String(today.getDate()).padStart(2,'0')}`;const dated=events.filter(event=>event.dateStart).map(event=>event.dateStart).sort();const focus=dated.some(date=>date.startsWith(todayIso))?today:dated.find(date=>date>=todayKey)||dated.at(-1);const anchor=focus?new Date(`${focus.slice(0,7)}-01T12:00:00`):today;anchor.setDate(1);return anchor}
        let calCursor=calendarAnchor();
-       function renderCalendar(){if(!calGrid)return;const regs=getRegs();const y=calCursor.getFullYear(),m=calCursor.getMonth();calLabel.textContent=new Intl.DateTimeFormat('en',{month:'long',year:'numeric'}).format(calCursor);calGrid.innerHTML='';
+       let calendarIconRoots=[];
+       function renderCalendar(){if(!calGrid)return;calendarIconRoots.forEach(root=>root.unmount());const regs=getRegs();const y=calCursor.getFullYear(),m=calCursor.getMonth();calLabel.textContent=new Intl.DateTimeFormat('en',{month:'long',year:'numeric'}).format(calCursor);calGrid.innerHTML='';
         // Highlight every event date currently displayed on the website, even before registration.
         const publicByDate={};
         events.forEach(event=>{
@@ -173,10 +187,11 @@ export function OriginalInteractions() {
           const unregisteredEvents=publicEvents.filter(event=>!matches.some(r=>r.name===event.name));
           const publicLabels=unregisteredEvents.slice(0,2).map(event=>`<a class="event-dot public-dot" href="${publicBasePath}/events/${event.slug}/" title="Open ${event.name}">• ${event.name}</a>`).join('');
           const moreEvents=unregisteredEvents.length>2?`<span class="event-dot public-more">+${unregisteredEvents.length-2} more</span>`:'';
-          const registeredLabels=matches.map(r=>`<span class="event-dot registered-dot">✓ ${r.name}</span>`).join('');
+          const registeredLabels=matches.map(r=>`<span class="event-dot registered-dot"><span class="lucide-icon lucide-mount" data-lucide="check_circle"></span> ${r.name}</span>`).join('');
           d.innerHTML=`<span class="day-num">${day}</span>${registeredLabels}${publicLabels}${moreEvents}`;calGrid.appendChild(d)}
         const total=first+days;for(let i=total;i<42;i++){const d=document.createElement('div');d.className='calendar-day muted';d.innerHTML=`<span class="day-num">${i-total+1}</span>`;calGrid.appendChild(d)}
         const monthPrefix=`${y}-${String(m+1).padStart(2,'0')}-`;
+        calendarIconRoots=mountLucidePlaceholders(calGrid);
         const hasEventThisMonth=Object.keys(publicByDate).some(date=>date.startsWith(monthPrefix))||regs.some(reg=>reg.date?.startsWith(monthPrefix));
         document.getElementById('calendarEmpty')?.classList.toggle('hidden',hasEventThisMonth)}
        document.getElementById('calendarButton')?.addEventListener('click',()=>{calModal.classList.remove('hidden');calModal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';calCursor=calendarAnchor();renderCalendar()});
@@ -299,8 +314,8 @@ export function OriginalInteractions() {
           themeToggleBtn?.setAttribute('aria-checked', String(isLight));
           themeToggleBtn?.setAttribute('aria-label', `${isLight ? 'Day' : 'Dark'} theme is on`);
           if (themeToggleLabel) themeToggleLabel.textContent = isLight ? 'Day' : 'Dark';
-          const themeIcon = themeToggleBtn?.querySelector('.theme-toggle-thumb .material-symbols-outlined');
-          if (themeIcon) themeIcon.textContent = isLight ? 'light_mode' : 'dark_mode';
+          const themeIcon = themeToggleBtn?.querySelector('.theme-toggle-thumb .lucide-icon');
+          if (themeIcon) themeIcon.dataset.iconName = isLight ? 'light_mode' : 'dark_mode';
           if (persist) {
             try { localStorage.setItem('collexus_theme', isLight ? 'light' : 'dark'); } catch (e) {}
           }
@@ -372,9 +387,9 @@ export function OriginalInteractions() {
           eventGrid.classList.toggle('expanded', expanded);
           eventRowsButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
           const label = eventRowsButton.querySelector('span');
-          const icon = eventRowsButton.querySelector('.material-symbols-outlined');
+          const icon = eventRowsButton.querySelector('.lucide-icon');
           if (label) label.textContent = expanded ? 'Show fewer events' : `Show all ${eventGrid.querySelectorAll('.event-item').length} events`;
-          if (icon) icon.textContent = expanded ? 'expand_less' : 'expand_more';
+          if (icon) icon.dataset.iconName = expanded ? 'expand_less' : 'expand_more';
         }
         eventRowsButton?.addEventListener('click', () => setEventListExpanded(!eventGrid?.classList.contains('expanded')));
         updateFilterPreview();
