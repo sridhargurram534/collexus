@@ -2262,6 +2262,60 @@ body.warm-editorial-theme.vivid-nightfall-theme :is(.header-search input,.pass-f
   border-color:var(--collexus-cyan)!important;box-shadow:0 0 0 3px rgba(52,253,239,.15)!important;
 }
 
+/* Category cards follow the selected day/night palette and use the available
+   width intentionally when a category contains only one event. */
+.category-cards:has(> .category-card:only-child){
+  grid-template-columns:minmax(0,960px);
+  justify-content:center;
+}
+.category-cards > .category-card:only-child{
+  display:grid;
+  grid-template-columns:minmax(250px,.85fr) minmax(0,1.15fr);
+  grid-template-rows:1fr auto;
+  align-items:stretch;
+  gap:10px 26px;
+  min-height:340px;
+  padding:20px;
+  overflow:hidden;
+}
+.category-card:only-child .category-card-media{
+  grid-column:1;
+  grid-row:1 / span 2;
+  width:auto;
+  height:100%;
+  min-height:300px;
+  margin:0;
+  border-radius:16px;
+}
+.category-card:only-child > div:not(.category-card-media){
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+}
+.category-card:only-child .category-card-action{
+  grid-column:2;
+  grid-row:2;
+  align-self:end;
+  margin-top:4px;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-card{
+  color:#29444f!important;
+  background:linear-gradient(145deg,#f5f9f9,#e6eff0)!important;
+  border-color:#cbdadd!important;
+  box-shadow:0 8px 24px rgba(34,65,75,.1),inset 1px 1px 0 rgba(255,255,255,.82)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-card h3{color:#18313d!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-card p{color:#4b636d!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-card-tag{color:#087e83!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-card-icon{color:#087e83!important}
+@media(max-width:700px){
+  .category-cards:has(> .category-card:only-child){grid-template-columns:minmax(0,1fr)}
+  .category-cards > .category-card:only-child{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;gap:16px;min-height:0;padding:18px}
+  .category-card:only-child .category-card-media{grid-column:1;grid-row:1;min-height:0;height:auto;aspect-ratio:16/9}
+  .category-card:only-child > div:not(.category-card-media){grid-column:1;grid-row:2}
+  .category-card:only-child .category-card-action{grid-column:1;grid-row:3;justify-self:start}
+}
+
 /* Neumorphic event templates: soft dual shadows keep cards tactile against the black canvas. */
 body.warm-editorial-theme.vivid-nightfall-theme :is(
   .event-item,.event-tile,.cover-card,.category-card,.category-heading,.pass-card,.editorial-info-card,
