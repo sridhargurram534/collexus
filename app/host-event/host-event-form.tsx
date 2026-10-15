@@ -8,6 +8,7 @@ import {
   CalendarDays,
   Check,
   Clock3,
+  Eye,
   MapPin,
   ShieldCheck,
   Sparkles,
@@ -127,7 +128,7 @@ export function HostEventForm() {
 
       <div className={styles.shell}>
         <section className={styles.intro} aria-labelledby="host-title">
-          <div className={styles.eyebrow}><Sparkles aria-hidden="true" size={15} /> EVENT SUBMISSION</div>
+          <div className={styles.eyebrow}>EVENT SUBMISSION</div>
           <h1 id="host-title">Put your event<br className={styles.desktopBreak} /> on the campus map.</h1>
           <p>Share the details with students and faculty. We’ll help make your event easy to find.</p>
           <div className={styles.formNote}><span>*</span> Required fields</div>
@@ -291,7 +292,7 @@ export function HostEventForm() {
           </form>
 
           <aside className={styles.sidebar} aria-label="Event listing preview">
-            <div className={styles.previewCard}>
+            <div id="event-listing-preview" className={styles.previewCard} tabIndex={-1}>
               <div className={styles.previewTopline}><span>LIVE PREVIEW</span><span className={styles.previewDot} /> DRAFT</div>
               <div className={styles.previewArtwork} aria-hidden="true">
                 <span className={styles.artRingOne} /><span className={styles.artRingTwo} />
@@ -315,6 +316,13 @@ export function HostEventForm() {
               <ShieldCheck aria-hidden="true" size={19} />
               <div><strong>What happens next?</strong><p>This page creates a local preview only. Event publishing and organizer contact are not connected yet.</p></div>
             </div>
+            <button className={styles.previewButton} onClick={() => {
+              const preview = document.getElementById("event-listing-preview");
+              preview?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+              preview?.focus({ preventScroll: true });
+            }} type="button" aria-controls="event-listing-preview">
+              <Eye aria-hidden="true" size={17} /> Show live preview <ArrowRight aria-hidden="true" size={16} />
+            </button>
             <a className={styles.backToEvents} href={`${publicBasePath}/#featured-events`}><ArrowLeft aria-hidden="true" size={16} /> Explore published events</a>
           </aside>
         </div>
