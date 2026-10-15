@@ -3949,40 +3949,36 @@ body.warm-editorial-theme.vivid-nightfall-theme #loginModal .login-dialog :is(.l
   body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .flex.flex-wrap.items-center.gap-space-sm.w-full>.hero-cta{width:100%;min-width:0}
 }
 
-/* The hero's high-contrast theme rule outranks the earlier button styles; anchor
-   these states to the button ID so the intended color and feedback always win. */
+/* Keep the host action in the existing teal palette; use light and motion for emphasis. */
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton{
   position:relative!important;isolation:isolate!important;overflow:hidden!important;
   min-height:50px;border-radius:13px!important;border:1px solid #39d7c2!important;
   color:#f4ffff!important;background:linear-gradient(135deg,#0b4d5d 0%,#087b7c 58%,#08736c 100%)!important;
-  box-shadow:0 3px 0 #06434d,0 7px 15px rgba(7,64,78,.18),inset 0 1px 0 rgba(255,255,255,.16)!important;
+  box-shadow:0 3px 0 #06434d,0 7px 15px rgba(7,64,78,.18),0 0 0 2px rgba(57,215,194,.18),inset 0 1px 0 rgba(255,255,255,.16)!important;
   font-weight:800!important;letter-spacing:.075em!important;
-  transition:transform .22s cubic-bezier(.2,.8,.2,1),background .2s ease,color .2s ease,border-color .2s ease,box-shadow .22s ease!important;
+  transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s ease!important;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:before{
   content:"";position:absolute;z-index:1;inset:0;pointer-events:none;border-radius:inherit;
-  background:linear-gradient(108deg,transparent 24%,rgba(255,255,255,.38) 50%,transparent 76%);
-  transform:translateX(-130%);transition:transform .55s ease;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);transition:box-shadow .2s ease;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton span{
   position:relative;z-index:2;color:inherit!important;background:transparent!important;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton .lucide-icon{
-  position:relative;z-index:2;color:#8ef2df!important;background:transparent!important;transition:transform .22s ease,color .2s ease;
+  position:relative;z-index:2;color:#8ef2df!important;background:transparent!important;transition:transform .2s ease;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover{
-  color:#073b46!important;background:linear-gradient(135deg,#5ce5cf 0%,#35d3c3 58%,#4ed9b2 100%)!important;
-  border-color:#0d847f!important;box-shadow:0 4px 0 #08746d,0 11px 20px rgba(8,126,131,.22),inset 0 1px 0 rgba(255,255,255,.55)!important;
+  box-shadow:0 4px 0 #06434d,0 11px 22px rgba(7,64,78,.2),0 0 0 3px rgba(57,215,194,.3),0 0 18px rgba(57,215,194,.2),inset 0 1px 0 rgba(255,255,255,.16)!important;
   transform:translateY(-2px)!important;
 }
-body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover:before{transform:translateX(130%)}
-body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover .lucide-icon{color:#073b46!important;transform:translateY(-1px) rotate(-6deg)}
+body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover:before{box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover .lucide-icon{transform:translateY(-1px)}
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:active{
-  color:#f4ffff!important;background:linear-gradient(135deg,#073e55,#075e6c)!important;
-  border-color:#1aa99e!important;box-shadow:0 1px 0 #04313c,0 3px 7px rgba(7,64,78,.18),inset 0 2px 5px rgba(0,0,0,.2)!important;
+  box-shadow:0 1px 0 #06434d,0 3px 8px rgba(7,64,78,.16),0 0 0 2px rgba(57,215,194,.24),inset 0 2px 5px rgba(0,0,0,.16)!important;
   transform:translateY(2px) scale(.985)!important;
 }
-body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:active .lucide-icon{color:#8ef2df!important;transform:scale(.94)}
+body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:active .lucide-icon{transform:scale(.94)}
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:focus-visible{outline:3px solid #0b8990!important;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){
   body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton,
