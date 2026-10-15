@@ -89,7 +89,7 @@
   margin: 0 0 32px;
   padding: clamp(22px, 3.2vw, 34px);
   border: 1px solid color-mix(in srgb, var(--accent) 17%, transparent);
-  border-radius: 28px 28px 28px 10px;
+  border-radius: 30px;
   background: linear-gradient(132deg,
     color-mix(in srgb, var(--card) 76%, transparent),
     color-mix(in srgb, var(--accent-soft) 57%, transparent));
@@ -216,7 +216,7 @@
   .brand img { width: 34px; height: 34px; }
   .backLink { gap: 6px; min-height: 42px; padding: 0 10px; font-size: 12px; }
   .shell { width: calc(100% - 28px); padding-top: 32px; }
-  .intro { margin-bottom: 24px; padding: 22px 19px; border-radius: 23px 23px 23px 8px; }
+  .intro { margin-bottom: 24px; padding: 22px 19px; border-radius: 23px; }
   .intro h1 { font-size: clamp(34px, 10vw, 44px); }
   .intro > p { font-size: 14px; }
   .section { padding: 19px 16px; border-radius: 15px; }
