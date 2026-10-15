@@ -3620,6 +3620,50 @@ html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfal
 }
 html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .host-event-panel h3{color:#f1f7fa}
 html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .host-event-panel p{color:#bac7d1}
+
+/* Make the host action more discoverable while keeping motion subtle. */
+.login-btn .login-btn-label{display:inline;white-space:nowrap}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta{
+  position:relative!important;isolation:isolate;color:#103844!important;
+  background:linear-gradient(135deg,#f5ffff 0%,#d9f2f1 58%,#c5e9e9 100%)!important;
+  border:1px solid #84c9cb!important;box-shadow:0 4px 12px rgba(13,103,115,.12)!important;
+  transition:transform .24s cubic-bezier(.2,.8,.2,1),box-shadow .24s ease,background .24s ease,border-color .24s ease!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.58) 50%,transparent 75%);
+  transform:translateX(-130%);transition:transform .65s ease;
+}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta :is(.lucide-icon,span){position:relative;z-index:2;color:inherit!important}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta .lucide-icon{transition:transform .24s ease}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:hover{
+  color:#082d3a!important;background:linear-gradient(135deg,#c8f3f0,#9be0df)!important;
+  border-color:#43b9bc!important;box-shadow:0 9px 20px rgba(8,126,131,.2)!important;
+  transform:translateY(-3px)!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:hover:before{transform:translateX(130%)}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:hover .lucide-icon{transform:rotate(-8deg) translateY(-1px)}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:active{transform:translateY(-1px) scale(.985)!important}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:focus-visible{outline:3px solid #2c9ea5!important;outline-offset:3px}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta{
+  color:#e8fbfc!important;background:linear-gradient(135deg,#173b48,#145b68)!important;
+  border-color:#438b94!important;box-shadow:0 4px 14px rgba(0,0,0,.18)!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:hover{
+  color:#f4ffff!important;background:linear-gradient(135deg,#1b5964,#147e82)!important;
+  border-color:#66d5d0!important;box-shadow:0 9px 22px rgba(31,190,183,.2)!important;
+}
+@media(max-width:560px){
+  .login-btn .login-btn-label{display:inline!important;font-size:clamp(8px,2.2vw,10px)!important;letter-spacing:.01em!important}
+  .login-btn{gap:0!important;padding:9px 10px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta,
+  body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:before,
+  body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta .lucide-icon{transition:none!important}
+  body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:hover,
+  body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:active{transform:none!important}
+}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel .bg-surface-container-low.rounded-lg>div:first-child :is(span){color:#087e83!important}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel .featured-detail-stat{
   color:#183541!important;background:linear-gradient(145deg,#f6fafa,#e9f1f2)!important;border-color:#c2d7d9!important;box-shadow:inset 2px 2px 5px rgba(62,99,106,.06),inset -2px -2px 5px rgba(255,255,255,.85)!important;

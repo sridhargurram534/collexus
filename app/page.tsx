@@ -51,7 +51,7 @@ export default function HomePage() {
       </div>
       <div className="shrink-0 relative">
         <button id="loginButton" type="button" aria-label="Login or sign up" className="login-btn inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider shadow-[0_6px_18px_rgba(38,12,26,.16)]">
-          <Icon name="login" className="text-[19px]" /><span>Login / Sign Up</span>
+          <span className="login-btn-label">Login / Sign Up</span>
         </button>
       </div>
     </div>
@@ -107,7 +107,7 @@ export default function HomePage() {
 <span>Explore {events.length} Event Records</span>
 <Icon name="arrow_forward" className="text-[18px]" />
 </a>
-<button id="hostEventButton" type="button" aria-haspopup="dialog" aria-controls="loginModal" className="hero-cta hero-cta-high-contrast relative overflow-hidden inline-flex items-center justify-center gap-space-xs px-space-lg py-3 rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg uppercase tracking-wider hover:bg-surface-container-low border border-[#f4d3cb] shadow-sm transition-all group">
+<button id="hostEventButton" type="button" aria-haspopup="dialog" aria-controls="loginModal" className="hero-cta hero-cta-high-contrast host-event-cta relative overflow-hidden inline-flex items-center justify-center gap-space-xs px-space-lg py-3 rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg uppercase tracking-wider border transition-all group">
 <Icon name="event_upcoming" className="text-secondary text-[20px]" />
 <span>Host Event</span>
 </button>
