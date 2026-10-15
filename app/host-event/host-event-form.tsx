@@ -17,6 +17,7 @@ import {
 import styles from "./host-event.module.css";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const draftStorageKey = "collexus-host-event-draft-v1";
 
 type FormState = {
   organizerName: string;
@@ -64,6 +65,17 @@ const initialForm: FormState = {
   price: "",
 };
 
+function isSavedForm(value: unknown): value is FormState {
+  if (!value || typeof value !== "object") return false;
+  const candidate = value as Record<string, unknown>;
+  const keys = Object.keys(initialForm);
+  if (Object.keys(candidate).length !== keys.length || keys.some((key) => typeof candidate[key] !== "string")) return false;
+  if (candidate.pricing !== "free" && candidate.pricing !== "paid") return false;
+  if (candidate.expectedParticipants && (!/^\d+$/.test(candidate.expectedParticipants as string) || Number(candidate.expectedParticipants) < 1 || Number(candidate.expectedParticipants) > 100000)) return false;
+  if (candidate.price && (!/^\d+(\.\d{1,2})?$/.test(candidate.price as string) || Number(candidate.price) < 1)) return false;
+  return true;
+}
+
 const fieldTitles: Record<string, string> = {
   "1": "First year",
   "2": "Second year",
@@ -85,6 +97,7 @@ export function HostEventForm() {
   const [form, setForm] = useState(initialForm);
   const [reviewed, setReviewed] = useState(false);
   const [dateError, setDateError] = useState("");
+  const [draftStatus, setDraftStatus] = useState("");
 
   function update<K extends keyof FormState>(key: K) {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -92,20 +105,105 @@ export function HostEventForm() {
       setForm((current) => ({ ...current, [key]: value }));
       setReviewed(false);
       setDateError("");
+      setDraftStatus("");
     };
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const startsAt = new Date(`${form.startDate}T${form.startTime}`);
-    const endsAt = new Date(`${form.endDate}T${form.endTime}`);
-    if (endsAt <= startsAt) {
+    const startComplete = Boolean(form.startDate && form.startTime);
+    const endComplete = Boolean(form.endDate && form.endTime);
+    const startPartial = Boolean(form.startDate) !== Boolean(form.startTime);
+    const endPartial = Boolean(form.endDate) !== Boolean(form.endTime);
+    const startsAt = startComplete ? new Date(`${form.startDate}T${form.startTime}`) : null;
+    const endsAt = endComplete ? new Date(`${form.endDate}T${form.endTime}`) : null;
+    if (startPartial || endPartial) {
+      setDateError("Add both a date and time for each event start or end.");
+      document.getElementById(startPartial ? "host-start-date" : "host-end-date")?.focus();
+      return;
+    }
+    if (startsAt && endsAt && endsAt <= startsAt) {
       setDateError("The end date and time must be after the start date and time.");
       document.getElementById("host-end-date")?.focus();
       return;
     }
     setDateError("");
     setReviewed(true);
+  }
+
+  function saveDraft() {
+    try {
+      window.localStorage.setItem(draftStorageKey, JSON.stringify({ version: 1, savedAt: new Date().toISOString(), form }));
+      setDraftStatus("Draft saved on this device.");
+    } catch {
+      setDraftStatus("Could not save the draft. Check this browser’s storage settings.");
+    }
+  }
+
+  function restoreDraft() {
+    try {
+      const saved = window.localStorage.getItem(draftStorageKey);
+      if (!saved) {
+        setDraftStatus("No saved draft was found on this device.");
+        return;
+      }
+      const parsed: unknown = JSON.parse(saved);
+      if (!parsed || typeof parsed !== "object" || !("version" in parsed) || !("form" in parsed)) throw new Error("Invalid draft");
+      const record = parsed as { version: unknown; form: unknown };
+      if (record.version !== 1 || !isSavedForm(record.form)) throw new Error("Invalid draft");
+      setForm(record.form);
+      setReviewed(false);
+      setDateError("");
+      setDraftStatus("Saved draft restored.");
+    } catch {
+      setDraftStatus("This saved draft could not be read. Clear it and start a new one.");
+    }
+  }
+
+  function clearDraft() {
+    try {
+      window.localStorage.removeItem(draftStorageKey);
+      setDraftStatus("Saved draft cleared from this device.");
+    } catch {
+      setDraftStatus("Could not clear the saved draft in this browser.");
+    }
+  }
+
+  function downloadSubmission() {
+    const payload = {
+      schemaVersion: 1,
+      exportedAt: new Date().toISOString(),
+      organizer: {
+        name: form.organizerName,
+        occupation: form.occupation,
+        institution: form.institution === "Other institution" ? form.institutionOther : form.institution,
+        batch: form.batch,
+        email: form.email,
+        phone: form.phone,
+      },
+      event: {
+        name: form.eventName,
+        category: form.category,
+        template: form.template,
+        description: form.about,
+        expectedParticipants: form.expectedParticipants ? Number(form.expectedParticipants) : null,
+        startDate: form.startDate || null,
+        endDate: form.endDate || null,
+        startTime: form.startTime || null,
+        endTime: form.endTime || null,
+        mode: form.mode,
+        venue: form.venue,
+        pricing: form.pricing,
+        price: form.pricing === "paid" ? Number(form.price) : 0,
+      },
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${form.eventName.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "event-submission"}.json`;
+    link.click();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   const dates = form.startDate
@@ -127,12 +225,12 @@ export function HostEventForm() {
       </header>
 
       <div className={styles.shell}>
-        <section className={styles.intro} aria-labelledby="host-title">
+        <div className={styles.intro}>
           <div className={styles.eyebrow}>EVENT SUBMISSION</div>
           <h1 id="host-title">Put your event<br className={styles.desktopBreak} /> on the campus map.</h1>
           <p>Share the details with students and faculty. We’ll help make your event easy to find.</p>
           <div className={styles.formNote}><span>*</span> Required fields</div>
-        </section>
+        </div>
 
         <div className={styles.layout}>
           <form className={styles.form} onSubmit={handleSubmit}>
@@ -224,7 +322,7 @@ export function HostEventForm() {
               <div className={styles.fields}>
                 <label className={styles.field}>
                   <span>From date <b aria-hidden="true">*</b></span>
-                  <input name="startDate" onChange={update("startDate")} required type="date" value={form.startDate} />
+                  <input id="host-start-date" name="startDate" onChange={update("startDate")} required type="date" value={form.startDate} />
                 </label>
                 <label className={styles.field}>
                   <span>To date <b aria-hidden="true">*</b></span>
@@ -286,8 +384,15 @@ export function HostEventForm() {
 
             <div className={styles.submitArea}>
               <button className={styles.submitButton} type="submit">Review event details <ArrowRight aria-hidden="true" size={18} /></button>
-              <p>Your details stay in this page preview and are not sent to a server.</p>
-              {reviewed && <div className={styles.successMessage} role="status"><ShieldCheck aria-hidden="true" size={18} /><span>Your event preview is ready. Review the summary before sharing it with attendees.</span></div>}
+              <div className={styles.draftActions}>
+                <button className={styles.draftButton} onClick={saveDraft} type="button">Save draft on this device</button>
+                <button className={styles.draftButton} onClick={restoreDraft} type="button">Restore saved draft</button>
+                <button className={styles.draftButton} onClick={clearDraft} type="button">Clear saved draft</button>
+              </div>
+              <p>Your event stays in this browser. GitHub Pages does not provide a server to receive submissions.</p>
+              {draftStatus && <p className={styles.draftStatus} role="status">{draftStatus}</p>}
+              {reviewed && <div className={styles.successMessage} role="status"><ShieldCheck aria-hidden="true" size={18} /><span>Your event details passed review. Download the structured submission when you’re ready.</span></div>}
+              {reviewed && <button className={styles.draftButton} onClick={downloadSubmission} type="button">Download event submission JSON</button>}
             </div>
           </form>
 
@@ -314,7 +419,7 @@ export function HostEventForm() {
             </div>
             <div className={styles.checklist}>
               <ShieldCheck aria-hidden="true" size={19} />
-              <div><strong>What happens next?</strong><p>This page creates a local preview only. Event publishing and organizer contact are not connected yet.</p></div>
+              <div><strong>What happens next?</strong><p>Save a draft in this browser or download a structured submission to send through your event team’s approved channel.</p></div>
             </div>
             <button className={styles.previewButton} onClick={() => {
               const preview = document.getElementById("event-listing-preview");
