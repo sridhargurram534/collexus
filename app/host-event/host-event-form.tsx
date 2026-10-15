@@ -10,6 +10,7 @@ import {
   Clock3,
   Eye,
   MapPin,
+  Send,
   ShieldCheck,
   Sparkles,
   UsersRound,
@@ -115,6 +116,12 @@ export function HostEventForm() {
     };
   }
 
+  function scrollToPreview() {
+    const preview = document.getElementById("event-listing-preview");
+    preview?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+    preview?.focus({ preventScroll: true });
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const startComplete = Boolean(form.startDate && form.startTime);
@@ -135,11 +142,7 @@ export function HostEventForm() {
     }
     setDateError("");
     setReviewed(true);
-    window.requestAnimationFrame(() => {
-      const preview = document.getElementById("event-listing-preview");
-      preview?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
-      preview?.focus({ preventScroll: true });
-    });
+    window.requestAnimationFrame(scrollToPreview);
   }
 
   function selectPoster(event: ChangeEvent<HTMLInputElement>) {
@@ -270,7 +273,7 @@ export function HostEventForm() {
         </div>
 
         <div className={styles.layout}>
-          <form className={styles.form} onSubmit={handleSubmit}>
+          <form id="host-event-form" className={styles.form} onSubmit={handleSubmit}>
             <section className={styles.section} aria-labelledby="organizer-heading">
               <div className={styles.sectionHeading}>
                 <span className={styles.sectionNumber}>01</span>
@@ -427,7 +430,7 @@ export function HostEventForm() {
 
             <div className={styles.submitArea}>
               <p className={styles.reviewPrompt}><ShieldCheck aria-hidden="true" size={18} /><span><strong>Before you share:</strong> check the dates, venue, contact details, price, and poster in the preview. This page saves locally and exports a file; it does not publish events.</span></p>
-              <button className={styles.submitButton} type="submit">Review details &amp; preview <ArrowRight aria-hidden="true" size={18} /></button>
+              <button className={styles.submitButton} onClick={scrollToPreview} type="button"><Eye aria-hidden="true" size={18} /> Show live preview <ArrowRight aria-hidden="true" size={18} /></button>
               <div className={styles.draftActions}>
                 <button className={styles.draftButton} onClick={saveDraft} type="button">Save draft on this device</button>
                 <button className={styles.draftButton} onClick={restoreDraft} type="button">Restore saved draft</button>
@@ -467,12 +470,8 @@ export function HostEventForm() {
               <ShieldCheck aria-hidden="true" size={19} />
               <div><strong>What happens next?</strong><p>Review the event card, then export a JSON summary for your event team. Publishing is not connected on this page.</p></div>
             </div>
-            <button className={styles.previewButton} onClick={() => {
-              const preview = document.getElementById("event-listing-preview");
-              preview?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
-              preview?.focus({ preventScroll: true });
-            }} type="button" aria-controls="event-listing-preview">
-              <Eye aria-hidden="true" size={17} /> View event preview <ArrowRight aria-hidden="true" size={16} />
+            <button className={styles.previewButton} onClick={() => document.querySelector<HTMLFormElement>("#host-event-form")?.requestSubmit()} type="button" aria-controls="host-event-form">
+              <Send aria-hidden="true" size={17} /> Prepare submission <ArrowRight aria-hidden="true" size={16} />
             </button>
             <a className={styles.backToEvents} href={`${publicBasePath}/#featured-events`}><ArrowLeft aria-hidden="true" size={16} /> Explore published events</a>
           </aside>
