@@ -85,7 +85,8 @@
 
 .shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; padding: 56px 0 30px; }
 .intro {
-  max-width: 760px;
+  width: 100%;
+  max-width: none;
   margin: 0 0 32px;
   padding: clamp(22px, 3.2vw, 34px);
   border: 1px solid color-mix(in srgb, var(--accent) 17%, transparent);
