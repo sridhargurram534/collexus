@@ -3901,3 +3901,50 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
   border-color:#35c6c8!important;box-shadow:0 8px 18px rgba(8,126,131,.18)!important;
 }
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .motion-showcase-section .cover-card .cover-icon .lucide-icon{color:#073b48!important}
+
+/* Keep login fields flat and legible in both theme modes. */
+body.warm-editorial-theme.vivid-nightfall-theme #loginModal .login-dialog :is(.login-auth-form input,.login-registration-form input,.login-registration-form select){
+  box-shadow:none!important;background-image:none!important;border-width:1px!important;border-style:solid!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #loginModal .login-dialog :is(.login-auth-form input,.login-registration-form input,.login-registration-form select){
+  color:#183541!important;background:#fff!important;border-color:#c3d2d5!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #loginModal .login-dialog :is(.login-auth-form input,.login-registration-form input,.login-registration-form select){
+  color:#e8f0f3!important;background:#111d26!important;border-color:#40535e!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme #loginModal .login-dialog :is(.login-auth-form input,.login-registration-form input,.login-registration-form select):focus{
+  border-color:#087e83!important;outline:2px solid rgba(8,126,131,.28)!important;outline-offset:1px!important;box-shadow:none!important;
+}
+
+/* Keep the category rail on one swipeable row so it never covers the hero. */
+@media(max-width:760px){
+  body.warm-editorial-theme.vivid-nightfall-theme .quick-category-top{
+    flex-wrap:nowrap!important;justify-content:flex-start!important;gap:8px!important;
+    overflow-x:auto!important;overflow-y:hidden!important;overscroll-behavior-inline:contain;
+    scrollbar-width:none;padding:6px 12px!important;
+  }
+  body.warm-editorial-theme.vivid-nightfall-theme .quick-category-top::-webkit-scrollbar{display:none}
+  body.warm-editorial-theme.vivid-nightfall-theme .quick-category-top button{flex:0 0 auto!important;min-height:44px}
+  body.warm-editorial-theme.vivid-nightfall-theme main.w-full.bg-surface{padding-top:132px!important}
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop{
+    padding:24px clamp(16px,4vw,28px) 32px!important;max-width:none!important;
+  }
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop>.grid{
+    grid-template-columns:minmax(0,1fr)!important;gap:24px!important;width:100%;
+  }
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop>.grid>div{min-width:0}
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-word-reveal{
+    font-size:clamp(36px,7.3vw,50px)!important;line-height:1.04!important;
+  }
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .font-body-lg{
+    font-size:clamp(15px,2.5vw,17px)!important;line-height:1.55!important;
+  }
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .featured-event-panel .h-80{height:clamp(220px,46vw,300px)!important}
+}
+@media(max-width:480px){
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-word-reveal{font-size:36px!important}
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .flex.flex-wrap.items-center.gap-space-sm.w-full{
+    display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;
+  }
+  body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .flex.flex-wrap.items-center.gap-space-sm.w-full>.hero-cta{width:100%;min-width:0}
+}
