@@ -215,7 +215,6 @@ export function OriginalInteractions() {
        document.querySelectorAll('[data-login-type]').forEach(btn=>btn.addEventListener('click',()=>showLoginForm(btn.dataset.loginType)));
        document.querySelectorAll('[data-login-back]').forEach(btn=>btn.addEventListener('click',showLoginOptions));
        document.querySelectorAll('[data-event-register-back]').forEach(btn=>btn.addEventListener('click',showLoginOptions));
-       document.getElementById('hostEventButton')?.addEventListener('click',()=>{modal?.classList.remove('hidden');modal?.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';showLoginForm('host-event');});
        const showAuthUnavailable=(e: Event)=>{e.preventDefault();if(hint){hint.textContent='Sign-in is unavailable in this static demo. Your credentials were not sent.';hint.classList.remove('hidden');}};
        studentLoginForm?.addEventListener('submit',showAuthUnavailable);
        facultyLoginForm?.addEventListener('submit',showAuthUnavailable);
