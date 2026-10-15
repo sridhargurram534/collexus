@@ -3342,7 +3342,9 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
 .featured-event-panel .featured-detail-stat .font-headline-sm{color:#18313d!important}
 .featured-event-panel .featured-detail-stat .font-label-sm{color:#087e83!important}
 .pass-action{transition:background-color .16s ease,border-color .16s ease,transform .16s ease!important}
-.pass-action:hover{transform:translateY(-1px)!important;background:#16566b!important;box-shadow:0 3px 8px rgba(23,74,89,.13)!important}
+.pass-action:hover{transform:translateY(-1px)!important;background:#2183b4!important;box-shadow:0 0 0 2px rgba(33,131,180,.18),0 4px 10px rgba(23,74,89,.1)!important}
+.pass-action:active{transform:translateY(0)!important;background:#2183b4!important;box-shadow:0 0 0 2px rgba(33,131,180,.2)!important}
+.pass-action:after{display:none!important}
 .pass-action:hover span{transform:translateX(2px)!important}
 
 /* Dark theme filter text and controls stay readable without square gloss. */
@@ -3949,36 +3951,37 @@ body.warm-editorial-theme.vivid-nightfall-theme #loginModal .login-dialog :is(.l
   body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .flex.flex-wrap.items-center.gap-space-sm.w-full>.hero-cta{width:100%;min-width:0}
 }
 
-/* Keep the host action in the existing teal palette; use light and motion for emphasis. */
+/* Keep Host Event secondary to the main action, with a quiet focus highlight. */
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton{
   position:relative!important;isolation:isolate!important;overflow:hidden!important;
-  min-height:50px;border-radius:13px!important;border:1px solid #39d7c2!important;
-  color:#f4ffff!important;background:linear-gradient(135deg,#0b4d5d 0%,#087b7c 58%,#08736c 100%)!important;
-  box-shadow:0 3px 0 #06434d,0 7px 15px rgba(7,64,78,.18),0 0 0 2px rgba(57,215,194,.18),inset 0 1px 0 rgba(255,255,255,.16)!important;
-  font-weight:800!important;letter-spacing:.075em!important;
-  transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s ease!important;
+  min-height:50px;border-radius:13px!important;border:1px solid rgba(20,83,110,.2)!important;
+  color:#315567!important;background:rgba(255,255,255,.54)!important;
+  box-shadow:0 2px 7px rgba(20,83,110,.06)!important;
+  font-weight:700!important;letter-spacing:.055em!important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:before{
   content:"";position:absolute;z-index:1;inset:0;pointer-events:none;border-radius:inherit;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);transition:box-shadow .2s ease;
+  box-shadow:none;transition:box-shadow .18s ease;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton span{
   position:relative;z-index:2;color:inherit!important;background:transparent!important;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton .lucide-icon{
-  position:relative;z-index:2;color:#8ef2df!important;background:transparent!important;transition:transform .2s ease;
+  position:relative;z-index:2;color:#087e83!important;background:transparent!important;transition:transform .18s ease;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover{
-  box-shadow:0 4px 0 #06434d,0 11px 22px rgba(7,64,78,.2),0 0 0 3px rgba(57,215,194,.3),0 0 18px rgba(57,215,194,.2),inset 0 1px 0 rgba(255,255,255,.16)!important;
-  transform:translateY(-2px)!important;
+  border-color:rgba(8,126,131,.42)!important;
+  box-shadow:0 0 0 3px rgba(8,126,131,.1),0 4px 10px rgba(20,83,110,.08)!important;
+  transform:translateY(-1px)!important;
 }
-body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover:before{box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover:before{box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover .lucide-icon{transform:translateY(-1px)}
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:active{
-  box-shadow:0 1px 0 #06434d,0 3px 8px rgba(7,64,78,.16),0 0 0 2px rgba(57,215,194,.24),inset 0 2px 5px rgba(0,0,0,.16)!important;
-  transform:translateY(2px) scale(.985)!important;
+  box-shadow:0 0 0 3px rgba(8,126,131,.16)!important;
+  transform:translateY(0) scale(.99)!important;
 }
-body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:active .lucide-icon{transform:scale(.94)}
+body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:active .lucide-icon{transform:scale(.97)}
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:focus-visible{outline:3px solid #0b8990!important;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){
   body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton,
@@ -3986,4 +3989,38 @@ body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #h
   body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton .lucide-icon{transition:none!important}
   body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:hover,
   body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop #hostEventButton:active{transform:none!important}
+}
+
+/* Secondary controls use a subtle outline/ring instead of a new fill color on hover. */
+body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn{
+  color:#315567!important;background:rgba(255,255,255,.62)!important;border:1px solid rgba(20,83,110,.18)!important;
+  box-shadow:0 2px 7px rgba(20,83,110,.06)!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn .lucide-icon{color:#087e83!important}
+body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn:hover{
+  color:#315567!important;background:rgba(255,255,255,.62)!important;border-color:rgba(8,126,131,.38)!important;
+  box-shadow:0 0 0 3px rgba(8,126,131,.09),0 3px 9px rgba(20,83,110,.07)!important;transform:translateY(-1px)!important;filter:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn:active{
+  color:#315567!important;background:rgba(255,255,255,.62)!important;transform:translateY(0)!important;
+  box-shadow:0 0 0 3px rgba(8,126,131,.14)!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn:hover,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn:active{
+  color:#d7e6eb!important;background:rgba(20,32,43,.76)!important;border-color:rgba(131,217,222,.2)!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn .lucide-icon{color:#83d9de!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .top-nav-btn.filter-nav-btn:hover{
+  border-color:rgba(131,217,222,.42)!important;box-shadow:0 0 0 3px rgba(131,217,222,.08),0 3px 9px rgba(0,0,0,.12)!important;
+}
+
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .pass-action:hover,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .pass-action:active{
+  color:#fff!important;background:linear-gradient(125deg,#1e6fa6,#2386b8)!important;border-color:rgba(52,253,239,.32)!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .pass-action:hover,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .pass-action:active{
+  color:#fff!important;background:#14536e!important;border-color:#14536e!important;
+  box-shadow:0 0 0 2px rgba(131,217,222,.16),0 4px 10px rgba(0,0,0,.16)!important;
 }

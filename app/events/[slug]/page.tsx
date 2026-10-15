@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, CalendarDays, CircleCheck, MapPin, Sparkles, Users, WalletCards, TicketCheck } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CalendarDays, CircleCheck, ListChecks, MapPin, Users, WalletCards, TicketCheck } from "lucide-react";
 import { events, getEvent } from "@/data/events";
 
 type EventPageProps = { params: Promise<{ slug: string }> };
@@ -43,7 +43,7 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
           <p>{event.description}</p>
           <div className="details-actions">
             <Link className="primary-button" href={`/events/${event.slug}/register`}><TicketCheck size={16} aria-hidden="true" /> Register <span className="demo-action-tag">DEMO</span></Link>
-            {event.report && <a className="secondary-button" href={event.report} target="_blank" rel="noreferrer">Event report <ArrowUpRight size={15} aria-hidden="true" /></a>}
+            {event.report && <a className="secondary-button" href={event.source} target="_blank" rel="noreferrer">Official page <ArrowUpRight size={15} aria-hidden="true" /></a>}
           </div>
           <p className="archive-disclaimer">Registration preview only. This demo does not submit an entry or charge money. {event.dateStart ? "This dated event has concluded." : "The official listing does not publish an exact event date."}</p>
         </div>
@@ -62,7 +62,7 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
           <h2>What to know</h2>
           <p className="details-description">{event.description}</p>
           <div className="detail-divider" />
-          <h3 className="highlight-heading"><Sparkles size={17} aria-hidden="true" /> Event highlights</h3>
+          <h3 className="highlight-heading"><ListChecks size={17} aria-hidden="true" /> Event highlights</h3>
           <ul className="highlight-list">{event.highlights.map((highlight) => <li key={highlight}><span className="highlight-marker" aria-hidden="true" />{highlight}</li>)}</ul>
         </section>
         <aside className="facts-panel">
