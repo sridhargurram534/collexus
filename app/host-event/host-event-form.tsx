@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -98,6 +98,12 @@ export function HostEventForm() {
   const [reviewed, setReviewed] = useState(false);
   const [dateError, setDateError] = useState("");
   const [draftStatus, setDraftStatus] = useState("");
+  const [posterPreview, setPosterPreview] = useState("");
+  const [posterError, setPosterError] = useState("");
+
+  useEffect(() => () => {
+    if (posterPreview) URL.revokeObjectURL(posterPreview);
+  }, [posterPreview]);
 
   function update<K extends keyof FormState>(key: K) {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -129,6 +135,34 @@ export function HostEventForm() {
     }
     setDateError("");
     setReviewed(true);
+    window.requestAnimationFrame(() => {
+      const preview = document.getElementById("event-listing-preview");
+      preview?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+      preview?.focus({ preventScroll: true });
+    });
+  }
+
+  function selectPoster(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.currentTarget.files?.[0];
+    setPosterError("");
+    if (!file) {
+      setPosterPreview("");
+      return;
+    }
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+      event.currentTarget.value = "";
+      setPosterError("Choose a JPG, PNG, or WebP image.");
+      setPosterPreview("");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      event.currentTarget.value = "";
+      setPosterError("Choose an image smaller than 5 MB.");
+      setPosterPreview("");
+      return;
+    }
+    setPosterPreview(URL.createObjectURL(file));
+    setReviewed(false);
   }
 
   function saveDraft() {
@@ -226,10 +260,13 @@ export function HostEventForm() {
 
       <div className={styles.shell}>
         <div className={styles.intro}>
-          <div className={styles.eyebrow}>EVENT SUBMISSION</div>
-          <h1 id="host-title">Put your event<br className={styles.desktopBreak} /> on the campus map.</h1>
-          <p>Share the details with students and faculty. We’ll help make your event easy to find.</p>
-          <div className={styles.formNote}><span>*</span> Required fields</div>
+          <div className={styles.introCopy}>
+            <div className={styles.eyebrow}>EVENT SUBMISSION</div>
+            <h1 id="host-title">Put your event<br className={styles.desktopBreak} /> on the campus map.</h1>
+            <p>Share the details with students and faculty. We’ll help make your event easy to find.</p>
+            <div className={styles.formNote}><span>*</span> Required fields</div>
+          </div>
+          <img className={styles.introIllustration} src={`${publicBasePath}/images/host-event-planning-illustration.png`} alt="Students planning a campus event together" />
         </div>
 
         <div className={styles.layout}>
@@ -247,14 +284,14 @@ export function HostEventForm() {
                 <label className={styles.field}>
                   <span>Occupation <b aria-hidden="true">*</b></span>
                   <select name="occupation" onChange={update("occupation")} required value={form.occupation}>
-                    <option value="" disabled>Select occupation</option>
+                    <option value="" disabled hidden>Select occupation</option>
                     <option>Student</option><option>Faculty</option><option>Staff</option><option>Alumni</option><option>External organizer</option>
                   </select>
                 </label>
                 <label className={styles.field}>
                   <span>Institution <b aria-hidden="true">*</b></span>
                   <select name="institution" onChange={update("institution")} required value={form.institution}>
-                    <option value="" disabled>Select institution</option>
+                    <option value="" disabled hidden>Select institution</option>
                     <option>Ramachandra College of Engineering</option><option>Other institution</option>
                   </select>
                 </label>
@@ -287,22 +324,22 @@ export function HostEventForm() {
                 <label className={styles.field}>
                   <span>Category <b aria-hidden="true">*</b></span>
                   <select name="category" onChange={update("category")} required value={form.category}>
-                    <option value="" disabled>Choose a category</option>
+                    <option value="" disabled hidden>Choose a category</option>
                     <option>Hackathon</option><option>Workshop</option><option>Project expo</option><option>Cultural event</option><option>Sports & outdoors</option><option>Career & internship</option><option>Branch event</option><option>Other</option>
                   </select>
                 </label>
                 <label className={styles.field}>
                   <span>Event template <b aria-hidden="true">*</b></span>
                   <select name="template" onChange={update("template")} required value={form.template}>
-                    <option value="" disabled>Select a layout</option>
+                    <option value="" disabled hidden>Select an event layout</option>
                     <option>Workshop or seminar</option><option>Hackathon or competition</option><option>Festival or cultural event</option><option>Sports meet</option><option>Project expo</option><option>General campus event</option>
                   </select>
-                  <small>Choose the format that best fits your event.</small>
+                  <small>Pick a layout for the event listing preview.</small>
                 </label>
                 <label className={styles.field}>
                   <span>Eligible batch / audience <b aria-hidden="true">*</b></span>
                   <select name="batch" onChange={update("batch")} required value={form.batch}>
-                    <option value="" disabled>Select eligible audience</option>
+                    <option value="" disabled hidden>Select eligible audience</option>
                     <option value="1">First year</option><option value="2">Second year</option><option value="3">Third year</option><option value="4">Final year</option><option value="all">All batches</option><option value="faculty">Faculty &amp; staff</option>
                   </select>
                 </label>
@@ -310,6 +347,12 @@ export function HostEventForm() {
                   <span>Brief about the event <b aria-hidden="true">*</b></span>
                   <textarea maxLength={600} name="about" onChange={update("about")} placeholder="What will participants do, learn, or experience?" required rows={4} value={form.about} />
                   <small className={styles.charCount}>{form.about.length}/600 characters</small>
+                </label>
+                <label className={`${styles.field} ${styles.spanTwo} ${styles.uploadField}`}>
+                  <span>Event poster <small>(optional)</small></span>
+                  <input accept="image/jpeg,image/png,image/webp" name="poster" onChange={selectPoster} type="file" />
+                  <small>Upload a JPG, PNG, or WebP image (up to 5 MB). It appears in the preview on this device.</small>
+                  {posterError && <small className={styles.formError} role="alert">{posterError}</small>}
                 </label>
               </div>
             </section>
@@ -340,7 +383,7 @@ export function HostEventForm() {
                 <label className={styles.field}>
                   <span>Event format <b aria-hidden="true">*</b></span>
                   <select name="mode" onChange={update("mode")} required value={form.mode}>
-                    <option value="" disabled>Choose a format</option><option>In person</option><option>Online</option><option>Hybrid</option>
+                    <option value="" disabled hidden>Choose an event format</option><option>In person</option><option>Online</option><option>Hybrid</option>
                   </select>
                 </label>
                 <label className={styles.field}>
@@ -383,15 +426,16 @@ export function HostEventForm() {
             </section>
 
             <div className={styles.submitArea}>
-              <button className={styles.submitButton} type="submit">Review event details <ArrowRight aria-hidden="true" size={18} /></button>
+              <p className={styles.reviewPrompt}><ShieldCheck aria-hidden="true" size={18} /><span><strong>Before you share:</strong> check the dates, venue, contact details, price, and poster in the preview. This page saves locally and exports a file; it does not publish events.</span></p>
+              <button className={styles.submitButton} type="submit">Review details &amp; preview <ArrowRight aria-hidden="true" size={18} /></button>
               <div className={styles.draftActions}>
                 <button className={styles.draftButton} onClick={saveDraft} type="button">Save draft on this device</button>
                 <button className={styles.draftButton} onClick={restoreDraft} type="button">Restore saved draft</button>
                 <button className={styles.draftButton} onClick={clearDraft} type="button">Clear saved draft</button>
               </div>
-              <p>Your event stays in this browser. GitHub Pages does not provide a server to receive submissions.</p>
+              <p>Your draft stays in this browser until you export it.</p>
               {draftStatus && <p className={styles.draftStatus} role="status">{draftStatus}</p>}
-              {reviewed && <div className={styles.successMessage} role="status"><ShieldCheck aria-hidden="true" size={18} /><span>Your event details passed review. Download the structured submission when you’re ready.</span></div>}
+              {reviewed && <div className={styles.successMessage} role="status"><ShieldCheck aria-hidden="true" size={18} /><span>Required fields and date/time checks passed. Review the full preview below, then download the submission when you’re ready.</span></div>}
               {reviewed && <button className={styles.draftButton} onClick={downloadSubmission} type="button">Download event submission JSON</button>}
             </div>
           </form>
@@ -399,10 +443,12 @@ export function HostEventForm() {
           <aside className={styles.sidebar} aria-label="Event listing preview">
             <div id="event-listing-preview" className={styles.previewCard} tabIndex={-1}>
               <div className={styles.previewTopline}><span>LIVE PREVIEW</span><span className={styles.previewDot} /> DRAFT</div>
-              <div className={styles.previewArtwork} aria-hidden="true">
-                <span className={styles.artRingOne} /><span className={styles.artRingTwo} />
-                <Sparkles size={22} />
-                <span className={styles.artLabel}>COLLEXUS · CAMPUS EVENTS</span>
+              <div className={styles.previewArtwork}>
+                {posterPreview ? <img className={styles.posterImage} src={posterPreview} alt="Uploaded event poster preview" /> : <div className={styles.previewPlaceholder} aria-hidden="true">
+                  <span className={styles.artRingOne} /><span className={styles.artRingTwo} />
+                  <Sparkles size={22} />
+                  <span className={styles.artLabel}>COLLEXUS · CAMPUS EVENTS</span>
+                </div>}
               </div>
               <div className={styles.previewContent}>
                 <span className={styles.categoryBadge}>{form.category || "EVENT CATEGORY"}</span>
@@ -413,20 +459,20 @@ export function HostEventForm() {
                 <div className={styles.previewMeta}><MapPin aria-hidden="true" size={16} /><span>{form.venue || "Event venue"}</span></div>
                 <div className={styles.previewMeta}><Building2 aria-hidden="true" size={16} /><span>{form.institution === "Other institution" ? form.institutionOther || "Your institution" : form.institution || "Institution"}</span></div>
                 <div className={styles.previewMeta}><UsersRound aria-hidden="true" size={16} /><span>{form.expectedParticipants ? `Around ${form.expectedParticipants} participants` : "Participant estimate"}</span></div>
-                <div className={styles.previewFooter}><span>{form.pricing === "paid" && form.price ? `₹${form.price}` : form.pricing === "paid" ? "Paid entry" : "Free entry"}</span><span>{form.template || "Choose an event layout"}</span></div>
+                <div className={styles.previewFooter}><span>{form.pricing === "paid" && form.price ? `₹${form.price}` : form.pricing === "paid" ? "Paid entry" : "Free entry"}</span><span>{form.template || "Event layout not selected"}</span></div>
                 <div className={styles.previewAudience}>For: {selectedAudience}</div>
               </div>
             </div>
             <div className={styles.checklist}>
               <ShieldCheck aria-hidden="true" size={19} />
-              <div><strong>What happens next?</strong><p>Save a draft in this browser or download a structured submission to send through your event team’s approved channel.</p></div>
+              <div><strong>What happens next?</strong><p>Review the event card, then export a JSON summary for your event team. Publishing is not connected on this page.</p></div>
             </div>
             <button className={styles.previewButton} onClick={() => {
               const preview = document.getElementById("event-listing-preview");
               preview?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
               preview?.focus({ preventScroll: true });
             }} type="button" aria-controls="event-listing-preview">
-              <Eye aria-hidden="true" size={17} /> Show live preview <ArrowRight aria-hidden="true" size={16} />
+              <Eye aria-hidden="true" size={17} /> View event preview <ArrowRight aria-hidden="true" size={16} />
             </button>
             <a className={styles.backToEvents} href={`${publicBasePath}/#featured-events`}><ArrowLeft aria-hidden="true" size={16} /> Explore published events</a>
           </aside>
