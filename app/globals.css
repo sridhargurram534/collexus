@@ -3624,21 +3624,22 @@ html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfal
 /* Make the host action more discoverable while keeping motion subtle. */
 .login-btn .login-btn-label{display:inline;white-space:nowrap}
 body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta{
-  position:relative!important;isolation:isolate;color:#103844!important;
-  background:linear-gradient(135deg,#f5ffff 0%,#d9f2f1 58%,#c5e9e9 100%)!important;
-  border:1px solid #84c9cb!important;box-shadow:0 4px 12px rgba(13,103,115,.12)!important;
+  position:relative!important;isolation:isolate;color:#f2ffff!important;
+  background:linear-gradient(125deg,#0b5966 0%,#087681 58%,#078b83 100%)!important;
+  border:1px solid #25b8ad!important;box-shadow:0 7px 18px rgba(7,92,104,.24),inset 0 1px 0 rgba(255,255,255,.16)!important;
+  font-weight:700!important;letter-spacing:.075em!important;
   transition:transform .24s cubic-bezier(.2,.8,.2,1),box-shadow .24s ease,background .24s ease,border-color .24s ease!important;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:before{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:inherit;
-  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.58) 50%,transparent 75%);
+  background:linear-gradient(110deg,transparent 25%,rgba(205,255,248,.25) 50%,transparent 75%);
   transform:translateX(-130%);transition:transform .65s ease;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta :is(.lucide-icon,span){position:relative;z-index:2;color:inherit!important}
-body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta .lucide-icon{transition:transform .24s ease}
+body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta .lucide-icon{color:#9cf2df!important;transition:transform .24s ease}
 body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:hover{
-  color:#082d3a!important;background:linear-gradient(135deg,#c8f3f0,#9be0df)!important;
-  border-color:#43b9bc!important;box-shadow:0 9px 20px rgba(8,126,131,.2)!important;
+  color:#f5ffff!important;background:linear-gradient(125deg,#087681,#079b91)!important;
+  border-color:#67e1cd!important;box-shadow:0 10px 23px rgba(7,115,122,.32),inset 0 1px 0 rgba(255,255,255,.2)!important;
   transform:translateY(-3px)!important;
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .host-event-cta:hover:before{transform:translateX(130%)}
