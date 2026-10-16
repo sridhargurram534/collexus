@@ -3586,12 +3586,13 @@ html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfal
   background-attachment:fixed!important;
 }
 
-/* Keep the drawer wordmark on one clean baseline. */
-#campusMenuDrawer .menu-header-brand{display:flex!important;align-items:center!important;gap:10px!important;min-width:0}
-#campusMenuDrawer .menu-header-brand .college-logo-wrap{width:36px!important;height:36px!important;flex:0 0 36px!important;margin:0!important;border:0!important;border-radius:50%!important;background:transparent!important;box-shadow:none!important}
-#campusMenuDrawer .menu-header-brand>div{min-width:0}
+/* Keep the drawer mark and two-line wordmark aligned as a single lockup. */
+#campusMenuDrawer .menu-header-brand{display:flex!important;align-items:center!important;gap:9px!important;min-width:0}
+#campusMenuDrawer .menu-header-brand .menu-brand-mark{width:36px!important;height:36px!important;flex:0 0 36px!important;margin:0!important;border:0!important;border-radius:50%!important;background:transparent!important;box-shadow:none!important}
+#campusMenuDrawer .menu-header-brand .menu-brand-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;min-width:0}
+#campusMenuDrawer .menu-brand-title{display:flex;align-items:center;gap:6px;min-height:16px}
 #campusMenuDrawer .menu-header-brand .collexus-word{display:inline-block;margin:0!important;white-space:nowrap;font-size:16px!important;line-height:1!important}
-#campusMenuDrawer .menu-brand-subtitle{display:block;margin-top:4px;white-space:nowrap;line-height:1.1}
+#campusMenuDrawer .menu-brand-subtitle{display:block;margin:0!important;white-space:nowrap;line-height:1.1}
 
 /* Login selection is a single step: hide the other roles after choosing one. */
 .login-options.hidden,.login-registration-panel.hidden,.login-back-icon.hidden{display:none!important}

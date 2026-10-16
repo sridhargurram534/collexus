@@ -498,12 +498,12 @@ export default function HomePage() {
     
     <div className="menu-drawer-header">
       <div className="menu-header-brand">
-        <span className="college-logo-wrap" style={{ width: "32px", height: "32px" }}>
+        <span className="college-logo-wrap menu-brand-mark">
           <img src={`${publicBasePath}/collexus-logo.svg`} alt="Collexus logo" className="college-logo"/>
         </span>
-        <div>
-          <div className="flex items-center gap-1.5">
-          <strong className="collexus-word" style={{ fontSize: "16px", lineHeight: "1" }}>llexus</strong>
+        <div className="menu-brand-copy">
+          <div className="menu-brand-title">
+            <strong className="collexus-word">llexus</strong>
             <span className="live-status-pill">EVENTS</span>
           </div>
           <small className="menu-brand-subtitle">RAMACHANDRA COLLEGE OF ENGINEERING</small>
