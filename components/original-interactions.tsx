@@ -206,7 +206,7 @@ export function OriginalInteractions() {
        // Login chooser.
        const modal=document.getElementById('loginModal'), loginBtn=document.getElementById('loginButton'), hint=document.getElementById('loginFormHint');
        function closeLogin(){modal.classList.add('hidden');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
-       loginBtn?.addEventListener('click',()=>{modal.classList.remove('hidden');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';showLoginOptions();});
+       loginBtn?.addEventListener('click',()=>{window.location.assign(`${publicBasePath}/login/`);});
        document.querySelectorAll('[data-close-login]').forEach(x=>x.addEventListener('click',closeLogin));
        document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLogin()});
        const loginOptions=document.querySelector('.login-options'); const loginBackIcon=document.querySelector('.login-back-icon'); const studentLoginForm=document.getElementById('studentLoginForm'); const facultyLoginForm=document.getElementById('facultyLoginForm'); const eventRegistrationPanel=document.getElementById('eventRegistrationPanel'); const hostEventPanel=document.getElementById('hostEventPanel');
