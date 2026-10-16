@@ -4226,3 +4226,67 @@ html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfal
 html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-day .event-dot.registered-dot{color:#dce7ef!important;background:#1b2d38!important;border-color:#344d5b!important}
 html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-day .event-dot.public-more{color:#071c22!important;background:#59d4cc!important;border-color:#59d4cc!important}
 html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-empty{color:#b9c7d0!important;background:#172630!important;border-color:#344957!important}
+
+/* Homepage actions: keep a clear primary/secondary hierarchy without neon fills or heavy glow. */
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.premium-btn,.login-btn,.event-card-cta,.digital-passes-section .pass-action){
+  color:#fff!important;background:#496e74!important;border:1px solid #496e74!important;
+  box-shadow:0 3px 10px rgba(39,79,86,.10)!important;filter:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.premium-btn,.login-btn,.event-card-cta,.digital-passes-section .pass-action):hover,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .event-card-link:hover .event-card-cta{
+  color:#fff!important;background:#3f6268!important;border-color:#3f6268!important;
+  box-shadow:0 5px 12px rgba(39,79,86,.13)!important;filter:none!important;transform:translateY(-1px)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta-high-contrast,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta-high-contrast:hover{
+  color:#34585e!important;background:#edf3f2!important;border:1px solid #cfddde!important;
+  box-shadow:0 2px 7px rgba(39,79,86,.05)!important;filter:none!important;transform:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta-high-contrast .lucide-icon{color:#557980!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button,.category-section-nav button,.calendar-btn,.top-nav-btn:not(.filter-nav-btn),.cover-controls button),
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button:hover,.category-section-nav button:hover,.category-section-nav button.active,.calendar-btn:hover,.top-nav-btn:not(.filter-nav-btn):hover,.cover-controls button:hover){
+  color:#365860!important;background:#edf3f2!important;border-color:#d1dede!important;box-shadow:none!important;filter:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button .lucide-icon,.category-section-nav button .lucide-icon,.calendar-btn .lucide-icon,.top-nav-btn:not(.filter-nav-btn) .lucide-icon){color:#557980!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button:hover,.category-section-nav button:hover,.category-section-nav button.active,.calendar-btn:hover,.top-nav-btn:not(.filter-nav-btn):hover,.cover-controls button:hover){background:#e4edec!important;border-color:#b9ccce!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-card-action,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .category-card-action:hover{color:#365860!important;background:#edf3f2!important;border-color:#d1dede!important;box-shadow:none!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.premium-btn,.login-btn,.event-card-cta,.digital-passes-section .pass-action){
+  color:#edf5f6!important;background:#254a53!important;border:1px solid #3b6069!important;
+  box-shadow:0 3px 10px rgba(0,0,0,.22)!important;filter:none!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.premium-btn,.login-btn,.event-card-cta,.digital-passes-section .pass-action):hover,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .event-card-link:hover .event-card-cta{
+  color:#f4f8f8!important;background:#2d5660!important;border-color:#4a7078!important;
+  box-shadow:0 4px 12px rgba(0,0,0,.25)!important;filter:none!important;transform:translateY(-1px)!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta-high-contrast,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta-high-contrast:hover{
+  color:#d5e2e4!important;background:#14232c!important;border:1px solid #354a53!important;
+  box-shadow:0 2px 7px rgba(0,0,0,.18)!important;filter:none!important;transform:none!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta-high-contrast .lucide-icon{color:#9ab8bc!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button,.category-section-nav button,.calendar-btn,.top-nav-btn:not(.filter-nav-btn),.cover-controls button),
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button:hover,.category-section-nav button:hover,.category-section-nav button.active,.calendar-btn:hover,.top-nav-btn:not(.filter-nav-btn):hover,.cover-controls button:hover){
+  color:#cfdddf!important;background:#15232c!important;border-color:#344852!important;box-shadow:none!important;filter:none!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button .lucide-icon,.category-section-nav button .lucide-icon,.calendar-btn .lucide-icon,.top-nav-btn:not(.filter-nav-btn) .lucide-icon){color:#9ab8bc!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button:hover,.category-section-nav button:hover,.category-section-nav button.active,.calendar-btn:hover,.top-nav-btn:not(.filter-nav-btn):hover,.cover-controls button:hover){background:#1b2b34!important;border-color:#4a626b!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .category-card-action,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .category-card-action:hover{color:#cfdddf!important;background:#15232c!important;border-color:#344852!important;box-shadow:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme :is(.hero-cta,.premium-btn,.login-btn,.digital-passes-section .pass-action)::before,
+body.warm-editorial-theme.vivid-nightfall-theme .premium-btn::after{display:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme .digital-passes-section .pass-action::after{display:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta,.premium-btn,.login-btn,.event-card-cta,.quick-category-rail button,.category-section-nav button,.calendar-btn,.top-nav-btn,.cover-controls button){
+  transition:color .16s ease,background-color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta,.premium-btn,.login-btn,.event-card-cta,.digital-passes-section .pass-action):focus-visible{
+  outline:3px solid #28777c!important;outline-offset:3px;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta,.premium-btn,.login-btn,.event-card-cta,.digital-passes-section .pass-action):focus-visible{outline-color:#82b9bd!important}
+body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button,.category-section-nav button,.calendar-btn,.top-nav-btn,.cover-controls button):focus-visible{
+  outline:2px solid #28777c!important;outline-offset:2px;
+}
+@media(prefers-reduced-motion:reduce){
+  body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta,.premium-btn,.login-btn,.event-card-cta,.quick-category-rail button,.category-section-nav button,.calendar-btn,.top-nav-btn,.cover-controls button){transition:none!important}
+}

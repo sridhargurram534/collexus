@@ -272,7 +272,7 @@ export function LoginExperience() {
                   >
                     <Icon size={18} aria-hidden="true" />
                     <span><strong>{label}</strong><small>{detail}</small></span>
-                    {accountType === id && <Check className={styles.typeCheck} size={15} aria-hidden="true" />}
+                    <Check className={`${styles.typeCheck} ${accountType === id ? styles.typeCheckVisible : ""}`} size={16} aria-hidden="true" />
                   </button>
                 ))}
               </div>}

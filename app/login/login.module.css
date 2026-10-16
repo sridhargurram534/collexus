@@ -45,15 +45,16 @@
 .authCard h2 { margin: 0; color: var(--ink); font-family: "Space Grotesk", var(--font-poppins), sans-serif; font-size: clamp(24px, 2.7vw, 30px); font-weight: 700; line-height: 1.15; letter-spacing: -.04em; }
 .cardIntro { margin: 9px 0 19px; color: var(--muted); font-size: 12px; line-height: 1.55; }
 .accountTypes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.accountType { position: relative; min-width: 0; min-height: 77px; display: flex; align-items: flex-start; gap: 8px; padding: 12px 9px; border: 1px solid var(--line); border-radius: 13px; color: var(--muted); text-align: left; background: var(--soft); cursor: pointer; transition: border-color .16s ease, background .16s ease, box-shadow .16s ease, transform .16s ease; }
+.accountType { min-width: 0; min-height: 77px; display: grid; grid-template-columns: 18px minmax(0, 1fr) 16px; align-items: center; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 13px; color: var(--muted); text-align: left; background: var(--soft); cursor: pointer; transition: border-color .16s ease, background .16s ease, box-shadow .16s ease, transform .16s ease; }
 .accountType:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--teal) 58%, var(--line)); background: color-mix(in srgb, var(--teal-soft) 48%, var(--soft)); }
-.accountTypeSelected { border: 2px solid var(--teal); padding: 11px 8px; color: var(--teal-dark); background: color-mix(in srgb, var(--teal-soft) 82%, var(--card)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teal) 14%, transparent), 0 3px 10px color-mix(in srgb, var(--teal) 10%, transparent); }
+.accountTypeSelected { border-color: var(--teal); color: var(--teal-dark); background: color-mix(in srgb, var(--teal-soft) 82%, var(--card)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teal) 14%, transparent), 0 3px 10px color-mix(in srgb, var(--teal) 10%, transparent); }
 .accountTypeSelected strong { color: var(--teal-dark); }
-.accountType > svg:first-child { flex: 0 0 auto; margin-top: 1px; }
+.accountType > svg:first-child { display: block; }
 .accountType > span { min-width: 0; display: grid; gap: 3px; }
 .accountType strong { color: var(--ink); font-size: 10px; line-height: 1.2; }
-.accountType small { color: var(--muted); font-size: 8px; line-height: 1.25; }
-.typeCheck { position: absolute; right: 7px; bottom: 7px; color: var(--teal); }
+.accountType small { color: var(--muted); font-size: 9px; line-height: 1.3; }
+.typeCheck { display: block; color: var(--teal); opacity: 0; transform: scale(.8); transition: opacity .16s ease, transform .16s ease; }
+.typeCheckVisible { opacity: 1; transform: scale(1); }
 .modeTabs { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 23px 0 15px; padding: 4px; border-radius: 12px; background: var(--soft); }
 .modeTabs button { min-height: 44px; border: 1px solid transparent; border-radius: 9px; color: var(--muted); background: transparent; font: inherit; font-size: 11px; font-weight: 650; cursor: pointer; transition: border-color .16s ease, color .16s ease, background .16s ease, box-shadow .16s ease; }
 .modeTabs .modeActive { border-color: color-mix(in srgb, var(--teal) 22%, var(--line)); color: var(--teal-dark); background: var(--card); box-shadow: 0 2px 7px rgba(16, 48, 59, .08), inset 0 -2px 0 var(--teal); }
@@ -73,7 +74,7 @@
 .inputWrap:hover { border-color: color-mix(in srgb, var(--teal) 38%, var(--line)); }
 .inputWrap:focus-within { border-color: var(--teal); color: var(--teal-dark); background: var(--card); box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 16%, transparent); }
 .inputWrap > svg { flex: 0 0 auto; color: var(--teal); }
-.inputWrap input { box-sizing: border-box; flex: 1 1 auto; width: 100%; min-width: 0; height: 100%; margin: 0; padding: 0; border: 0; border-radius: 0; outline: none; color: var(--ink); background: transparent; font: inherit; font-size: 14px; font-weight: 450; line-height: 1.4; }
+.inputWrap input { box-sizing: border-box; flex: 1 1 0; width: 0; min-width: 0; height: 100%; margin: 0; padding: 0; border: 0; border-radius: 0; outline: none; color: var(--ink); background: transparent; font: inherit; font-size: 14px; font-weight: 450; line-height: 1.4; }
 .inputWrap input:focus-visible { outline: 0 !important; box-shadow: none !important; }
 .inputWrap input::placeholder { color: #91a4af; }
 .passwordToggle { display: grid; flex: 0 0 auto; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 9px; color: var(--muted); background: transparent; cursor: pointer; transition: color .16s ease, background .16s ease; }
@@ -126,9 +127,7 @@
 }
 @media (max-width: 380px) {
   .accountTypes { grid-template-columns: 1fr; }
-  .accountType { min-height: 56px; align-items: center; padding: 9px 11px; }
-  .accountTypeSelected { padding: 8px 10px; }
-  .typeCheck { bottom: auto; top: 50%; transform: translateY(-50%); }
+  .accountType { min-height: 56px; padding: 9px 11px; }
   .accountType small { font-size: 9px; }
   .secureBadge { display: none; }
 }
