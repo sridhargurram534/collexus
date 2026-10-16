@@ -369,10 +369,11 @@ export function OriginalInteractions() {
           const pricing = (card.dataset.pricing || 'unknown').toLowerCase();
           const category = (card.dataset.category || '').toLowerCase();
           const branch = (card.dataset.branch || '').toLowerCase();
+          const tracks = (card.dataset.tracks || '').toLowerCase().split('|');
           return (activeFilters.audience === 'all' || audience.includes(activeFilters.audience)) &&
             (activeFilters.pricing === 'all' || pricing === activeFilters.pricing) &&
             (activeFilters.category === 'all' || category === activeFilters.category) &&
-            (activeFilters.branch === 'all' || branch === activeFilters.branch);
+            (activeFilters.branch === 'all' || branch === activeFilters.branch || tracks.includes(activeFilters.branch));
         }
 
         function updateFilterPreview() {
@@ -411,11 +412,12 @@ export function OriginalInteractions() {
             const pricing = card.dataset.pricing || 'all';
             const cat = card.dataset.category || 'all';
             const branch = card.dataset.branch || 'all';
+            const tracks = (card.dataset.tracks || '').toLowerCase().split('|');
       
             const matchAudience = activeFilters.audience === 'all' || audience.toLowerCase().split(/\s+/).includes(activeFilters.audience.toLowerCase());
             const matchPricing = activeFilters.pricing === 'all' || pricing.toLowerCase() === activeFilters.pricing.toLowerCase();
             const matchCat = activeFilters.category === 'all' || cat.toLowerCase().includes(activeFilters.category.toLowerCase()) || activeFilters.category.toLowerCase().includes(cat.toLowerCase());
-            const matchBranch = activeFilters.branch === 'all' || branch.toLowerCase() === activeFilters.branch.toLowerCase();
+            const matchBranch = activeFilters.branch === 'all' || branch.toLowerCase() === activeFilters.branch.toLowerCase() || tracks.includes(activeFilters.branch.toLowerCase());
       
             if (matchAudience && matchPricing && matchCat && matchBranch) {
               card.style.display = '';

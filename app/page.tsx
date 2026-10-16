@@ -553,17 +553,25 @@ export default function HomePage() {
         </section>
 
         <section className="filter-group-card">
-          <div className="filter-group-heading"><span className="filter-group-icon"><Icon name="hub" /></span><div><h3>Department &amp; track</h3><p>Choose a campus community.</p></div></div>
+          <div className="filter-group-heading"><span className="filter-group-icon"><Icon name="hub" /></span><div><h3>Department &amp; interest</h3><p>Match published events to your field or creative focus.</p></div></div>
           <div className="menu-filter-chips" data-filter-group="branch">
             <button className="menu-filter-chip active" type="button" data-filter-val="all">All tracks</button>
-            <button className="menu-filter-chip" type="button" data-filter-val="iot">IoT</button>
-            <button className="menu-filter-chip" type="button" data-filter-val="hardware">Hardware</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="computer science & it">CSE &amp; IT</button>
             <button className="menu-filter-chip" type="button" data-filter-val="ai & data science">AI &amp; Data Science</button>
-            <button className="menu-filter-chip" type="button" data-filter-val="campus">Campus</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="electronics & communication">ECE</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="electrical engineering">EEE</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="mechanical engineering">Mechanical</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="civil engineering">Civil</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="iot">IoT</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="embedded systems">Embedded</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="cyber security">Cybersecurity</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="ui/ux design">UI/UX design</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="arts & media">Arts &amp; media</button>
+            <button className="menu-filter-chip" type="button" data-filter-val="video editing">Video editing</button>
           </div>
         </section>
 
-        <div className="filter-panel-note"><Icon name="info" /><span>Dates and fees appear only when the published event source provides them.</span></div>
+        <div className="filter-panel-note"><Icon name="info" /><span>Some event pages don’t publish dates or fees. We show what the official listing confirms.</span></div>
         <div className="menu-filter-actions filter-panel-actions">
           <button id="resetFiltersBtn" className="menu-filter-reset-btn" type="button"><Icon name="restart_alt" />Reset</button>
           <button id="applyFiltersBtn" className="menu-filter-apply-btn" type="button"><Icon name="check_circle" className="text-[16px]" /><span>Show results</span><span id="filterPreviewCount" className="filter-preview-count"></span></button>

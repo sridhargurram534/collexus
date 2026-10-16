@@ -29,6 +29,7 @@ export function OriginalEventCards() {
             className={`event-item event-tile event-${category} bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-[#f4d3cb] flex flex-col group`}
             data-category={category}
             data-branch={event.branch.toLowerCase()}
+            data-tracks={event.tracks.join("|")}
             data-audience={audience}
             data-pricing={pricing}
             data-entry={pricing}

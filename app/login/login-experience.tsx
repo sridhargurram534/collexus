@@ -241,14 +241,6 @@ export function LoginExperience() {
       </header>
 
       <div className={styles.shell}>
-        <section className={styles.story} aria-labelledby="login-title">
-          <p className={styles.eyebrow}><span /> COLLEXUS ACCOUNT</p>
-          <h1 id="login-title">Campus life,<br /><em>all in one place.</em></h1>
-          <p className={styles.storyText}>Sign in to keep your events, passes and campus plans together.</p>
-          <div className={styles.trustNote}><ShieldCheck size={17} aria-hidden="true" /><span>Supabase verifies your credentials. Collexus never stores your password.</span></div>
-          <div className={styles.storyFoot}><span>EVENTS</span><i /><span>PEOPLE</span><i /><span>YOUR CAMPUS</span></div>
-        </section>
-
         <section className={styles.authCard} aria-label="Account sign in and registration">
           <div className={styles.cardTopline}><span className={styles.cardIcon}><KeyRound size={17} aria-hidden="true" /></span><span>SECURE ACCOUNT ACCESS</span><span className={styles.secureBadge}><ShieldCheck size={13} aria-hidden="true" /> Encrypted sign-in</span></div>
 

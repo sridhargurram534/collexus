@@ -18,6 +18,22 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
   return { title: event.title, description: event.description, openGraph: { title: event.title, description: event.description, type: "article" } };
 }
 
+function formatTrack(track: string) {
+  const labels: Record<string, string> = {
+    iot: "IoT",
+    "ai & data science": "AI & Data Science",
+    "computer science & it": "CSE & IT",
+    "electronics & communication": "ECE",
+    "cyber security": "Cybersecurity",
+    "embedded systems": "Embedded Systems",
+    "software & it": "Software & IT",
+    "campus & sports": "Campus & Sports",
+    "campus & culture": "Campus & Culture",
+    "arts & media": "Arts & Media",
+  };
+  return labels[track] ?? track.replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
 export default async function EventDetailsPage({ params }: EventPageProps) {
   const { slug } = await params;
   const event = getEvent(slug);
@@ -40,6 +56,9 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
           <span className="details-kicker">{event.category} <span>·</span> {event.branch} track</span>
           <h1>{event.title}</h1>
           <div className="details-date"><CalendarDays size={17} aria-hidden="true" />{event.dateLabel}</div>
+          <div className="details-track-tags" aria-label="Event topics">
+            {event.tracks.slice(0, 4).map((track) => <span key={track}>{formatTrack(track)}</span>)}
+          </div>
           <p>{event.description}</p>
           <div className="details-actions">
             <Link className="primary-button" href={`/events/${event.slug}/register`}><TicketCheck size={16} aria-hidden="true" /> Register <span className="demo-action-tag">DEMO</span></Link>

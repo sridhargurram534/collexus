@@ -3328,6 +3328,74 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
 .calendar-nav button:hover{color:#087e83!important;background:#e7f2f2!important;border-color:#b8d4d6!important;transform:none!important}
 @media(max-width:600px){.calendar-dialog{max-height:90vh!important;padding:14px!important}.calendar-day{min-height:62px!important;padding:4px!important}.calendar-day .event-dot{font-size:7px!important;padding:2px 3px}.calendar-weekdays,.calendar-grid{gap:3px!important}.calendar-top{align-items:flex-start!important}.calendar-top h2{font-size:25px!important}}
 
+/* Latest editorial event cards: let the new campus photography carry the story. */
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile{
+  border:1px solid #d4e2e4!important;border-radius:22px!important;background:#fff!important;
+  box-shadow:0 8px 24px rgba(25,52,64,.07)!important;transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile:hover{
+  transform:translateY(-3px)!important;border-color:#9ac7ca!important;box-shadow:0 16px 34px rgba(25,52,64,.12)!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-image{height:clamp(190px,20vw,236px);background:#dce8e9!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-image img{opacity:1!important;filter:saturate(.88) contrast(1.025)!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile:hover .event-tile-image img{filter:saturate(1) contrast(1.03)!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-scrim{background:linear-gradient(180deg,rgba(12,29,36,.02),rgba(12,29,36,.04) 54%,rgba(12,29,36,.34))!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-category,
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-index{
+  border:1px solid rgba(231,247,248,.65)!important;background:rgba(17,42,51,.78)!important;color:#f1fbfc!important;
+  box-shadow:0 2px 10px rgba(9,28,35,.12)!important;backdrop-filter:blur(10px);
+}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-content{min-height:92px;padding:17px 18px 12px!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-title{color:#193440!important;font-size:clamp(17px,1.6vw,20px)!important;line-height:1.3!important;text-shadow:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-footer{min-height:60px;border-top:1px solid #e7eff0!important;background:#f8fbfb!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-footer .event-card-date{color:#617780!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-card-cta{border:1px solid #d2e3e5!important;border-radius:10px!important;color:#176c73!important;background:#fff!important;box-shadow:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-card-link:hover .event-card-cta{border-color:#86b8bc!important;color:#075f66!important;background:#edf7f6!important}
+
+/* Make filter topics easy to scan and keep the source note informational. */
+body.warm-editorial-theme.vivid-nightfall-theme .filter-panel-groups .menu-filter-chips[data-filter-group="branch"]{gap:8px!important}
+body.warm-editorial-theme.vivid-nightfall-theme .filter-panel-groups .menu-filter-chips[data-filter-group="branch"] .menu-filter-chip{min-height:37px;padding:8px 12px!important;border-radius:999px!important;font-size:11px!important;box-shadow:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme .filter-panel-note{display:flex;align-items:flex-start;gap:9px;padding:12px 13px!important;border:1px solid #d6e5e6!important;border-radius:12px!important;color:#586f78!important;background:#f5f9f9!important;font-size:11px!important;line-height:1.5!important;box-shadow:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme .filter-panel-note svg{flex:none;margin-top:1px;color:#16868a!important}
+
+/* Event detail pages share the discovery feed's calm, image-led card language. */
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-hero,
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-panel,
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .facts-panel{
+  border:1px solid #d3e1e3!important;border-radius:22px!important;background:#fff!important;
+  box-shadow:0 10px 28px rgba(25,52,64,.08)!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-image{overflow:hidden;background:#dfeaec!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-image img{filter:saturate(.9) contrast(1.02)!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-image::after{background:linear-gradient(180deg,rgba(9,24,31,.02) 35%,rgba(9,24,31,.55))!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-image-label{border:1px solid rgba(228,247,248,.5)!important;border-radius:999px!important;background:rgba(14,42,50,.78)!important;backdrop-filter:blur(10px)}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-intro h1{letter-spacing:-.045em!important;line-height:1.08!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-kicker,
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-date{border-radius:999px!important;background:#eef7f6!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-track-tags{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 15px}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-track-tags span{display:inline-flex;align-items:center;min-height:28px;padding:5px 10px;border:1px solid #d6e6e7;border-radius:999px;color:#42636c;background:#f4f9f9;font:650 10px/1.2 "Plus Jakarta Sans",sans-serif}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-date{border-color:#d7e8e8!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .archive-disclaimer{border-top:1px solid #e1ebec!important;color:#71848b!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-snapshot>div{border:1px solid #d7e4e6!important;border-radius:17px!important;background:#f7fafa!important;box-shadow:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-panel,
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .facts-panel{padding:clamp(20px,3vw,30px)!important}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .highlight-heading{display:flex;align-items:center;gap:9px}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .highlight-heading svg{flex:none;color:#16868a!important}
+
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main.details-page :is(.details-hero,.details-panel,.facts-panel){
+  border-color:#2a414c!important;background:#111c25!important;box-shadow:0 14px 34px rgba(0,0,0,.26)!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-title{color:#eef5f8!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-footer{border-color:#253943!important;background:#14232d!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-footer .event-card-date{color:#c3d0d9!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-card-cta{border-color:#34505d!important;color:#bde9e8!important;background:#172b35!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .filter-panel-note{border-color:#304751!important;color:#c0cdd4!important;background:#172630!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-snapshot>div{border-color:#2c414b!important;background:#14232d!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main.details-page .details-track-tags span{border-color:#304751;color:#bcd3d8;background:#172630}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme main.details-page .archive-disclaimer{border-color:#2b414b!important;color:#aabac4!important}
+@media(prefers-reduced-motion:reduce){body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile,body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile-image img{transition:none!important}body.warm-editorial-theme.vivid-nightfall-theme #featured-events .event-tile:hover{transform:none!important}}
+
 /* Distinct identity icons, contrasting event stats, and calmer hover states. */
 .campus-identity-section .editorial-info-card:nth-of-type(1) .w-12.h-12{color:#176b91!important;background:#e3f0f5!important;border-color:#c9dfe9!important}
 .campus-identity-section .editorial-info-card:nth-of-type(1) .w-12.h-12 .lucide-icon{color:#176b91!important}

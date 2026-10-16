@@ -34,19 +34,9 @@
 .backLink { gap: 8px; min-height: 42px; padding: 0 13px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 12px; font-weight: 650; transition: color .16s ease, border-color .16s ease, background .16s ease; }
 .backLink:hover { color: var(--teal-dark); border-color: var(--teal); background: var(--teal-soft); }
 
-.shell { display: grid; grid-template-columns: minmax(0, .86fr) minmax(430px, 1fr); align-items: center; gap: clamp(34px, 7vw, 92px); width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: clamp(36px, 7vh, 72px) 0; }
-.story { position: relative; min-height: 500px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding: clamp(28px, 4vw, 50px); border: 1px solid color-mix(in srgb, var(--teal) 18%, var(--line)); border-radius: 28px; background: linear-gradient(145deg, color-mix(in srgb, var(--card) 74%, transparent), color-mix(in srgb, var(--teal-soft) 75%, transparent)); box-shadow: 0 16px 38px rgba(15, 52, 65, .05); }
-.story::before { position: absolute; right: -104px; bottom: -145px; width: 360px; height: 360px; border: 1px solid color-mix(in srgb, var(--teal) 20%, transparent); border-radius: 50%; box-shadow: 0 0 0 36px color-mix(in srgb, var(--teal) 5%, transparent), 0 0 0 76px color-mix(in srgb, var(--teal) 4%, transparent); content: ""; }
+.shell { display: grid; grid-template-columns: minmax(0, 620px); justify-content: center; align-items: start; width: min(620px, calc(100% - 32px)); min-height: calc(100vh - 135px); margin: 0 auto; padding: clamp(28px, 5vh, 52px) 0; }
 .eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; color: var(--teal); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
 .eyebrow > span { width: 7px; height: 7px; border-radius: 50%; background: #26c8ba; box-shadow: 0 0 0 4px color-mix(in srgb, #26c8ba 15%, transparent); }
-.story h1 { position: relative; max-width: 500px; margin: 0; color: var(--ink); font-family: "Space Grotesk", var(--font-poppins), sans-serif; font-size: clamp(36px, 4.5vw, 54px); font-weight: 700; line-height: 1.06; letter-spacing: -.055em; }
-.story h1 em { color: var(--teal); font-style: normal; }
-.storyText { max-width: 390px; margin: 20px 0 0; color: var(--muted); font-size: 15px; line-height: 1.75; }
-.trustNote { position: relative; display: flex; align-items: flex-start; gap: 10px; max-width: 390px; margin-top: 32px; padding: 14px 15px; border: 1px solid color-mix(in srgb, var(--teal) 20%, var(--line)); border-radius: 14px; color: var(--muted); background: color-mix(in srgb, var(--card) 62%, transparent); font-size: 11px; line-height: 1.55; }
-.trustNote svg { flex: 0 0 auto; color: var(--teal); }
-.storyFoot { display: flex; align-items: center; gap: 9px; margin-top: 35px; color: var(--muted); font-size: 9px; font-weight: 750; letter-spacing: .12em; }
-.storyFoot i { width: 4px; height: 4px; border-radius: 50%; background: var(--teal); }
-
 .authCard { min-width: 0; padding: clamp(24px, 3.5vw, 38px); border: 1px solid var(--line); border-radius: 24px; background: var(--card); box-shadow: 0 18px 50px rgba(15, 52, 65, .09); }
 .cardTopline { display: flex; align-items: center; gap: 9px; margin-bottom: 32px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .12em; }
 .cardIcon { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid var(--line); border-radius: 10px; color: var(--teal); background: var(--teal-soft); }
@@ -84,7 +74,7 @@
 .inputWrap:focus-within { border-color: var(--teal); color: var(--teal-dark); background: var(--card); box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 16%, transparent); }
 .inputWrap > svg { flex: 0 0 auto; color: var(--teal); }
 .inputWrap input { box-sizing: border-box; flex: 1 1 auto; width: 100%; min-width: 0; height: 100%; margin: 0; padding: 0; border: 0; border-radius: 0; outline: none; color: var(--ink); background: transparent; font: inherit; font-size: 14px; font-weight: 450; line-height: 1.4; }
-.inputWrap input:focus-visible { outline: none; }
+.inputWrap input:focus-visible { outline: 0 !important; box-shadow: none !important; }
 .inputWrap input::placeholder { color: #91a4af; }
 .passwordToggle { display: grid; flex: 0 0 auto; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 9px; color: var(--muted); background: transparent; cursor: pointer; transition: color .16s ease, background .16s ease; }
 .passwordToggle:hover { color: var(--teal); background: var(--teal-soft); }
@@ -111,16 +101,14 @@
 .signedEmail { margin: 0; color: var(--muted); font-size: 12px; }
 .signedIn .primaryButton { margin-top: 6px; }
 .textButton { margin-top: 3px; }
-.footer { display: flex; justify-content: space-between; gap: 12px; width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: 17px 0 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+.footer { display: flex; justify-content: space-between; gap: 12px; width: min(620px, calc(100% - 32px)); margin: 0 auto; padding: 17px 0 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
 
 .backLink:focus-visible, .accountType:focus-visible, .modeTabs button:focus-visible, .googleButton:focus-visible, .passwordToggle:focus-visible, .forgotButton:focus-visible, .primaryButton:focus-visible, .textButton:focus-visible { outline: 3px solid color-mix(in srgb, var(--teal) 55%, white); outline-offset: 3px; }
 .forgotButton, .textButton { min-height: 44px; padding-inline: 4px; touch-action: manipulation; }
 
 @media (max-width: 850px) {
-  .shell { grid-template-columns: minmax(0, .8fr) minmax(390px, 1fr); gap: 24px; }
-  .story { min-height: 400px; padding: 28px; }
-  .story h1 { font-size: clamp(34px, 5vw, 46px); }
-  .authCard { padding: 24px; }
+  .shell { grid-template-columns: minmax(0, 620px); }
+  .authCard { padding: 28px; }
 }
 @media (max-width: 700px) {
   .header { min-height: 62px; padding: 8px 16px; }
@@ -128,12 +116,7 @@
   .brandLogoFrame { width: 34px; height: 34px; flex-basis: 34px; }
   .brandLogoFrame img { width: 72px; height: 72px; top: -11px; }
   .backLink { min-height: 39px; padding: 0 10px; font-size: 11px; }
-  .shell { grid-template-columns: minmax(0, 1fr); width: min(520px, calc(100% - 28px)); gap: 18px; padding: 24px 0; }
-  .story { min-height: 0; padding: 24px; border-radius: 21px; }
-  .story h1 { max-width: 360px; font-size: clamp(34px, 9vw, 44px); }
-  .storyText { max-width: 360px; margin-top: 13px; font-size: 13px; }
-  .trustNote { margin-top: 18px; }
-  .storyFoot { margin-top: 20px; }
+  .shell { grid-template-columns: minmax(0, 1fr); width: min(520px, calc(100% - 28px)); min-height: auto; padding: 24px 0; }
   .authCard { padding: 22px 18px; border-radius: 20px; }
   .cardTopline { margin-bottom: 24px; }
   .accountType { min-height: 72px; }
