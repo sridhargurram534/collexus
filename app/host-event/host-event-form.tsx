@@ -13,6 +13,7 @@ import {
   Send,
   ShieldCheck,
   Sparkles,
+  Store,
   UsersRound,
 } from "lucide-react";
 import styles from "./host-event.module.css";
@@ -267,7 +268,14 @@ export function HostEventForm() {
             <div className={styles.eyebrow}>EVENT SUBMISSION</div>
             <h1 id="host-title">Put your event<br className={styles.desktopBreak} /> on the campus map.</h1>
             <p>Share the details with students and faculty. We’ll help make your event easy to find.</p>
-            <div className={styles.formNote}><span>*</span> Required fields</div>
+            <div className={styles.introActions}>
+              <div className={styles.formNote}><span>*</span> Required fields</div>
+              <a className={styles.stallRegistrationLink} href={`${publicBasePath}/stall-registration/`}>
+                <Store aria-hidden="true" size={16} />
+                <span>Register a stall</span>
+                <ArrowRight aria-hidden="true" size={15} />
+              </a>
+            </div>
           </div>
           <img className={styles.introIllustration} src={`${publicBasePath}/images/host-event-planning-illustration.png`} alt="Students planning a campus event together" />
         </div>

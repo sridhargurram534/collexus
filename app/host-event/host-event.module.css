@@ -108,7 +108,13 @@
 .eyebrow::before, .eyebrow::after { content: none !important; display: none !important; }
 .intro h1 { margin: 0; color: var(--ink); font-family: "Space Grotesk", var(--font-poppins), sans-serif; font-size: clamp(36px, 5.6vw, 58px); font-weight: 700; line-height: 1.05; letter-spacing: -.055em; }
 .intro > p { max-width: 590px; margin: 15px 0 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
-.formNote { margin-top: 17px; color: var(--muted); font-size: 12px; }
+.introActions { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 17px; }
+.formNote { margin: 0; color: var(--muted); font-size: 12px; }
+.stallRegistrationLink { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; padding: 0 13px; border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border)); border-radius: 11px; color: var(--accent-strong); background: color-mix(in srgb, var(--accent-soft) 72%, var(--card)); font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: border-color .16s ease, background-color .16s ease, transform .16s ease, box-shadow .16s ease; }
+.stallRegistrationLink svg:last-child { transition: transform .16s ease; }
+.stallRegistrationLink:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--accent) 48%, var(--border)); background: var(--accent-soft); box-shadow: 0 5px 12px color-mix(in srgb, var(--accent) 10%, transparent); }
+.stallRegistrationLink:hover svg:last-child { transform: translateX(2px); }
+.stallRegistrationLink:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 55%, white); outline-offset: 3px; }
 .formNote span, .field b, .pricingGroup legend b { color: #cb554d; font-weight: 800; }
 
 .layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(280px, .75fr); align-items: start; gap: 24px; }
@@ -247,6 +253,7 @@
   .introIllustration { width: min(78%, 300px); max-height: 190px; justify-self: center; margin-top: -4px; }
   .intro h1 { font-size: clamp(34px, 10vw, 44px); }
   .intro > p { font-size: 14px; }
+  .introActions { flex-wrap: wrap; }
   .section { padding: 19px 16px; border-radius: 15px; }
   .sectionHeading { gap: 11px; margin-bottom: 20px; }
   .sectionHeading h2 { font-size: 17px; }
@@ -263,6 +270,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .backLink, .field input, .field select, .field textarea, .priceChoice, .submitButton, .previewButton { transition: none; }
-  .submitButton:hover, .submitButton:active, .previewButton:hover, .previewButton:active { transform: none; }
+  .backLink, .field input, .field select, .field textarea, .priceChoice, .submitButton, .previewButton, .stallRegistrationLink, .stallRegistrationLink svg:last-child { transition: none; }
+  .submitButton:hover, .submitButton:active, .previewButton:hover, .previewButton:active, .stallRegistrationLink:hover { transform: none; }
 }
