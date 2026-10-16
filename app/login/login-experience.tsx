@@ -248,7 +248,7 @@ export function LoginExperience() {
         <section className={styles.authCard} aria-label="Account sign in and registration">
           <div className={styles.cardTopline}><span className={styles.cardIcon}><KeyRound size={17} aria-hidden="true" /></span><span>SECURE ACCOUNT ACCESS</span><span className={styles.secureBadge}><ShieldCheck size={13} aria-hidden="true" /> Encrypted sign-in</span></div>
 
-          {user ? (
+          {user && mode !== "recovery" ? (
             <div className={styles.signedIn}>
               <span className={styles.signedIcon}><BadgeCheck size={26} aria-hidden="true" /></span>
               <p className={styles.eyebrow}>YOU’RE SIGNED IN</p>
@@ -308,6 +308,7 @@ export function LoginExperience() {
                   {busy ? "Please wait…" : mode === "signin" ? "Sign in" : mode === "signup" ? "Create account" : "Update password"}<ArrowRight size={17} aria-hidden="true" />
                 </button>
               </form>
+              {mode === "recovery" && <button className={styles.textButton} onClick={() => switchMode("signin")} type="button">Back to sign in</button>}
               {mode !== "recovery" && <p className={styles.roleNote}>Account type helps personalize your experience. Student and faculty status must be verified separately before it can grant campus access.</p>}
             </>
           )}
