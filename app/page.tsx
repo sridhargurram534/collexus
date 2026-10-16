@@ -111,6 +111,9 @@ export default function HomePage() {
 <Icon name="event_upcoming" className="text-secondary text-[20px]" />
 <span>Host Event</span>
 </a>
+<a href={`${publicBasePath}/stall-registration/`} className="stall-registration-home-link" aria-label="Register a stall at a campus event">
+<Icon name="storefront" /> <span>Register a stall</span> <Icon name="arrow_forward" />
+</a>
 </div>
 
 
