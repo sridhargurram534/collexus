@@ -120,7 +120,7 @@ export function StallRegistrationForm() {
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <a className={styles.brand} href={`${publicBasePath}/`} aria-label="Collexus home"><img src={`${publicBasePath}/collexus-logo.svg`} alt="" width="38" height="38" /><span>Collexus</span></a>
+        <a className={styles.brand} href={`${publicBasePath}/`} aria-label="Collexus home"><span className={styles.brandLogoFrame} aria-hidden="true"><img src={`${publicBasePath}/collexus-logo.svg`} alt="" /></span><span>Collexus</span></a>
         <a className={styles.backLink} href={`${publicBasePath}/#featured-events`}><ArrowLeft size={17} aria-hidden="true" /><span>Back to events</span></a>
       </header>
 

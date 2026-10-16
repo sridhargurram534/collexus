@@ -229,7 +229,7 @@ export function LoginExperience() {
     <main className={styles.page}>
       <header className={styles.header}>
         <a className={styles.brand} href={`${basePath}/`} aria-label="Collexus home">
-          <span className={styles.brandMark}><span /></span>
+          <span className={styles.brandLogoFrame} aria-hidden="true"><img src={`${basePath}/collexus-logo.svg`} alt="" /></span>
           <span>Collexus</span>
         </a>
         <a className={styles.backLink} href={`${basePath}/#featured-events`}><ArrowLeft size={16} aria-hidden="true" /> Back to events</a>

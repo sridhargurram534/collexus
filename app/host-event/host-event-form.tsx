@@ -253,7 +253,7 @@ export function HostEventForm() {
     <main className={styles.page}>
       <header className={styles.header}>
         <a className={styles.brand} href={`${publicBasePath}/`} aria-label="Collexus home">
-          <img src={`${publicBasePath}/collexus-logo.svg`} alt="" width="40" height="40" />
+          <span className={styles.brandLogoFrame} aria-hidden="true"><img src={`${publicBasePath}/collexus-logo.svg`} alt="" /></span>
           <span>Collexus</span>
         </a>
         <a className={styles.backLink} href={`${publicBasePath}/#featured-events`}>

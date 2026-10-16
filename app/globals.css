@@ -4036,3 +4036,10 @@ html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfal
   color:#fff!important;background:#14536e!important;border-color:#14536e!important;
   box-shadow:0 0 0 2px rgba(131,217,222,.16),0 4px 10px rgba(0,0,0,.16)!important;
 }
+
+/* Keep the official Collexus symbol legible on dark navigation surfaces. */
+html:not([data-collexus-theme="light"]) header .college-logo-wrap,
+html:not([data-collexus-theme="light"]) .login-dialog-logo .college-logo-wrap{
+  background:#fff!important;border:1px solid #d6e7e8!important;border-radius:12px!important;
+  box-shadow:0 3px 10px rgba(0,0,0,.2)!important;filter:none!important;
+}

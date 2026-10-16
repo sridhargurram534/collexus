@@ -79,7 +79,8 @@
 }
 
 .brand { gap: 8px; color: var(--ink); font-size: 17px; font-weight: 750; letter-spacing: -.03em; }
-.brand img { width: 40px; height: 40px; object-fit: contain; }
+.brandLogoFrame { position: relative; display: block; width: 40px; height: 40px; flex: 0 0 40px; overflow: hidden; border: 1px solid #d6e7e8; border-radius: 12px; background: #fff; box-shadow: 0 3px 10px rgba(15, 52, 65, .12); }
+.brandLogoFrame img { position: absolute; top: -13px; left: 50%; width: 86px; height: 86px; max-width: none; object-fit: contain; clip-path: inset(0 0 38%); transform: translateX(-50%); }
 .backLink { gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 650; transition: color .18s ease, border-color .18s ease, background .18s ease; }
 .backLink:hover, .backToEvents:hover { color: var(--accent-strong); border-color: var(--accent); }
 
@@ -246,7 +247,8 @@
 @media (max-width: 600px) {
   .header { min-height: 62px; padding: 8px 16px; }
   .brand { font-size: 15px; }
-  .brand img { width: 34px; height: 34px; }
+  .brandLogoFrame { width: 34px; height: 34px; flex-basis: 34px; }
+  .brandLogoFrame img { top: -11px; width: 72px; height: 72px; }
   .backLink { gap: 6px; min-height: 42px; padding: 0 10px; font-size: 12px; }
   .shell { width: calc(100% - 28px); padding-top: 32px; }
   .intro { grid-template-columns: minmax(0, 1fr); margin-bottom: 24px; padding: 22px 19px 14px; border-radius: 23px; }
