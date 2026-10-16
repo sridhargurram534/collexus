@@ -81,6 +81,10 @@ export function LoginExperience() {
               accountType: typeof currentUser.user_metadata.account_type === "string" ? currentUser.user_metadata.account_type : null,
             } : null);
             setCheckingSession(false);
+            const recoveryCallback = `${window.location.search}${window.location.hash}`.includes("type=recovery");
+            if (currentUser?.email_confirmed_at && !recoveryCallback) {
+              window.location.replace(`${basePath}/profile/`);
+            }
           }
         };
         setCurrentUser(session?.user ?? null);
@@ -187,6 +191,8 @@ export function LoginExperience() {
       if (!data.user.email_confirmed_at) {
         await supabase.auth.signOut();
         setError("Verify your email using the link we sent before signing in.");
+      } else {
+        window.location.assign(`${basePath}/profile/`);
       }
     } catch (authError) {
       setError(friendlyAuthError(authError instanceof Error ? authError.message : ""));
