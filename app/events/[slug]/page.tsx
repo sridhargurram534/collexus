@@ -82,7 +82,7 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
           <p className="details-description">{event.description}</p>
           <div className="detail-divider" />
           <h3 className="highlight-heading"><ListChecks size={17} aria-hidden="true" /> Event highlights</h3>
-          <ul className="highlight-list">{event.highlights.map((highlight) => <li key={highlight}><span className="highlight-marker" aria-hidden="true" />{highlight}</li>)}</ul>
+          <ul className="highlight-list">{event.highlights.map((highlight) => <li key={highlight}><CircleCheck className="highlight-marker-icon" size={16} strokeWidth={1.8} aria-hidden="true" />{highlight}</li>)}</ul>
         </section>
         <aside className="facts-panel">
           <span className="eyebrow"><span className="eyebrow-line" /> EVENT INFORMATION</span>

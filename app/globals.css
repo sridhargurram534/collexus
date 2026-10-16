@@ -4198,6 +4198,82 @@ body.warm-editorial-theme.vivid-nightfall-theme .calendar-empty{margin-top:12px!
   body.warm-editorial-theme.vivid-nightfall-theme .calendar-nav button,
   body.warm-editorial-theme.vivid-nightfall-theme .calendar-day{animation:none!important;transition:none!important}
 }
+
+/* A quieter slate palette keeps the call to action visible without competing with campus photography. */
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn){
+  color:#fff!important;background:#536f7d!important;background-image:none!important;border-color:#536f7d!important;
+  box-shadow:0 2px 6px rgba(34,64,76,.12)!important;filter:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn):hover,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .event-card-link:hover .event-card-cta{
+  color:#fff!important;background:#465f6d!important;background-image:none!important;border-color:#465f6d!important;
+  box-shadow:0 3px 8px rgba(34,64,76,.15)!important;filter:none!important;transform:translateY(-1px)!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn){
+  color:#f5f8f9!important;background:#45616e!important;background-image:none!important;border-color:#526d79!important;
+  box-shadow:0 2px 7px rgba(0,0,0,.2)!important;filter:none!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn):hover,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .event-card-link:hover .event-card-cta{
+  color:#fff!important;background:#516d79!important;background-image:none!important;border-color:#617c87!important;
+  box-shadow:0 3px 8px rgba(0,0,0,.24)!important;filter:none!important;transform:translateY(-1px)!important;
+}
+
+/* Keep search suggestions on the selected page theme instead of forcing a dark popover in Day mode. */
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions{
+  color:#29444f!important;background:#f8fbfb!important;border:1px solid #d3e1e3!important;
+  box-shadow:0 14px 32px rgba(25,52,64,.12)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions .search-suggestion-title{color:#5b737b!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions button{color:#29444f!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions button small{color:#60747c!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions button .lucide-icon{color:#5b7c87!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions button:hover{background:#edf3f4!important;transform:none!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions{
+  color:#e5eef1!important;background:#14212b!important;border:1px solid #344a56!important;
+  box-shadow:0 16px 38px rgba(0,0,0,.3)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions .search-suggestion-title{color:#a8c4cc!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions button,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions button small{color:#d1dde1!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions button .lucide-icon{color:#9ab9c2!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #searchSuggestions button:hover{background:#202e38!important;transform:none!important}
+
+/* The filter note is supporting information, so keep it flat and unboxed. */
+body.warm-editorial-theme.vivid-nightfall-theme #menuContentFilters .filter-panel-note{
+  padding:7px 10px!important;border:0!important;border-left:2px solid #c3d3d6!important;border-radius:0!important;
+  color:#536a73!important;background:transparent!important;box-shadow:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme #menuContentFilters .filter-panel-note svg{color:#617f89!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #menuContentFilters .filter-panel-note{color:#d0dce0!important;border-left-color:#506873!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme #menuContentFilters .filter-panel-note svg{color:#a0bbc3!important}
+
+/* Calendar hover and event states use quiet surface shifts instead of vivid teal flashes. */
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-nav button:hover,
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-nav button:active{
+  color:#405f6a!important;background:#eaf0f1!important;border-color:#b8cbd0!important;box-shadow:none!important;transform:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day,
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.event-day,
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.registered{box-shadow:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day:not(.muted):hover{color:#31505b!important;background:#f1f5f5!important;border-color:#c2d1d4!important;box-shadow:none!important;transform:none!important}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.today{border-color:#809da6!important;background:#f1f6f6!important}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.today .day-num,
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.event-day .day-num{color:#fff!important;background:#617e89!important}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.event-day{border-color:#bfd0d3!important;background:#f1f6f6!important}
+body.warm-editorial-theme.vivid-nightfall-theme .calendar-day .event-dot.public-more{color:#38535e!important;background:#e4edef!important;border-color:#cfdee1!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-nav button:hover,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-nav button:active{color:#dbe6e9!important;background:#263740!important;border-color:#536c76!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-day:not(.muted):hover{color:#e4edef!important;background:#1a2932!important;border-color:#4e6670!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.today,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.event-day{border-color:#536d77!important;background:#1b2a33!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.today .day-num,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-day.event-day .day-num{color:#f3f7f8!important;background:#536f7b!important}
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-day .event-dot.public-more{color:#dce8eb!important;background:#283c46!important;border-color:#48616b!important}
+
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .highlight-list li .highlight-marker-icon{
+  flex:none;margin-top:3px;color:#617f89!important;filter:none!important;
+}
 html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .calendar-dialog{
   color:#e8f1f5!important;background:#111c25!important;border-color:#2c414d!important;box-shadow:0 24px 64px rgba(0,0,0,.44)!important;
 }
