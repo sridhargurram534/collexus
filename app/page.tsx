@@ -50,9 +50,9 @@ export default function HomePage() {
         <button id="calendarButton" className="calendar-btn" type="button" aria-label="Open calendar"><Icon name="calendar_month" /><span className="hidden sm:inline">Calendar</span></button>
       </div>
       <div className="shrink-0 relative">
-        <button id="loginButton" type="button" aria-label="Login or sign up" className="login-btn inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider shadow-[0_6px_18px_rgba(38,12,26,.16)]">
+        <a id="loginButton" href={`${publicBasePath}/login/`} aria-label="Login or sign up" className="login-btn inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider shadow-[0_6px_18px_rgba(38,12,26,.16)]">
           <span className="login-btn-label">Login / Sign Up</span>
-        </button>
+        </a>
       </div>
     </div>
   </div>

@@ -204,9 +204,8 @@ export function OriginalInteractions() {
        // Enter in search opens the closest category.
        const input=document.getElementById('globalSearch'); input?.addEventListener('keydown',e=>{if(e.key==='Enter'){const q=input.value.trim().toLowerCase(); if(!q)return; const matchingEvent=events.find(event=>event.title.toLowerCase().includes(q)); if(matchingEvent){window.location.assign(`${publicBasePath}/events/${matchingEvent.slug}/`);return;} const match=Object.keys(categoryData).find(k=>k.toLowerCase().includes(q)||q.includes(k.toLowerCase())); if(match){document.getElementById('searchSuggestions')?.classList.add('hidden');openCategory(match)}}});
        // Login chooser.
-       const modal=document.getElementById('loginModal'), loginBtn=document.getElementById('loginButton'), hint=document.getElementById('loginFormHint');
+       const modal=document.getElementById('loginModal'), hint=document.getElementById('loginFormHint');
        function closeLogin(){modal.classList.add('hidden');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
-       loginBtn?.addEventListener('click',()=>{window.location.assign(`${publicBasePath}/login/`);});
        document.querySelectorAll('[data-close-login]').forEach(x=>x.addEventListener('click',closeLogin));
        document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLogin()});
        const loginOptions=document.querySelector('.login-options'); const loginBackIcon=document.querySelector('.login-back-icon'); const studentLoginForm=document.getElementById('studentLoginForm'); const facultyLoginForm=document.getElementById('facultyLoginForm'); const eventRegistrationPanel=document.getElementById('eventRegistrationPanel'); const hostEventPanel=document.getElementById('hostEventPanel');
