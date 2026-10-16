@@ -4200,20 +4200,20 @@ body.warm-editorial-theme.vivid-nightfall-theme .calendar-empty{margin-top:12px!
 }
 
 /* A quieter slate palette keeps the call to action visible without competing with campus photography. */
-html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn){
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn,.primary-button,.menu-filter-apply-btn){
   color:#fff!important;background:#536f7d!important;background-image:none!important;border-color:#536f7d!important;
   box-shadow:0 2px 6px rgba(34,64,76,.12)!important;filter:none!important;
 }
-html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn):hover,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn,.primary-button,.menu-filter-apply-btn):hover,
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .event-card-link:hover .event-card-cta{
   color:#fff!important;background:#465f6d!important;background-image:none!important;border-color:#465f6d!important;
   box-shadow:0 3px 8px rgba(34,64,76,.15)!important;filter:none!important;transform:translateY(-1px)!important;
 }
-html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn){
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn,.primary-button,.menu-filter-apply-btn){
   color:#f5f8f9!important;background:#45616e!important;background-image:none!important;border-color:#526d79!important;
   box-shadow:0 2px 7px rgba(0,0,0,.2)!important;filter:none!important;
 }
-html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn):hover,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),.login-btn,.featured-event-action,.pass-action,.premium-btn,.primary-button,.menu-filter-apply-btn):hover,
 html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .event-card-link:hover .event-card-cta{
   color:#fff!important;background:#516d79!important;background-image:none!important;border-color:#617c87!important;
   box-shadow:0 3px 8px rgba(0,0,0,.24)!important;filter:none!important;transform:translateY(-1px)!important;
