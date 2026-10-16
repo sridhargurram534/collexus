@@ -183,7 +183,8 @@ export function OriginalInteractions() {
         });
         const first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate(),prevDays=new Date(y,m,0).getDate();
         for(let i=0;i<first;i++){const d=document.createElement('div');d.className='calendar-day muted';d.innerHTML=`<span class="day-num">${prevDays-first+i+1}</span>`;calGrid.appendChild(d)}
-        for(let day=1;day<=days;day++){const iso=`${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;const matches=regs.filter(r=>r.date===iso);const publicEvents=[...new Map((publicByDate[iso]||[]).map(event=>[event.slug,event])).values()];const hasEvent=publicEvents.length>0;const d=document.createElement('div');d.className='calendar-day'+(hasEvent?' event-day':'')+(matches.length?' registered':'');
+        const today=new Date();const todayIso=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+        for(let day=1;day<=days;day++){const iso=`${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;const matches=regs.filter(r=>r.date===iso);const publicEvents=[...new Map((publicByDate[iso]||[]).map(event=>[event.slug,event])).values()];const hasEvent=publicEvents.length>0;const d=document.createElement('div');d.className='calendar-day'+(hasEvent?' event-day':'')+(matches.length?' registered':'')+(iso===todayIso?' today':'');
           const unregisteredEvents=publicEvents.filter(event=>!matches.some(r=>r.name===event.name));
           const publicLabels=unregisteredEvents.slice(0,2).map(event=>`<a class="event-dot public-dot" href="${publicBasePath}/events/${event.slug}/" title="Open ${event.name}">• ${event.name}</a>`).join('');
           const moreEvents=unregisteredEvents.length>2?`<span class="event-dot public-more">+${unregisteredEvents.length-2} more</span>`:'';

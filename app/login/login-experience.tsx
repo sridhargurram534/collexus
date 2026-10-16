@@ -15,7 +15,6 @@ import {
   KeyRound,
   Mail,
   ShieldCheck,
-  Sparkles,
   UsersRound,
 } from "lucide-react";
 import { getSupabaseClient, isSupabaseConfigured } from "../../lib/supabase-client";
@@ -243,7 +242,6 @@ export function LoginExperience() {
 
       <div className={styles.shell}>
         <section className={styles.story} aria-labelledby="login-title">
-          <div className={styles.storyOrb} aria-hidden="true"><GraduationCap /><Sparkles /></div>
           <p className={styles.eyebrow}><span /> COLLEXUS ACCOUNT</p>
           <h1 id="login-title">Campus life,<br /><em>all in one place.</em></h1>
           <p className={styles.storyText}>Sign in to keep your events, passes and campus plans together.</p>
