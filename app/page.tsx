@@ -152,7 +152,7 @@ export default function HomePage() {
 </div>
 
 <div className="relative w-full h-80 rounded-lg overflow-hidden mb-space-md border border-[#f4d3cb]">
-<img className="w-full h-full object-cover" alt="High energy collegiate festival crowd with ethereal laser stage lighting in muted mauve and midnight navy palettes, student musicians on center stage surrounded by visual projection mapping" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7Wg-4l3pnGzpgnUpfdx-WQ1Oexyb1OKQt7usZ2trc6XfHNb5ulW5WRIZP4D-IXh7qdm6BXjhzafWNhO1Aq7C1RREdEWmGUuVZAdpioKq8eEdStMHZ4MDsinLg00n60-3jKuqOKJXln4o-XsmQwDZd6STimK7OE6KQ25DcFf3Pv2phDB55JZly2SVSwb4ojpTiZWh4U90IRdX03YWqb6gV7VcKDDCkaH9OL1aFNtgPE_cKCOZX1TuH"/>
+<img className="w-full h-full object-cover" alt="Students enjoying a live band performance at an outdoor college cultural festival" src={`${publicBasePath}/assets/kreya-26-cultural-fest.webp`}/>
 <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
 <div className="feature-kind-badge absolute top-3 left-3 px-2 py-1 rounded font-label-sm text-label-sm uppercase tracking-wider font-bold">
               Annual cultural fest

@@ -4367,3 +4367,13 @@ body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button,
 @media(prefers-reduced-motion:reduce){
   body.warm-editorial-theme.vivid-nightfall-theme :is(.reference-mood-backdrop .hero-cta,.premium-btn,.login-btn,.event-card-cta,.quick-category-rail button,.category-section-nav button,.calendar-btn,.top-nav-btn,.cover-controls button){transition:none!important}
 }
+
+/* Give the featured event action the same quiet slate tone as the site controls. */
+html body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel a.featured-event-action{
+  color:#fff!important;background:#536f7d!important;background-image:none!important;border-color:#536f7d!important;
+  box-shadow:0 2px 6px rgba(34,64,76,.12)!important;
+}
+html body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel a.featured-event-action:hover{
+  color:#fff!important;background:#465f6d!important;background-image:none!important;border-color:#465f6d!important;
+  box-shadow:0 3px 8px rgba(34,64,76,.15)!important;transform:translateY(-1px)!important;
+}
