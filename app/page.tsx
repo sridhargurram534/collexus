@@ -611,12 +611,12 @@ export default function HomePage() {
   </div>
 </div>
 
-<div id="passModal" className="pass-modal hidden" aria-hidden={true}>
+<div id="passModal" className="pass-modal hidden" data-pass-type="student" aria-hidden={true}>
   <div className="pass-backdrop" data-close-pass></div>
   <div className="pass-dialog" role="dialog" aria-modal="true" aria-labelledby="passTitle">
     <button className="pass-close" type="button" data-close-pass aria-label="Close"><Icon name="close" /></button>
     <p className="category-eyebrow">LOCAL PASS DEMO</p><h2 id="passTitle">Choose a pass preview</h2><p>This form creates a local reference only; it does not submit registration to RCEE or generate a QR code.</p>
-    <div className="pass-type-tabs"><button className="pass-type-tab active" data-pass-tab="student" type="button"><strong>Student Pass</strong><small>For college students</small></button><button className="pass-type-tab" data-pass-tab="outer" type="button"><strong>Outer Pass</strong><small>For external participants</small></button></div>
+    <div className="pass-type-tabs"><button className="pass-type-tab active" data-pass-tab="student" aria-pressed="true" type="button"><strong>Student Pass</strong><small>For college students</small></button><button className="pass-type-tab" data-pass-tab="outer" aria-pressed="false" type="button"><strong>Outer Pass</strong><small>For external participants</small></button></div>
     <form id="studentPassForm" className="pass-form">
       <label>Full name<input name="name" required placeholder="Your full name" /></label><label>College email<input name="email" type="email" required placeholder="name@college.edu" /></label><label>College ID<input name="collegeId" required placeholder="Student ID" /></label><label>Phone<input name="phone" required placeholder="10-digit mobile number" /></label><label className="full">Event<select name="event" id="studentEventSelect"></select></label><button className="pass-submit" type="submit">Generate Student Pass <Icon name="arrow_forward" /></button>
     </form>

@@ -4379,3 +4379,90 @@ html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfal
   color:#fff!important;background:#465f6d!important;background-image:none!important;border-color:#465f6d!important;
   box-shadow:0 3px 8px rgba(34,64,76,.15)!important;transform:translateY(-1px)!important;
 }
+
+/* Keep the light homepage on a quiet blue-slate palette. */
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop{
+  color:#263f49!important;
+  background:linear-gradient(145deg,#edf2f3 0%,#e7eef0 54%,#eaf0f1 100%)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop::before{
+  opacity:.12!important;filter:blur(72px) saturate(.38)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-word-reveal,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-word-reveal [class*="text-secondary"]{
+  color:#557d83!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .featured-event-panel a.featured-event-action,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .event-card-cta,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .digital-passes-section .pass-action{
+  color:#f7fafb!important;background:#536b75!important;background-image:none!important;border-color:#536b75!important;
+  box-shadow:0 3px 9px rgba(38,64,73,.10)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast):hover,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .featured-event-panel a.featured-event-action:hover,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .event-card-cta:hover,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .digital-passes-section .pass-action:hover{
+  color:#fff!important;background:#465d67!important;background-image:none!important;border-color:#465d67!important;
+  box-shadow:0 4px 10px rgba(38,64,73,.13)!important;transform:translateY(-1px)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta-high-contrast,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .hero-cta-high-contrast:hover{
+  color:#425d66!important;background:#edf2f3!important;border-color:#cbd8db!important;box-shadow:none!important;transform:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .featured-event-panel{
+  color:#263f49!important;background:linear-gradient(145deg,#f0f4f5 0%,#e4ecee 100%)!important;
+  border-color:#c8d7da!important;box-shadow:0 12px 28px rgba(38,64,73,.11)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .featured-event-panel :is(.bg-surface-container-low,.bg-surface-container-lowest){
+  color:#304b55!important;background:#edf2f3!important;border-color:#d0dcdf!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .featured-event-panel :is(h2,h3,strong,.text-primary,.font-headline-sm){color:#263f49!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .featured-event-panel :is(p,.text-secondary,.font-label-sm){color:#5b7078!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .featured-event-panel .text-white{color:#fff!important}
+
+/* Pass preview: the light theme remains legible and each pass type gets its own quiet accent. */
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-dialog{
+  color:#263f49!important;background:#f7f9f9!important;border:1px solid #cad8db!important;
+  box-shadow:0 22px 58px rgba(29,52,61,.20)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-dialog :is(h2,strong){color:#263f49!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-dialog :is(p,small){color:#62767e!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-dialog .category-eyebrow{color:#547b82!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-close{
+  color:#506972!important;background:#eaf0f1!important;border:1px solid #d0dcde!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-type-tab{
+  color:#405b64!important;background:#eef3f4!important;border-color:#d2dfe1!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-type-tab strong{color:#304b55!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-type-tab small{color:#687b82!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="student"] .pass-type-tab.active{
+  color:#345b61!important;background:#e0ecec!important;border-color:#a9c5c8!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="student"] .pass-type-tab.active :is(strong,small){color:#345b61!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-type-tab.active{
+  color:#665a45!important;background:#eee9df!important;border-color:#d0c3a8!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-type-tab.active :is(strong,small){color:#665a45!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-form.hidden{display:none!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-form label{color:#536b73!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-form :is(input,select){
+  color:#2c4650!important;background:#fff!important;border-color:#ccdadd!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-form :is(input,select)::placeholder{color:#89999e!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="student"] .pass-form :is(input,select):focus{
+  border-color:#789fa3!important;box-shadow:0 0 0 3px rgba(120,159,163,.16)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-form label{color:#78694e!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-form :is(input,select):focus{
+  border-color:#b29d75!important;box-shadow:0 0 0 3px rgba(178,157,117,.16)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-submit{
+  color:#f8fafb!important;background:#536b75!important;border:1px solid #536b75!important;box-shadow:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-submit:hover{background:#465d67!important;border-color:#465d67!important;transform:translateY(-1px)!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-submit{
+  color:#fff!important;background:#817052!important;border-color:#817052!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-submit:hover{background:#6f6046!important;border-color:#6f6046!important}
