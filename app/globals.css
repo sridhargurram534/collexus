@@ -4448,7 +4448,7 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-form.hidden{display:none!important}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-form label{color:#536b73!important}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-form :is(input,select){
-  color:#2c4650!important;background:#fff!important;border-color:#ccdadd!important;
+  color:#2c4650!important;background:#fff!important;border-color:#ccdadd!important;box-shadow:none!important;
 }
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-form :is(input,select)::placeholder{color:#89999e!important}
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="student"] .pass-form :is(input,select):focus{
