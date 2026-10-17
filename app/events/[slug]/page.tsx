@@ -62,7 +62,6 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
           <p>{event.description}</p>
           <div className="details-actions">
             <Link className="primary-button" href={`/events/${event.slug}/register`}><TicketCheck size={16} aria-hidden="true" /> Register <span className="demo-action-tag">DEMO</span></Link>
-            {event.report && <a className="secondary-button" href={event.source} target="_blank" rel="noreferrer">Official page <ArrowUpRight size={15} aria-hidden="true" /></a>}
           </div>
           <p className="archive-disclaimer">Registration preview only. This demo does not submit an entry or charge money. {event.dateStart ? "This dated event has concluded." : "The official listing does not publish an exact event date."}</p>
         </div>

@@ -4466,3 +4466,35 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
   color:#fff!important;background:#817052!important;border-color:#817052!important;
 }
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-submit:hover{background:#6f6046!important;border-color:#6f6046!important}
+
+/* Keep drawer branding on one clean vertical axis in both themes. */
+#campusMenuDrawer .menu-header-brand{align-items:center!important;gap:10px!important}
+#campusMenuDrawer .menu-header-brand .menu-brand-mark{align-self:center!important}
+#campusMenuDrawer .menu-header-brand .menu-brand-copy{min-height:36px!important;justify-content:center!important;gap:3px!important}
+#campusMenuDrawer .menu-header-brand .menu-brand-title{min-height:18px!important;align-items:center!important;gap:6px!important}
+#campusMenuDrawer .menu-header-brand .collexus-word{margin-left:0!important;line-height:1!important}
+#campusMenuDrawer .menu-header-brand .menu-brand-subtitle{margin:0!important;line-height:1.15!important}
+
+/* The pass selector uses the same cool slate family throughout, with a subtle Outer state. */
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-type-tab.active{
+  color:#3f5964!important;background:#e6edef!important;border-color:#b8cbd0!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-type-tab.active :is(strong,small){color:#3f5964!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-form label{color:#536b73!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-form :is(input,select):focus{
+  border-color:#789fa3!important;box-shadow:0 0 0 3px rgba(120,159,163,.16)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-submit,
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal[data-pass-type="outer"] .pass-submit:hover{
+  color:#f8fafb!important;background:#536b75!important;border-color:#536b75!important;box-shadow:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-close{
+  width:44px!important;height:44px!important;padding:0!important;border:0!important;border-radius:50%!important;
+  color:#536b75!important;background:transparent!important;box-shadow:none!important;transform:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-close:hover{
+  color:#31545f!important;background:transparent!important;box-shadow:none!important;transform:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-close:focus-visible{
+  outline:2px solid #789fa3!important;outline-offset:2px!important;
+}
