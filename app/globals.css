@@ -4369,11 +4369,13 @@ body.warm-editorial-theme.vivid-nightfall-theme :is(.quick-category-rail button,
 }
 
 /* Give the featured event action the same quiet slate tone as the site controls. */
-html body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel a.featured-event-action{
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel a.featured-event-action,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel a.featured-event-action{
   color:#fff!important;background:#536f7d!important;background-image:none!important;border-color:#536f7d!important;
   box-shadow:0 2px 6px rgba(34,64,76,.12)!important;
 }
-html body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel a.featured-event-action:hover{
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel a.featured-event-action:hover,
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .featured-event-panel a.featured-event-action:hover{
   color:#fff!important;background:#465f6d!important;background-image:none!important;border-color:#465f6d!important;
   box-shadow:0 3px 8px rgba(34,64,76,.15)!important;transform:translateY(-1px)!important;
 }
