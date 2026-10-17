@@ -2016,7 +2016,7 @@ body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .l
 }
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .lg\:col-span-6.relative.mt-space-lg>div.relative.rounded-xl .text-primary{color:#F8F4FF!important}
 body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .lg\:col-span-6.relative.mt-space-lg>div.relative.rounded-xl .text-secondary{color:#75DDE8!important}
-body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .lg\:col-span-6.relative.mt-space-lg>div.relative.rounded-xl a{
+body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop .lg\:col-span-6.relative.mt-space-lg>div.relative.rounded-xl a:not(.featured-event-action){
   color:#07131C!important;background:linear-gradient(125deg,#34FDEF,#75DDE8)!important;border-color:rgba(255,255,255,.5)!important;
 }
 body.warm-editorial-theme.vivid-nightfall-theme .motion-showcase-section{
