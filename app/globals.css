@@ -4498,3 +4498,19 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme #passModal .pass-close:focus-visible{
   outline:2px solid #789fa3!important;outline-offset:2px!important;
 }
+
+/* Give the event detail follow-up callout comfortable spacing and rounded edges. */
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .more-events{
+  align-items:center!important;margin-top:52px!important;padding:24px 26px!important;
+  border:1px solid #29404f!important;border-radius:22px!important;
+  background:linear-gradient(115deg,#132630 0%,#111e29 100%)!important;
+  box-shadow:0 12px 28px rgba(5,15,22,.14),inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme main.details-page .more-events h2{margin:8px 0 0!important}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main.details-page .more-events{
+  border-color:#d0dfe1!important;border-radius:22px!important;background:#e8f0f1!important;
+  box-shadow:0 5px 16px rgba(34,65,75,.05)!important;
+}
+@media(max-width:720px){
+  body.warm-editorial-theme.vivid-nightfall-theme main.details-page .more-events{align-items:flex-start!important;padding:21px!important}
+}

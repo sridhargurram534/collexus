@@ -631,7 +631,6 @@ export default function HomePage() {
 <section id="digitalPasses" className="digital-passes-section">
   <div className="passes-heading">
     <div><span className="passes-kicker">LOCAL INTERACTION DEMO</span><h2>Preview the event pass flow.</h2><p>This prototype creates a local pass reference and does not register you with RCEE.</p></div>
-    <Icon name="qr_code_2" className="passes-heading-icon" />
   </div>
   <div className="pass-grid">
     <article className="pass-card student-pass"><div className="pass-glow"></div><div className="pass-top"><span className="pass-badge">STUDENT DEMO</span><Icon name="school" /></div><h3>For college students</h3><p>Preview the form flow with sample student details. This demo does not confirm event entry.</p><div className="pass-features"><span><Icon name="check_circle" /> Local preview</span><span><Icon name="check_circle" /> Pass reference</span><span><Icon name="check_circle" /> No RCEE submission</span></div><button className="pass-action" type="button" data-open-pass="student">Preview Student Pass <Icon name="arrow_forward" /></button></article>
