@@ -4514,3 +4514,8 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
 @media(max-width:720px){
   body.warm-editorial-theme.vivid-nightfall-theme main.details-page .more-events{align-items:flex-start!important;padding:21px!important}
 }
+
+/* Keep event date and format readable on the active carousel card in night mode. */
+html:not([data-collexus-theme="light"]) body.warm-editorial-theme.vivid-nightfall-theme .motion-showcase-section .cover-card.is-active p{
+  color:#d4dee5!important;opacity:1!important;font-size:14px!important;font-weight:600!important;
+}
