@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SiteUtilities } from "@/components/site-utilities";
 
 const poppins = localFont({
   src: [
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className={`${poppins.variable} bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-primary warm-editorial-theme vivid-nightfall-theme`}>
+        <SiteUtilities />
         {children}
       </body>
     </html>

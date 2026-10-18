@@ -638,7 +638,7 @@ export default function HomePage() {
   </div>
 </section>
 
-<section className="motion-faq-section" aria-label="Frequently asked questions">
+<section className="motion-faq-section" id="faq" aria-label="Frequently asked questions">
   <div className="faq-inner">
     <div className="scroll-reveal"><div className="quick-answers-heading">Quick Answers</div><span className="showcase-kicker"><Icon name="help" /> Helpful answers</span><h2>Everything feels simpler when you know where to start.</h2></div>
     <FaqAccordion />
