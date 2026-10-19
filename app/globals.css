@@ -4567,3 +4567,85 @@ html:not([data-collexus-theme="light"]) .site-cookie-note p{color:#a8bbc2}
 @media(max-width:600px){.site-utility-actions{right:12px;bottom:12px;gap:7px}.site-float-button{min-height:43px;padding:0 12px}.site-cookie-note{left:10px;bottom:66px;width:calc(100vw - 20px);padding:13px;gap:12px}.site-cookie-note p{font-size:11px}.site-menu-panel{padding-top:20px}}
 @media(prefers-reduced-motion:reduce){.site-skip-link,.site-float-button,.site-menu-links a,.site-menu-panel,.site-cookie-note,.site-route-spinner,.site-scroll-progress[data-loading="true"] span{animation:none!important;transition:none!important}}
 @media print{.site-skip-link,.site-scroll-progress,.site-utility-actions,.site-menu-scrim,.site-cookie-note,header,.quick-category-rail,.announcement-bar,button{display:none!important}body,main,section,article{background:#fff!important;color:#111!important;box-shadow:none!important}.details-page{padding:0!important}.details-page :is(section,article){break-inside:avoid;border-color:#bbb!important}a{color:#111!important;text-decoration:underline!important}}
+
+/* Consistent Collexus action color across the homepage and shared controls. */
+body.warm-editorial-theme.vivid-nightfall-theme :is(
+  .reference-mood-backdrop .hero-cta,
+  .premium-btn,
+  .login-btn,
+  .featured-event-panel .featured-event-action,
+  .event-card-cta,
+  .digital-passes-section .pass-action,
+  .category-card-action,
+  .menu-filter-apply-btn,
+  .pass-submit,
+  .login-auth-submit,
+  .login-register-submit,
+  .stall-registration-home-link,
+  .site-float-button
+){
+  color:#fff!important;
+  background:#087e83!important;
+  background-image:none!important;
+  border-color:#087e83!important;
+  box-shadow:0 4px 12px rgba(8,126,131,.16)!important;
+  filter:none!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme :is(
+  .reference-mood-backdrop .hero-cta,
+  .premium-btn,
+  .login-btn,
+  .featured-event-panel .featured-event-action,
+  .event-card-cta,
+  .digital-passes-section .pass-action,
+  .category-card-action,
+  .menu-filter-apply-btn,
+  .pass-submit,
+  .login-auth-submit,
+  .login-register-submit,
+  .stall-registration-home-link,
+  .site-float-button
+):hover:not(:disabled),
+body.warm-editorial-theme.vivid-nightfall-theme .event-card-link:hover .event-card-cta{
+  color:#fff!important;
+  background:#066a70!important;
+  background-image:none!important;
+  border-color:#066a70!important;
+  box-shadow:0 6px 15px rgba(8,88,94,.2)!important;
+  filter:none!important;
+  transform:translateY(-1px)!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme :is(
+  .reference-mood-backdrop .hero-cta,
+  .premium-btn,
+  .login-btn,
+  .featured-event-panel .featured-event-action,
+  .event-card-cta,
+  .digital-passes-section .pass-action,
+  .category-card-action,
+  .menu-filter-apply-btn,
+  .pass-submit,
+  .login-auth-submit,
+  .login-register-submit,
+  .stall-registration-home-link,
+  .site-float-button
+):focus-visible{
+  outline:3px solid #35a9a5!important;
+  outline-offset:3px!important;
+}
+body.warm-editorial-theme.vivid-nightfall-theme :is(
+  .reference-mood-backdrop .hero-cta,
+  .premium-btn,
+  .login-btn,
+  .featured-event-panel .featured-event-action,
+  .event-card-cta,
+  .digital-passes-section .pass-action,
+  .category-card-action,
+  .menu-filter-apply-btn,
+  .pass-submit,
+  .login-auth-submit,
+  .login-register-submit,
+  .stall-registration-home-link,
+  .site-float-button
+) :is(span,.lucide-icon){color:inherit!important}
+body.warm-editorial-theme.vivid-nightfall-theme .stall-registration-home-link{min-height:44px;padding:0 15px;border-radius:12px;text-decoration:none}
