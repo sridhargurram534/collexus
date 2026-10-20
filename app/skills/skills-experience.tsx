@@ -5,7 +5,7 @@ import type { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import {
   ArrowLeft, ArrowRight, BadgeCheck, BookOpen, Check, ChevronDown, CircleUserRound,
-  Compass, GraduationCap, Heart, LoaderCircle, Plus, ShieldCheck, Sparkles, X,
+  Compass, GraduationCap, Heart, LoaderCircle, Plus, Search, ShieldCheck, Sparkles, X,
 } from "lucide-react";
 import { getSupabaseClient, isSupabaseConfigured } from "../../lib/supabase-client";
 import styles from "./skills.module.css";
@@ -14,14 +14,17 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const branches = ["Computer Science & Engineering", "Information Technology", "Artificial Intelligence & Data Science", "Electronics & Communication", "Electrical & Electronics", "Mechanical Engineering", "Civil Engineering", "Business & Management", "Arts & Humanities", "Science", "Other"];
 const skillSuggestions = ["Programming", "JavaScript", "Python", "UI/UX Design", "Communication", "Leadership", "Problem Solving", "Public Speaking", "Data Science", "Graphic Design", "Project Management", "Photography"];
 const interestGroups = [
-  { name: "Technology", tone: "blue", tags: ["Artificial Intelligence", "Cybersecurity", "UX Design", "Android", "Web Development", "Robotics", "Cloud Computing"] },
-  { name: "Programming", tone: "green", tags: ["Software Development", "Python", "JavaScript", "Machine Learning", "Data Science", "App Development"] },
-  { name: "Wellness & life", tone: "rose", tags: ["Fitness", "Mental Health", "Travel", "Music", "Sports", "Reading", "Personal Growth"] },
-  { name: "Society & culture", tone: "gold", tags: ["Volunteering", "History", "Languages", "Art", "Dance", "Film", "Community"] },
-  { name: "Business", tone: "plum", tags: ["Entrepreneurship", "Leadership", "Finance", "Marketing", "Startups", "Careers"] },
+  { name: "Technology", tone: "blue", tags: ["Technology", "AI", "Artificial Intelligence", "Cybersecurity", "AWS", "LLM", "ChatGPT", "UX", "UX Design", "Android", "iOS", "Apple", "AI Agent", "Future Tech", "Kubernetes"] },
+  { name: "Programming", tone: "green", tags: ["Programming", "Data Science", "Software Development", "Python", "Software Engineering", "Machine Learning", "DevOps", "Web Development", "Data Engineering", "Java", "JavaScript", "Flutter", "Deep Learning", "React"] },
+  { name: "Wellness", tone: "rose", tags: ["Psychology", "Self Improvement", "Mental Health", "Productivity", "Spirituality", "Personal Growth", "Wellness", "Mindfulness", "Fitness", "Personal Development", "Motivation", "Sports"] },
+  { name: "Life", tone: "gold", tags: ["Life", "Relationships", "Love", "Life Lessons", "Health", "Travel", "Lifestyle", "Family", "Parenting", "Faith", "Healing", "Sexuality"] },
+  { name: "Society", tone: "blue", tags: ["Politics", "Women", "History", "Society", "News", "War", "Economics", "Religion", "Christianity", "Feminism", "Geopolitics", "World", "Justice", "Equality", "Ukraine War"] },
+  { name: "Culture", tone: "plum", tags: ["Science", "Writing", "Culture", "Philosophy", "Education", "Books", "Humor", "Space", "Inspiration", "Creativity", "Art", "Music", "Gaming", "Math"] },
+  { name: "Business", tone: "teal", tags: ["Business", "Money", "Entrepreneurship", "Leadership", "Startup", "Careers", "Finance", "Investing", "Work", "Marketing", "Cryptocurrency"] },
 ];
 const experienceOptions = ["1st year", "2nd year", "3rd year", "4th year", "5th year or above", "Recent graduate", "Working professional"];
 const foodSuggestions = ["Biryani", "Dosa", "Pizza", "Pasta", "Street food", "Sweets", "Coffee", "Tea"];
+const allInterestOptions = new Set(interestGroups.flatMap((group) => group.tags));
 
 function readArray(value: unknown) {
   return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
@@ -57,6 +60,9 @@ export function SkillsExperience() {
   const [skills, setSkills] = useState<string[]>([]);
   const [skillDraft, setSkillDraft] = useState("");
   const [interests, setInterests] = useState<string[]>([]);
+  const [customInterests, setCustomInterests] = useState<string[]>([]);
+  const [interestDraft, setInterestDraft] = useState("");
+  const [interestSearch, setInterestSearch] = useState("");
   const [culture, setCulture] = useState<string[]>([]);
   const [cultureDraft, setCultureDraft] = useState("");
   const [foods, setFoods] = useState<string[]>([]);
@@ -78,7 +84,9 @@ export function SkillsExperience() {
       setOtherBranch(String(metadata.profile_branch_details ?? ""));
       setExperience(String(metadata.profile_experience ?? ""));
       setSkills(readArray(metadata.profile_skills));
-      setInterests(readArray(metadata.profile_interests));
+      const savedInterests = readArray(metadata.profile_interests);
+      setInterests(savedInterests.filter((item) => allInterestOptions.has(item)));
+      setCustomInterests(savedInterests.filter((item) => !allInterestOptions.has(item)));
       setCulture(readArray(metadata.profile_culture));
       setFoods(readArray(metadata.profile_favorite_foods));
       setChecking(false);
@@ -95,7 +103,7 @@ export function SkillsExperience() {
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setError(""); setSaved(false);
     if (!skills.length) { setError("Add at least one skill to continue."); return; }
-    if (!interests.length) { setError("Choose at least one interest to continue."); return; }
+    if (!interests.length && !customInterests.length) { setError("Choose at least one interest to continue."); return; }
     const supabase = getSupabaseClient();
     if (!supabase) { setError("Secure profile saving is not configured yet. Add the Supabase project URL and publishable key first."); return; }
     setBusy(true);
@@ -105,7 +113,7 @@ export function SkillsExperience() {
       profile_branch_details: branch === "Other" ? otherBranch.trim() : "",
       profile_experience: experience,
       profile_skills: skills,
-      profile_interests: interests,
+      profile_interests: [...interests, ...customInterests],
       profile_culture: culture,
       profile_favorite_foods: foods,
       profile_complete: true,
@@ -117,7 +125,10 @@ export function SkillsExperience() {
   }
 
   const displayName = String(user?.user_metadata.full_name ?? user?.user_metadata.name ?? user?.email?.split("@")[0] ?? "Your profile");
-  const selectedCount = skills.length + interests.length + culture.length + foods.length;
+  const selectedInterests = [...interests, ...customInterests];
+  const normalizedInterestSearch = interestSearch.trim().toLocaleLowerCase();
+  const filteredInterestGroups = interestGroups.map((group) => ({ ...group, tags: group.tags.filter((tag) => tag.toLocaleLowerCase().includes(normalizedInterestSearch)) })).filter((group) => group.tags.length > 0);
+  const selectedCount = skills.length + selectedInterests.length + culture.length + foods.length;
 
   return <main className={styles.page}>
     <header className={styles.header}>
@@ -139,8 +150,10 @@ export function SkillsExperience() {
             <label className={styles.field}><span>Year / experience <b>*</b></span><span className={styles.selectWrap}><BookOpen size={16} aria-hidden="true" /><select required value={experience} onChange={(event) => { setExperience(event.target.value); setSaved(false); }}><option value="">Choose your year</option>{experienceOptions.map((item) => <option key={item}>{item}</option>)}</select><ChevronDown size={15} aria-hidden="true" /></span></label>
           </div>
           <TagField id="skills-entry" label="Your skills" hint="Required · add up to 12" values={skills} draft={skillDraft} setDraft={setSkillDraft} onAdd={(value) => addValue(value, skills, setSkills, () => setSkillDraft(""))} onRemove={(value) => { setSkills((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="Type a skill and press Enter" suggestions={skillSuggestions} />
-          <section className={styles.groupSection} aria-labelledby="interest-title"><div className={styles.groupHeading}><div><p className={styles.sectionKicker}>02 — WHAT YOU LOVE</p><h2 id="interest-title">Pick your interests <small>* choose at least one</small></h2></div><span className={styles.countBadge}>{interests.length} selected</span></div>
-            <div className={styles.groups}>{interestGroups.map((group) => <fieldset className={`${styles.interestGroup} ${styles[group.tone]}`} key={group.name}><legend>{group.name}</legend><div className={styles.chips}>{group.tags.map((tag) => { const selected = interests.includes(tag); return <button type="button" className={selected ? styles.chipSelected : styles.chip} aria-pressed={selected} key={tag} onClick={() => { setInterests((current) => selected ? current.filter((item) => item !== tag) : [...current, tag]); setSaved(false); }}>{selected && <Check size={13} aria-hidden="true" />}{tag}</button>; })}</div></fieldset>)}</div>
+          <section className={styles.groupSection} aria-labelledby="interest-title"><div className={styles.groupHeading}><div><p className={styles.sectionKicker}>02 — WHAT YOU LOVE</p><h2 id="interest-title">Pick your interests <small>* choose at least one</small></h2></div><span className={styles.countBadge}>{selectedInterests.length} selected</span></div>
+            <label className={styles.interestSearch}><Search size={16} aria-hidden="true" /><input type="search" value={interestSearch} onChange={(event) => setInterestSearch(event.target.value)} placeholder="Search interests" aria-label="Search interest categories" /></label>
+            <div className={styles.groups}>{filteredInterestGroups.map((group) => <fieldset className={`${styles.interestGroup} ${styles[group.tone]}`} key={group.name}><legend>{group.name}</legend><div className={styles.chips}>{group.tags.map((tag) => { const selected = interests.includes(tag); return <button type="button" className={selected ? styles.chipSelected : styles.chip} aria-pressed={selected} key={tag} onClick={() => { setInterests((current) => selected ? current.filter((item) => item !== tag) : [...current, tag]); setSaved(false); }}>{selected && <Check size={13} aria-hidden="true" />}{tag}</button>; })}</div></fieldset>)}{!filteredInterestGroups.length && <p className={styles.noResults}>No matching interests. Add your own below.</p>}</div>
+            <TagField id="custom-interest-entry" label="Add your own interests" hint="Optional · type a tag and press Enter" values={customInterests} draft={interestDraft} setDraft={setInterestDraft} onAdd={(value) => addValue(value, customInterests, setCustomInterests, () => setInterestDraft(""))} onRemove={(value) => { setCustomInterests((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="Add a topic that’s not listed" />
           </section>
           <TagField id="culture-entry" label="Culture, languages & communities" hint="Optional · add what feels like you" values={culture} draft={cultureDraft} setDraft={setCultureDraft} onAdd={(value) => addValue(value, culture, setCulture, () => setCultureDraft(""))} onRemove={(value) => { setCulture((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="e.g. Telugu, classical dance, anime" />
           <TagField id="food-entry" label="Foods you love" hint="Optional · help friends plan the next food run" values={foods} draft={foodDraft} setDraft={setFoodDraft} onAdd={(value) => addValue(value, foods, setFoods, () => setFoodDraft(""))} onRemove={(value) => { setFoods((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="Add a favorite food" suggestions={foodSuggestions} />
@@ -148,7 +161,7 @@ export function SkillsExperience() {
           {!configured && <p className={styles.setupNotice}>Supabase is not configured yet, so saving is disabled until its project URL and publishable key are added.</p>}
           <div className={styles.actions}><button className={styles.primaryButton} type="submit" disabled={busy || !configured}>{busy ? <><LoaderCircle className={styles.spinner} size={17} aria-hidden="true" /> Saving…</> : <>Save my details <ArrowRight size={17} aria-hidden="true" /></>}</button><a href={`${basePath}/#featured-events`}>Maybe later</a></div>
         </form>
-        <aside className={styles.preview} aria-label="Live profile preview"><div className={styles.previewTop}><span>YOUR PROFILE CARD</span><span className={styles.live}><i /> LIVE PREVIEW</span></div><div className={styles.previewBody}><div className={styles.avatar}>{displayName.split(/\s+/).map((part) => part[0]).slice(0, 2).join("").toUpperCase() || "C"}</div><span className={styles.memberBadge}>COLLEXUS MEMBER</span><h3>{displayName}</h3><p className={styles.email}>{user.email}</p><div className={styles.divider} /><p className={styles.previewLabel}><GraduationCap size={14} aria-hidden="true" /> STUDYING</p><p className={styles.previewValue}>{branch || "Your branch"}</p><p className={styles.previewMeta}>{experience || "Your year / experience"}</p><p className={styles.previewLabel}><Sparkles size={14} aria-hidden="true" /> SKILLS</p><div className={styles.previewChips}>{skills.length ? skills.slice(0, 5).map((item) => <span key={item}>{item}</span>) : <small>Add skills to show them here</small>}</div><p className={styles.previewLabel}><Heart size={14} aria-hidden="true" /> INTERESTS</p><div className={styles.previewChips}>{interests.length ? interests.slice(0, 5).map((item) => <span key={item}>{item}</span>) : <small>Choose what you enjoy</small>}</div>{culture.length > 0 && <p className={styles.previewMeta}>Culture · {culture.slice(0, 3).join(", ")}</p>}{foods.length > 0 && <p className={styles.previewMeta}>Food · {foods.slice(0, 3).join(", ")}</p>}</div><div className={styles.previewFoot}><ShieldCheck size={16} aria-hidden="true" /><span>Share only what you’re comfortable sharing.</span></div></aside>
+        <aside className={styles.preview} aria-label="Live profile preview"><div className={styles.previewTop}><span>YOUR PROFILE CARD</span><span className={styles.live}><i /> LIVE PREVIEW</span></div><div className={styles.previewBody}><div className={styles.avatar}>{displayName.split(/\s+/).map((part) => part[0]).slice(0, 2).join("").toUpperCase() || "C"}</div><span className={styles.memberBadge}>COLLEXUS MEMBER</span><h3>{displayName}</h3><p className={styles.email}>{user.email}</p><div className={styles.divider} /><p className={styles.previewLabel}><GraduationCap size={14} aria-hidden="true" /> STUDYING</p><p className={styles.previewValue}>{branch || "Your branch"}</p><p className={styles.previewMeta}>{experience || "Your year / experience"}</p><p className={styles.previewLabel}><Sparkles size={14} aria-hidden="true" /> SKILLS</p><div className={styles.previewChips}>{skills.length ? skills.slice(0, 5).map((item) => <span key={item}>{item}</span>) : <small>Add skills to show them here</small>}</div><p className={styles.previewLabel}><Heart size={14} aria-hidden="true" /> INTERESTS</p><div className={styles.previewChips}>{selectedInterests.length ? selectedInterests.slice(0, 5).map((item) => <span key={item}>{item}</span>) : <small>Choose what you enjoy</small>}</div>{culture.length > 0 && <p className={styles.previewMeta}>Culture · {culture.slice(0, 3).join(", ")}</p>}{foods.length > 0 && <p className={styles.previewMeta}>Food · {foods.slice(0, 3).join(", ")}</p>}</div><div className={styles.previewFoot}><ShieldCheck size={16} aria-hidden="true" /><span>Share only what you’re comfortable sharing.</span></div></aside>
       </div>}
       <footer className={styles.footer}><span>© 2026 Collexus</span><span>Find your people. Find your next experience.</span></footer>
     </div>
