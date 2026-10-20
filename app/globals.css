@@ -4581,7 +4581,6 @@ body.warm-editorial-theme.vivid-nightfall-theme :is(
   .pass-submit,
   .login-auth-submit,
   .login-register-submit,
-  .stall-registration-home-link,
   .site-float-button
 ){
   color:#fff!important;
@@ -4603,7 +4602,6 @@ body.warm-editorial-theme.vivid-nightfall-theme :is(
   .pass-submit,
   .login-auth-submit,
   .login-register-submit,
-  .stall-registration-home-link,
   .site-float-button
 ):hover:not(:disabled),
 body.warm-editorial-theme.vivid-nightfall-theme .event-card-link:hover .event-card-cta{
@@ -4627,7 +4625,6 @@ body.warm-editorial-theme.vivid-nightfall-theme :is(
   .pass-submit,
   .login-auth-submit,
   .login-register-submit,
-  .stall-registration-home-link,
   .site-float-button
 ):focus-visible{
   outline:3px solid #35a9a5!important;
@@ -4645,18 +4642,15 @@ body.warm-editorial-theme.vivid-nightfall-theme :is(
   .pass-submit,
   .login-auth-submit,
   .login-register-submit,
-  .stall-registration-home-link,
   .site-float-button
 ) :is(span,.lucide-icon){color:inherit!important}
-body.warm-editorial-theme.vivid-nightfall-theme .stall-registration-home-link{min-height:44px;padding:0 15px;border-radius:12px;text-decoration:none}
 
 /* Keep the light-theme hero actions aligned with the shared Collexus teal. */
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main :is(
   .reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),
   .featured-event-panel a.featured-event-action,
   .event-card-cta,
-  .digital-passes-section .pass-action,
-  .stall-registration-home-link
+  .digital-passes-section .pass-action
 ){
   color:#fff!important;
   background:#087e83!important;
@@ -4669,8 +4663,7 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
   .reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),
   .featured-event-panel a.featured-event-action,
   .event-card-cta,
-  .digital-passes-section .pass-action,
-  .stall-registration-home-link
+  .digital-passes-section .pass-action
 ):hover:not(:disabled),
 html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .event-card-link:hover .event-card-cta{
   color:#fff!important;
@@ -4685,6 +4678,5 @@ html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-them
   .reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),
   .featured-event-panel a.featured-event-action,
   .event-card-cta,
-  .digital-passes-section .pass-action,
-  .stall-registration-home-link
+  .digital-passes-section .pass-action
 ) :is(span,.lucide-icon){color:inherit!important}
