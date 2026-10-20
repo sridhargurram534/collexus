@@ -4649,3 +4649,42 @@ body.warm-editorial-theme.vivid-nightfall-theme :is(
   .site-float-button
 ) :is(span,.lucide-icon){color:inherit!important}
 body.warm-editorial-theme.vivid-nightfall-theme .stall-registration-home-link{min-height:44px;padding:0 15px;border-radius:12px;text-decoration:none}
+
+/* Keep the light-theme hero actions aligned with the shared Collexus teal. */
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main :is(
+  .reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),
+  .featured-event-panel a.featured-event-action,
+  .event-card-cta,
+  .digital-passes-section .pass-action,
+  .stall-registration-home-link
+){
+  color:#fff!important;
+  background:#087e83!important;
+  background-image:none!important;
+  border-color:#087e83!important;
+  box-shadow:0 4px 12px rgba(8,126,131,.16)!important;
+  filter:none!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main :is(
+  .reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),
+  .featured-event-panel a.featured-event-action,
+  .event-card-cta,
+  .digital-passes-section .pass-action,
+  .stall-registration-home-link
+):hover:not(:disabled),
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main .event-card-link:hover .event-card-cta{
+  color:#fff!important;
+  background:#066a70!important;
+  background-image:none!important;
+  border-color:#066a70!important;
+  box-shadow:0 6px 15px rgba(8,88,94,.2)!important;
+  filter:none!important;
+  transform:translateY(-1px)!important;
+}
+html[data-collexus-theme="light"] body.warm-editorial-theme.vivid-nightfall-theme main :is(
+  .reference-mood-backdrop .hero-cta:not(.hero-cta-high-contrast),
+  .featured-event-panel a.featured-event-action,
+  .event-card-cta,
+  .digital-passes-section .pass-action,
+  .stall-registration-home-link
+) :is(span,.lucide-icon){color:inherit!important}
