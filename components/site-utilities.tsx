@@ -131,6 +131,7 @@ export function SiteUtilities() {
           <nav className="site-menu-links" aria-label="Site navigation">
             <a href={`${basePath}/#home`} onClick={() => setMenuOpen(false)}>Discover events <ChevronRight size={17} /></a>
             <a href={`${basePath}/#faq`} onClick={() => setMenuOpen(false)}>Frequently asked questions <ChevronRight size={17} /></a>
+            <a href={`${basePath}/skills/`} onClick={() => setMenuOpen(false)}>Skills &amp; interests <ChevronRight size={17} /></a>
             <a href={`${basePath}/host-event/`} onClick={() => setMenuOpen(false)}>Host an event <ChevronRight size={17} /></a>
             <a href={`${basePath}/stall-registration/`} onClick={() => setMenuOpen(false)}>Register a stall <ChevronRight size={17} /></a>
             <a href={`${basePath}/login/`} onClick={() => setMenuOpen(false)}>Sign in <ChevronRight size={17} /></a>
