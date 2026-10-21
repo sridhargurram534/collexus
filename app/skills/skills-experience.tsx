@@ -23,7 +23,8 @@ const interestGroups = [
   { name: "Business", tone: "teal", tags: ["Business", "Money", "Entrepreneurship", "Leadership", "Startup", "Careers", "Finance", "Investing", "Work", "Marketing", "Cryptocurrency"] },
 ];
 const experienceOptions = ["1st year", "2nd year", "3rd year", "4th year", "5th year or above", "Recent graduate", "Working professional"];
-const foodSuggestions = ["Biryani", "Dosa", "Pizza", "Pasta", "Street food", "Sweets", "Coffee", "Tea"];
+const cultureSuggestions = ["Telugu", "Tamil", "Hindi", "Classical dance", "Folk music", "Anime", "Regional festivals", "Photography"];
+const foodSuggestions = ["Biryani", "Dosa", "Idli", "Pizza", "Pasta", "Street food", "Sweets", "Coffee", "Tea", "Andhra meals", "Pani puri"];
 const allInterestOptions = new Set(interestGroups.flatMap((group) => group.tags));
 
 function readArray(value: unknown) {
@@ -128,7 +129,7 @@ export function SkillsExperience() {
   const selectedInterests = [...interests, ...customInterests];
   const normalizedInterestSearch = interestSearch.trim().toLocaleLowerCase();
   const filteredInterestGroups = interestGroups.map((group) => ({ ...group, tags: group.tags.filter((tag) => tag.toLocaleLowerCase().includes(normalizedInterestSearch)) })).filter((group) => group.tags.length > 0);
-  const selectedCount = skills.length + selectedInterests.length + culture.length + foods.length;
+  const selectedCount = skills.length + selectedInterests.length + culture.length + foods.length + Number(Boolean(branch)) + Number(Boolean(experience));
 
   return <main className={styles.page}>
     <header className={styles.header}>
@@ -155,8 +156,8 @@ export function SkillsExperience() {
             <div className={styles.groups}>{filteredInterestGroups.map((group) => <fieldset className={`${styles.interestGroup} ${styles[group.tone]}`} key={group.name}><legend>{group.name}</legend><div className={styles.chips}>{group.tags.map((tag) => { const selected = interests.includes(tag); return <button type="button" className={selected ? styles.chipSelected : styles.chip} aria-pressed={selected} key={tag} onClick={() => { setInterests((current) => selected ? current.filter((item) => item !== tag) : [...current, tag]); setSaved(false); }}>{selected && <Check size={13} aria-hidden="true" />}{tag}</button>; })}</div></fieldset>)}{!filteredInterestGroups.length && <p className={styles.noResults}>No matching interests. Add your own below.</p>}</div>
             <TagField id="custom-interest-entry" label="Add your own interests" hint="Optional · type a tag and press Enter" values={customInterests} draft={interestDraft} setDraft={setInterestDraft} onAdd={(value) => addValue(value, customInterests, setCustomInterests, () => setInterestDraft(""))} onRemove={(value) => { setCustomInterests((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="Add a topic that’s not listed" />
           </section>
-          <TagField id="culture-entry" label="Culture, languages & communities" hint="Optional · add what feels like you" values={culture} draft={cultureDraft} setDraft={setCultureDraft} onAdd={(value) => addValue(value, culture, setCulture, () => setCultureDraft(""))} onRemove={(value) => { setCulture((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="e.g. Telugu, classical dance, anime" />
-          <TagField id="food-entry" label="Foods you love" hint="Optional · help friends plan the next food run" values={foods} draft={foodDraft} setDraft={setFoodDraft} onAdd={(value) => addValue(value, foods, setFoods, () => setFoodDraft(""))} onRemove={(value) => { setFoods((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="Add a favorite food" suggestions={foodSuggestions} />
+          <TagField id="culture-entry" label="Culture, languages & communities" hint="Optional · add what feels like you" values={culture} draft={cultureDraft} setDraft={setCultureDraft} onAdd={(value) => addValue(value, culture, setCulture, () => setCultureDraft(""))} onRemove={(value) => { setCulture((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="e.g. Telugu, classical dance, anime" suggestions={cultureSuggestions} />
+          <TagField id="food-entry" label="Loved food items" hint="Optional · help friends plan the next food run" values={foods} draft={foodDraft} setDraft={setFoodDraft} onAdd={(value) => addValue(value, foods, setFoods, () => setFoodDraft(""))} onRemove={(value) => { setFoods((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="Add a favorite food" suggestions={foodSuggestions} />
           {error && <p className={styles.error} role="alert">{error}</p>}{saved && <p className={styles.success} role="status"><BadgeCheck size={17} aria-hidden="true" /> Your skills and interests are saved.</p>}
           {!configured && <p className={styles.setupNotice}>Supabase is not configured yet, so saving is disabled until its project URL and publishable key are added.</p>}
           <div className={styles.actions}><button className={styles.primaryButton} type="submit" disabled={busy || !configured}>{busy ? <><LoaderCircle className={styles.spinner} size={17} aria-hidden="true" /> Saving…</> : <>Save my details <ArrowRight size={17} aria-hidden="true" /></>}</button><a href={`${basePath}/#featured-events`}>Maybe later</a></div>
