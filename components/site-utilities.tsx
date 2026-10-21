@@ -121,8 +121,8 @@ export function SiteUtilities() {
       <a className="site-skip-link" href="#main-content" onClick={() => document.querySelector("main")?.focus({ preventScroll: true })}>Skip to content</a>
       <div className="site-scroll-progress" aria-hidden="true"><span style={{ width: `${progress}%` }} /></div>
       <div className="site-utility-actions" aria-label="Page utilities">
-        <button className="site-float-button" type="button" aria-label="Open help and site menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}><HelpCircle size={19} /><span>Help</span></button>
-        {scrolled && <button className="site-float-button site-back-top" type="button" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" })}><ArrowUp size={18} /><span>Top</span></button>}
+        <button className="site-float-button site-help-button" type="button" aria-label="Open help and site menu" title="Help and site menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}><HelpCircle size={20} aria-hidden="true" /></button>
+        {scrolled && <button className="site-float-button site-back-top" type="button" aria-label="Back to top" title="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" })}><ArrowUp size={18} aria-hidden="true" /><span>Back to top</span></button>}
       </div>
 
       {menuOpen && <div className="site-menu-scrim" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setMenuOpen(false); }}>
