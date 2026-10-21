@@ -107,10 +107,6 @@
 .textInput { width: 100%; min-height: 47px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: var(--soft); font: inherit; font-size: 13px; }
 .textInput::placeholder { color: var(--muted); }
 .textInput:focus-visible { outline: 0; border-color: var(--accent); background: var(--card); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
-.textarea { width: 100%; min-height: 112px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: var(--soft); font: inherit; font-size: 13px; line-height: 1.55; resize: vertical; }
-.textarea::placeholder { color: var(--muted); }
-.textarea:focus-visible { outline: 0; border-color: var(--accent); background: var(--card); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
-.fieldHint { color: var(--muted); font-size: 11px; font-weight: 450; }
 .interestSearch { display: flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); background: var(--soft); }
 .interestSearch:focus-within { border-color: var(--accent); background: var(--card); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
 .interestSearch svg { flex: 0 0 auto; color: var(--accent); }
@@ -173,7 +169,6 @@
 .previewChips { display: flex; flex-wrap: wrap; gap: 6px; }
 .previewChips span { max-width: 100%; padding: 6px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--soft); font-size: 11px; overflow-wrap: anywhere; }
 .previewChips small { color: var(--muted); font-size: 12px; }
-.aboutPreview { margin: 18px 0 0; padding: 12px; border-left: 2px solid var(--accent); border-radius: 0 9px 9px 0; color: var(--muted); background: var(--soft); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; white-space: pre-wrap; }
 .previewFoot { display: flex; align-items: flex-start; gap: 8px; padding: 13px 16px; border-top: 1px solid var(--line); color: var(--muted); background: var(--soft); font-size: 12px; font-weight: 550; line-height: 1.5; }
 .previewFoot svg { flex: 0 0 auto; color: var(--accent); }
 .footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 25px; padding: 15px 0 6px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }

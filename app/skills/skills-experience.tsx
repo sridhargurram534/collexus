@@ -56,8 +56,6 @@ export function SkillsExperience() {
   const [user, setUser] = useState<User | null>(null);
   const [configured] = useState(isSupabaseConfigured());
   const [checking, setChecking] = useState(() => isSupabaseConfigured());
-  const [displayName, setDisplayName] = useState("");
-  const [about, setAbout] = useState("");
   const [branch, setBranch] = useState("");
   const [otherBranch, setOtherBranch] = useState("");
   const [experience, setExperience] = useState("");
@@ -83,8 +81,6 @@ export function SkillsExperience() {
         try {
           const draft = JSON.parse(localStorage.getItem(localDraftKey) ?? "null") as Record<string, unknown> | null;
           if (draft) {
-            setDisplayName(String(draft.full_name ?? ""));
-            setAbout(String(draft.profile_about ?? ""));
             setBranch(String(draft.profile_branch_category ?? ""));
             setOtherBranch(String(draft.profile_branch_details ?? ""));
             setExperience(String(draft.profile_experience ?? ""));
@@ -104,8 +100,6 @@ export function SkillsExperience() {
       if (authError || !data.user) { window.location.replace(`${basePath}/login/?next=%2Fabout-you%2F`); return; }
       const metadata = data.user.user_metadata;
       setUser(data.user);
-      setDisplayName(String(metadata.full_name ?? metadata.name ?? ""));
-      setAbout(String(metadata.profile_about ?? ""));
       setBranch(String(metadata.profile_branch_category ?? metadata.profile_branch ?? ""));
       setOtherBranch(String(metadata.profile_branch_details ?? ""));
       setExperience(String(metadata.profile_experience ?? ""));
@@ -130,13 +124,10 @@ export function SkillsExperience() {
     event.preventDefault(); setError(""); setSaved(false);
     if (!skills.length) { setError("Add at least one skill to continue."); return; }
     if (!interests.length && !customInterests.length) { setError("Choose at least one interest to continue."); return; }
-    if (!displayName.trim()) { setError("Add the name you’d like people to see on your profile."); return; }
     const supabase = getSupabaseClient();
     if (!supabase) {
       try {
         localStorage.setItem(localDraftKey, JSON.stringify({
-          full_name: displayName.trim(),
-          profile_about: about.trim(),
           profile_branch: branch === "Other" ? otherBranch.trim() : branch,
           profile_branch_category: branch,
           profile_branch_details: branch === "Other" ? otherBranch.trim() : "",
@@ -152,8 +143,6 @@ export function SkillsExperience() {
     }
     setBusy(true);
     const { data, error: updateError } = await supabase.auth.updateUser({ data: {
-      full_name: displayName.trim(),
-      profile_about: about.trim(),
       profile_branch: branch === "Other" ? otherBranch.trim() : branch,
       profile_branch_category: branch,
       profile_branch_details: branch === "Other" ? otherBranch.trim() : "",
@@ -170,11 +159,11 @@ export function SkillsExperience() {
     setSaved(true);
   }
 
-  const previewName = displayName.trim() || user?.email?.split("@")[0] || "Your name";
+  const previewName = String(user?.user_metadata.full_name ?? user?.user_metadata.name ?? user?.email?.split("@")[0] ?? "Your profile");
   const selectedInterests = [...interests, ...customInterests];
   const normalizedInterestSearch = interestSearch.trim().toLocaleLowerCase();
   const filteredInterestGroups = interestGroups.map((group) => ({ ...group, tags: group.tags.filter((tag) => tag.toLocaleLowerCase().includes(normalizedInterestSearch)) })).filter((group) => group.tags.length > 0);
-  const selectedCount = Number(Boolean(displayName.trim())) + skills.length + selectedInterests.length + culture.length + foods.length + Number(Boolean(branch && (branch !== "Other" || otherBranch.trim()))) + Number(Boolean(experience)) + Number(Boolean(about.trim()));
+  const selectedCount = skills.length + selectedInterests.length + culture.length + foods.length + Number(Boolean(branch && (branch !== "Other" || otherBranch.trim()))) + Number(Boolean(experience));
 
   return <main className={styles.page}>
     <header className={styles.header}>
@@ -190,7 +179,6 @@ export function SkillsExperience() {
       {checking ? <div className={styles.notice}><LoaderCircle className={styles.spinner} size={21} aria-hidden="true" /> Checking your account…</div> : <div className={styles.contentGrid}>
         <form className={styles.form} onSubmit={save}>
           <div className={styles.sectionHead}><span className={styles.headingIcon}><GraduationCap size={21} aria-hidden="true" /></span><div><p className={styles.sectionKicker}>01 — ABOUT YOU</p><h2>Where are you on your journey?</h2><p>Share a few details that help classmates and organizers get to know you.</p></div></div>
-          <label className={styles.field}><span>Name on your profile <b>*</b></span><input className={styles.textInput} autoComplete="name" required maxLength={80} value={displayName} onChange={(event) => { setDisplayName(event.target.value); setSaved(false); }} placeholder="e.g. Ananya Rao" /></label>
           <div className={styles.fieldGrid}>
             <label className={styles.field}><span>Your branch <b>*</b></span><span className={styles.selectWrap}><Compass size={16} aria-hidden="true" /><select required value={branch} onChange={(event) => { setBranch(event.target.value); setSaved(false); }}><option value="">Choose your branch</option>{branches.map((item) => <option key={item}>{item}</option>)}</select><ChevronDown size={15} aria-hidden="true" /></span></label>
             {branch === "Other" && <label className={styles.field}><span>Enter your branch <b>*</b></span><input className={styles.textInput} required maxLength={80} value={otherBranch} onChange={(event) => { setOtherBranch(event.target.value); setSaved(false); }} placeholder="e.g. Biotechnology" /></label>}
@@ -204,12 +192,11 @@ export function SkillsExperience() {
           </section>
           <TagField id="culture-entry" label="Culture, languages & communities" hint="Optional · add what feels like you" values={culture} draft={cultureDraft} setDraft={setCultureDraft} onAdd={(value) => addValue(value, culture, setCulture, () => setCultureDraft(""))} onRemove={(value) => { setCulture((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="e.g. Telugu, classical dance, anime" suggestions={cultureSuggestions} />
           <TagField id="food-entry" label="Loved food items" hint="Optional · help friends plan the next food run" values={foods} draft={foodDraft} setDraft={setFoodDraft} onAdd={(value) => addValue(value, foods, setFoods, () => setFoodDraft(""))} onRemove={(value) => { setFoods((current) => current.filter((item) => item !== value)); setSaved(false); }} placeholder="Add a favorite food" suggestions={foodSuggestions} />
-          <label className={styles.field}><span>A little about you <small>Optional</small></span><textarea className={styles.textarea} value={about} onChange={(event) => { setAbout(event.target.value); setSaved(false); }} maxLength={280} rows={4} placeholder="What are you learning, building, or hoping to find in the Collexus community?" /><small className={styles.fieldHint}>{about.length}/280 characters</small></label>
           {error && <p className={styles.error} role="alert">{error}</p>}{saved && <p className={styles.success} role="status"><BadgeCheck size={17} aria-hidden="true" /> Your skills and interests are saved.</p>}
           {!configured && <p className={styles.setupNotice}><ShieldCheck size={16} aria-hidden="true" /> Your profile service isn’t connected yet. You can still fill out the page, preview your profile, and save a draft in this browser.</p>}
           <div className={styles.actions}><button className={styles.primaryButton} type="submit" disabled={busy}>{busy ? <><LoaderCircle className={styles.spinner} size={17} aria-hidden="true" /> Saving…</> : <>{configured ? "Save my details" : "Save this draft"} <ArrowRight size={17} aria-hidden="true" /></>}</button><a href={`${basePath}/#featured-events`}>Maybe later</a></div>
         </form>
-        <aside className={styles.preview} aria-label="Live profile preview"><div className={styles.previewTop}><span>YOUR PROFILE CARD</span><span className={styles.live}><i /> LIVE PREVIEW</span></div><div className={styles.previewBody}><div className={styles.avatar}>{previewName.split(/\s+/).map((part) => part[0]).slice(0, 2).join("").toUpperCase() || "C"}</div><span className={styles.memberBadge}>{user ? "COLLEXUS MEMBER" : "PROFILE PREVIEW"}</span><h3>{previewName}</h3>{user?.email && <p className={styles.email}>{user.email}</p>}<div className={styles.divider} /><p className={styles.previewLabel}><GraduationCap size={14} aria-hidden="true" /> STUDYING</p><p className={styles.previewValue}>{branch || "Your branch"}</p><p className={styles.previewMeta}>{experience || "Your year / experience"}</p><p className={styles.previewLabel}><Sparkles size={14} aria-hidden="true" /> SKILLS</p><div className={styles.previewChips}>{skills.length ? skills.slice(0, 5).map((item) => <span key={item}>{item}</span>) : <small>Add skills to show them here</small>}</div><p className={styles.previewLabel}><Heart size={14} aria-hidden="true" /> INTERESTS</p><div className={styles.previewChips}>{selectedInterests.length ? selectedInterests.slice(0, 5).map((item) => <span key={item}>{item}</span>) : <small>Choose what you enjoy</small>}</div>{culture.length > 0 && <><p className={styles.previewLabel}><Sparkles size={14} aria-hidden="true" /> CULTURE</p><div className={styles.previewChips}>{culture.slice(0, 4).map((item) => <span key={item}>{item}</span>)}</div></>}{foods.length > 0 && <><p className={styles.previewLabel}><Heart size={14} aria-hidden="true" /> FOOD FAVOURITES</p><div className={styles.previewChips}>{foods.slice(0, 4).map((item) => <span key={item}>{item}</span>)}</div></>}{about.trim() && <p className={styles.aboutPreview}>{about.trim()}</p>}</div><div className={styles.previewFoot}><ShieldCheck size={16} aria-hidden="true" /><span>Share only what you’re comfortable sharing.</span></div></aside>
+        <aside className={styles.preview} aria-label="Live profile preview"><div className={styles.previewTop}><span>YOUR PROFILE CARD</span><span className={styles.live}><i /> LIVE PREVIEW</span></div><div className={styles.previewBody}><div className={styles.avatar}>{previewName.split(/\s+/).map((part) => part[0]).slice(0, 2).join("").toUpperCase() || "C"}</div><span className={styles.memberBadge}>{user ? "COLLEXUS MEMBER" : "PROFILE PREVIEW"}</span><h3>{previewName}</h3>{user?.email && <p className={styles.email}>{user.email}</p>}<div className={styles.divider} /><p className={styles.previewLabel}><GraduationCap size={14} aria-hidden="true" /> STUDYING</p><p className={styles.previewValue}>{branch || "Your branch"}</p><p className={styles.previewMeta}>{experience || "Your year / experience"}</p><p className={styles.previewLabel}><Sparkles size={14} aria-hidden="true" /> SKILLS</p><div className={styles.previewChips}>{skills.length ? skills.slice(0, 5).map((item) => <span key={item}>{item}</span>) : <small>Add skills to show them here</small>}</div><p className={styles.previewLabel}><Heart size={14} aria-hidden="true" /> INTERESTS</p><div className={styles.previewChips}>{selectedInterests.length ? selectedInterests.slice(0, 5).map((item) => <span key={item}>{item}</span>) : <small>Choose what you enjoy</small>}</div>{culture.length > 0 && <><p className={styles.previewLabel}><Sparkles size={14} aria-hidden="true" /> CULTURE</p><div className={styles.previewChips}>{culture.slice(0, 4).map((item) => <span key={item}>{item}</span>)}</div></>}{foods.length > 0 && <><p className={styles.previewLabel}><Heart size={14} aria-hidden="true" /> FOOD FAVOURITES</p><div className={styles.previewChips}>{foods.slice(0, 4).map((item) => <span key={item}>{item}</span>)}</div></>}</div><div className={styles.previewFoot}><ShieldCheck size={16} aria-hidden="true" /><span>Share only what you’re comfortable sharing.</span></div></aside>
       </div>}
       <footer className={styles.footer}><span>© 2026 Collexus</span><span>Find your people. Find your next experience.</span></footer>
     </div>
