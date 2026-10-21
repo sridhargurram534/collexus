@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ComponentPropsWithoutRef } from "reac
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUp,
   ArrowUpRight,
   Award,
   BadgeCheck,
@@ -57,6 +58,7 @@ const iconMap: Record<string, LucideIcon> = {
   apps: LayoutGrid,
   arrow_back: ArrowLeft,
   arrow_forward: ArrowRight,
+  arrow_up: ArrowUp,
   arrow_up_right: ArrowUpRight,
   badge: ContactRound,
   bolt: Zap,

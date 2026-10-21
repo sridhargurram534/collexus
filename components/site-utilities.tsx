@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUp, Check, ChevronRight, Copy, HelpCircle, Menu, X } from "lucide-react";
+import { Check, ChevronRight, Copy, HelpCircle, Menu, X } from "lucide-react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const trackingKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
 
 export function SiteUtilities() {
-  const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cookieVisible, setCookieVisible] = useState(false);
@@ -20,7 +19,6 @@ export function SiteUtilities() {
     const updateScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0);
-      setScrolled(window.scrollY > 480);
     };
     updateScroll();
     window.addEventListener("scroll", updateScroll, { passive: true });
@@ -122,7 +120,6 @@ export function SiteUtilities() {
       <div className="site-scroll-progress" aria-hidden="true"><span style={{ width: `${progress}%` }} /></div>
       <div className="site-utility-actions" aria-label="Page utilities">
         <button className="site-float-button site-help-button" type="button" aria-label="Open help and site menu" title="Help and site menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}><HelpCircle size={20} aria-hidden="true" /></button>
-        {scrolled && <button className="site-float-button site-back-top" type="button" aria-label="Back to top" title="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" })}><ArrowUp size={18} aria-hidden="true" /><span>Back to top</span></button>}
       </div>
 
       {menuOpen && <div className="site-menu-scrim" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setMenuOpen(false); }}>
