@@ -4002,13 +4002,13 @@ body.warm-editorial-theme.vivid-nightfall-theme #loginModal .login-dialog :is(.l
 /* Keep the category rail on one swipeable row so it never covers the hero. */
 @media(max-width:760px){
   body.warm-editorial-theme.vivid-nightfall-theme .quick-category-top{
-    flex-wrap:nowrap!important;justify-content:flex-start!important;gap:8px!important;
+    top:73px!important;flex-wrap:nowrap!important;justify-content:flex-start!important;gap:8px!important;
     overflow-x:auto!important;overflow-y:hidden!important;overscroll-behavior-inline:contain;
     scrollbar-width:none;padding:6px 12px!important;
   }
   body.warm-editorial-theme.vivid-nightfall-theme .quick-category-top::-webkit-scrollbar{display:none}
   body.warm-editorial-theme.vivid-nightfall-theme .quick-category-top button{flex:0 0 auto!important;min-height:44px}
-  body.warm-editorial-theme.vivid-nightfall-theme main.w-full.bg-surface{padding-top:132px!important}
+  body.warm-editorial-theme.vivid-nightfall-theme main.w-full.bg-surface{padding-top:131px!important}
   body.warm-editorial-theme.vivid-nightfall-theme main .reference-mood-backdrop{
     padding:24px clamp(16px,4vw,28px) 32px!important;max-width:none!important;
   }
